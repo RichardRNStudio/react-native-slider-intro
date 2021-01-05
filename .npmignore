@@ -1,0 +1,18 @@
+# Logs
+*.log
+npm-debug.log
+
+# Dependency directory
+node_modules
+
+# Runtime data
+tmp
+
+# Examples
+examples
+
+# Documentation
+docs
+
+# env files
+.env
