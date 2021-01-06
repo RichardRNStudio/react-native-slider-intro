@@ -1,27 +1,64 @@
-# react-native-slider-intro
+<h1>🚀 react-native-slider-intro</h1>
 
-A simple and fully customizable React Native component that implements an intro slider for your app
+![npm version](https://img.shields.io/badge/npm-1.0.0-brightgreen)
+![platform](https://img.shields.io/badge/platform-android-yellow)
+![license](https://img.shields.io/badge/license-MIT-yellow)
 
-## Installation
+![example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/android-example.gif?raw=true)
+
+<blockquote>
+<p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
+<p>NOTICE: It doesn't work with IOS yet. If you can help me in this case please contact me on the following email: info@rnstudio.hu</p>
+<p><i>This package has been written for the PC Controller react-native application as a submodule.</i></p>
+  <a href="https://pccontroller.rnstudio.hu">Visit the PC Controller website</a>
+</p>
+</blockquote>
+
+<h2>Installation</h2>
 
 ```sh
-npm install react-native-slider-intro
+npm install react-native-slider-intro --save
 ```
 
-## Usage
+<h2>Running the example project</h2>
+
+```sh
+cd example && npm run example
+```
+
+<h2>Usage</h2>
+
+<h3>Basic example</h3>
 
 ```js
-import SliderIntro from "react-native-slider-intro";
+import IntroSlider from 'react-native-slider-intro';
+
+// Make your own data array and pass it to IntroSlider.
+const slides = [
+  {
+    index: 1,
+    title: 'First step',
+    text: 'Simple description for the first step.',
+    image: require('./images/step1.jpg'),
+    backgroundColor: '#febe29',
+  },
+  {
+    index: 2,
+    title: 'Second step',
+    text: 'Try to make something beauty here.',
+    image: require('./images/step2.jpg'),
+    backgroundColor: '#febe29',
+  },
+];
 
 // ...
-
-const result = await SliderIntro.multiply(3, 7);
+<IntroSlider data={slides} />;
 ```
 
-## Contributing
+<h2>Contributing</h2>
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-## License
+<h2>License</h2>
 
 MIT

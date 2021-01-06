@@ -363,7 +363,6 @@ export function IntroSlider({
 
   const {
     active,
-    previous,
     marginLeft,
     animations,
     dotMarginLeft,
@@ -456,6 +455,8 @@ export function IntroSlider({
     ]).start();
   }, [slide]);
 
+  // Based on React navigation lifecycle issue:
+  // https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods
   if (hasReactNavigation) {
     useFocusEffect(
       React.useCallback(() => {
@@ -632,14 +633,11 @@ export function IntroSlider({
                 {renderNextButton(nextLabel)}
               </Animated.View>
               <Animated.View
-                style={[
-                  styles.doneButton,
-                  {
-                    position: 'absolute',
-                    bottom: 26,
-                    opacity: _opacityOfDoneButton,
-                  },
-                ]}
+                style={{
+                  position: 'absolute',
+                  bottom: 26,
+                  opacity: _opacityOfDoneButton,
+                }}
               >
                 {renderDoneButton(doneLabel)}
               </Animated.View>
@@ -738,7 +736,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  doneButton: {},
 });
 
 export default IntroSlider;
