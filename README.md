@@ -28,7 +28,7 @@ cd example && npm run example
 
 <h3>Basic example</h3>
 
-![basic-example](https://github.com/RichardRNStudio/react-native-find-local-devices/blob/main/docs/basic-example.gif?raw=true)
+![basic-example](https://github.com/RichardRNStudio/react-native-intro-slider/blob/main/docs/basic-example.gif?raw=true)
 <p>Make your own data array and pass it to <b>IntroSlider</b>.</p>
 
 ```js
