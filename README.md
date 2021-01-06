@@ -1,4 +1,4 @@
-<h1>🚀 react-native-slider-intro</h1>
+<h1>📲 react-native-slider-intro</h1>
 
 ![npm version](https://img.shields.io/badge/npm-1.0.0-brightgreen)
 ![platform](https://img.shields.io/badge/platform-android-yellow)
@@ -29,30 +29,47 @@ cd example && npm run example
 <h2>Usage</h2>
 
 <h3>Basic example</h3>
+<p>Make your own data array and pass it to `IntroSlider`.</p>
 
 ```js
+import React from 'react';
 import IntroSlider from 'react-native-slider-intro';
 
-// Make your own data array and pass it to IntroSlider.
 const slides = [
   {
     index: 1,
     title: 'First step',
-    text: 'Simple description for the first step.',
+    text: 'Simple description.',
     image: require('./images/step1.jpg'),
     backgroundColor: '#febe29',
   },
   {
     index: 2,
     title: 'Second step',
-    text: 'Try to make something beauty here.',
+    text: 'Simple description for the second step.',
     image: require('./images/step2.jpg'),
+    backgroundColor: '#febe29',
+  },
+  {
+    index: 3,
+    title: 'Third step',
+    text: 'Try to make something beauty here.',
+    image: require('./images/step3.jpg'),
+    backgroundColor: '#febe29',
+  },
+  {
+    index: 4,
+    title: 'Fourth step',
+    text: 'Here you can open a custom link.',
+    link: 'https://pccontroller.rnstudio.hu',
+    image: require('./images/step4.jpg'),
     backgroundColor: '#febe29',
   },
 ];
 
-// ...
-<IntroSlider data={slides} />;
+const BasicExample = () => {
+  return <IntroSlider data={slides} />;
+};
 ```
 
 <h2>Contributing</h2>
