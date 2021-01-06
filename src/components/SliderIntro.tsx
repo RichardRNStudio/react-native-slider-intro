@@ -379,6 +379,8 @@ export function SliderIntro({
     _opacityOfSkipButton,
   } = animations;
 
+  const isLastSlide = active + 1 === numberOfSlide;
+
   useEffect(() => {
     const panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -546,24 +548,23 @@ export function SliderIntro({
         ]}
       >
         <View style={styles.navigation}>
-          <Animated.View
-            style={[
-              styles.skipContainer,
-              {
-                maxWidth: buttonsMaxSize,
-                opacity: _opacityOfSkipButton,
-              },
-            ]}
-          >
+          <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
             <TouchableOpacity
               onPress={() => {
                 setDefaultState(setSlide);
                 onSkip();
               }}
             >
-              {renderSkipButton(skipLabel)}
+              <Animated.View
+                style={{
+                  maxWidth: buttonsMaxSize,
+                  opacity: _opacityOfSkipButton,
+                }}
+              >
+                {renderSkipButton(skipLabel)}
+              </Animated.View>
             </TouchableOpacity>
-          </Animated.View>
+          </View>
           <View
             style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}
           >
@@ -612,7 +613,7 @@ export function SliderIntro({
               </View>
             </View>
           </View>
-          <View style={[styles.nextContainer, { maxWidth: buttonsMaxSize }]}>
+          <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
             <TouchableOpacity
               onPress={() =>
                 goToNewSlide(
@@ -627,20 +628,15 @@ export function SliderIntro({
                 )
               }
             >
-              <Animated.View
-                style={[styles.nextButton, { opacity: _opacityOfNextButton }]}
-              >
-                {renderNextButton(nextLabel)}
-              </Animated.View>
-              <Animated.View
-                style={{
-                  position: 'absolute',
-                  bottom: 26,
-                  opacity: _opacityOfDoneButton,
-                }}
-              >
-                {renderDoneButton(doneLabel)}
-              </Animated.View>
+              {!isLastSlide ? (
+                <Animated.View style={{ opacity: _opacityOfNextButton }}>
+                  {renderNextButton(nextLabel)}
+                </Animated.View>
+              ) : (
+                <Animated.View style={{ opacity: _opacityOfDoneButton }}>
+                  {renderDoneButton(doneLabel)}
+                </Animated.View>
+              )}
             </TouchableOpacity>
           </View>
         </View>
@@ -712,10 +708,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  skipContainer: {
-    flex: 1,
-  },
-  nextContainer: {
+  buttonContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -730,11 +723,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     fontSize: 14,
-  },
-  nextButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
 });
 
