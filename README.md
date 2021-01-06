@@ -72,6 +72,43 @@ const BasicExample = () => {
 };
 ```
 
+<h3>Custom buttons example</h3>
+
+![basic-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true)
+
+```js
+import React from 'react';
+import SliderIntro from 'react-native-slider-intro';
+
+const slides = [...];
+
+const renderNextButton = () => {
+  return (
+    <FontAwesomeIcon icon={faArrowCircleRight} color={'white'} size={35} />
+  );
+};
+
+const renderDoneButton = () => {
+  return <FontAwesomeIcon icon={faCheckCircle} color={'white'} size={35} />;
+};
+
+const renderSkipButton = () => {
+  return <FontAwesomeIcon icon={faTimesCircle} color={'white'} size={35} />;
+};
+
+const CustomButtonsExample = () => {
+  return (
+    <SliderIntro
+      renderNextButton={renderNextButton}
+      renderDoneButton={renderDoneButton}
+      renderSkipButton={renderSkipButton}
+      navContainerMaxSizePercent={0.3}
+      data={slides}
+    />
+  );
+};
+```
+
 <h2>Contributing</h2>
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
