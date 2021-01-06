@@ -28,12 +28,12 @@ cd example && npm run example
 
 <h3>Basic example</h3>
 
-![basic-example](https://github.com/RichardRNStudio/react-native-intro-slider/blob/main/docs/basic-example.gif?raw=true)
-<p>Make your own data array and pass it to <b>IntroSlider</b>.</p>
+![basic-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true)
+<p>Make your own data array and pass it to <b>SliderIntro</b>.</p>
 
 ```js
 import React from 'react';
-import IntroSlider from 'react-native-slider-intro';
+import SliderIntro from 'react-native-slider-intro';
 
 const slides = [
   {
@@ -68,7 +68,7 @@ const slides = [
 ];
 
 const BasicExample = () => {
-  return <IntroSlider data={slides} />;
+  return <SliderIntro data={slides} />;
 };
 ```
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { IData } from "./IData.interface";
 
-export interface IIntroSlider {
+export interface ISliderIntro {
   data: IData[];
   renderItem: (item: IData) => React.ReactNode;
   navigationBarPosition: number;

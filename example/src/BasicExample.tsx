@@ -1,5 +1,5 @@
 import React from 'react';
-import IntroSlider from 'react-native-slider-intro';
+import SliderIntro from 'react-native-slider-intro';
 
 const slides = [
   {
@@ -34,7 +34,7 @@ const slides = [
 ];
 
 const BasicExample = () => {
-  return <IntroSlider data={slides} />;
+  return <SliderIntro data={slides} />;
 };
 
 export default BasicExample;

@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { ISlide } from '../interfaces/ISlide.interface';
-import SkipButton from '../components/SkipButton';
-import NextButton from '../components/NextButton';
-import DoneButton from '../components/DoneButton';
-import Item from '../components/Item';
-import { IIntroSlider } from 'src/interfaces/IIntroSlider.interface';
+import SkipButton from './SkipButton';
+import NextButton from './NextButton';
+import DoneButton from './DoneButton';
+import Item from './Item';
+import { ISliderIntro } from 'src/interfaces/ISliderIntro.interface';
 import { IData } from 'src/interfaces/IData.interface';
 
 const setDefaultState = (setSlide: (arg0: ISlide) => void) => {
@@ -259,7 +259,7 @@ const onBackPress = (
   return true;
 };
 
-const defaultProps: IIntroSlider = {
+const defaultProps: ISliderIntro = {
   data: [],
   renderItem: (item: IData) => {
     const {
@@ -310,7 +310,7 @@ const defaultProps: IIntroSlider = {
   onSkip: () => {},
 };
 
-export function IntroSlider({
+export function SliderIntro({
   data,
   renderItem,
   navigationBarPosition,
@@ -332,7 +332,7 @@ export function IntroSlider({
   renderDoneButton,
   onSkip,
   onDone,
-}: IIntroSlider) {
+}: ISliderIntro) {
   const [panResponder, setPanResponder] = useState(PanResponder.create({}));
   const [slide, setSlide] = useState<ISlide>({
     active: 0,
@@ -649,7 +649,7 @@ export function IntroSlider({
   );
 }
 
-IntroSlider.defaultProps = defaultProps;
+SliderIntro.defaultProps = defaultProps;
 
 const styles = StyleSheet.create({
   container: {
@@ -738,4 +738,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IntroSlider;
+export default SliderIntro;

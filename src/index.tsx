@@ -1,2 +1,2 @@
-import IntroSlider from './components/IntroSlider';
-export default IntroSlider;
+import SliderIntro from './components/SliderIntro';
+export default SliderIntro;
