@@ -4,8 +4,6 @@
 ![platform](https://img.shields.io/badge/platform-android-yellow)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
 
-![example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/android-example.gif?raw=true)
-
 <blockquote>
 <p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
 <p>NOTICE: It doesn't work with IOS yet. If you can help me in this case please contact me on the following email: info@rnstudio.hu</p>
@@ -29,6 +27,8 @@ cd example && npm run example
 <h2>Usage</h2>
 
 <h3>Basic example</h3>
+
+![basic-example](https://github.com/RichardRNStudio/react-native-find-local-devices/blob/main/docs/basic-example.gif?raw=true)
 <p>Make your own data array and pass it to <b>IntroSlider</b>.</p>
 
 ```js
