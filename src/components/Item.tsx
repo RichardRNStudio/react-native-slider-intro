@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,8 @@ import {
   Image,
   Linking,
   Dimensions,
-} from "react-native";
-import { IData } from "../interfaces/IData.interface";
+} from 'react-native';
+import { IData } from '../interfaces/IData.interface';
 
 const Item = ({
   key,
@@ -19,7 +19,7 @@ const Item = ({
   activeLanguage,
   image,
 }: IData) => {
-  const language = activeLanguage || "en";
+  const language = activeLanguage || 'en';
   return (
     <View key={key} style={[styles.slide, { backgroundColor }]}>
       <View style={styles.container}>
@@ -48,39 +48,39 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "center",
-    maxHeight: Dimensions.get("window").height * 0.85,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    maxHeight: Dimensions.get('window').height * 0.85,
   },
   slide: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
   },
   text: {
     marginLeft: 20,
     marginRight: 20,
     lineHeight: 24,
     fontSize: 15,
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
   },
   image: {
-    maxWidth: Dimensions.get("window").width,
-    maxHeight: Dimensions.get("window").width,
+    maxWidth: Dimensions.get('window').width,
+    maxHeight: Dimensions.get('window').width,
   },
   link: {
     marginLeft: 20,
     marginRight: 20,
     fontSize: 15,
-    color: "#2f39ff",
-    textDecorationLine: "underline",
-    textAlign: "center",
+    color: '#2f39ff',
+    textDecorationLine: 'underline',
+    textAlign: 'center',
   },
 });

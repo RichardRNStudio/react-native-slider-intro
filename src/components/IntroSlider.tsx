@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Animated,
   Dimensions,
@@ -6,20 +6,16 @@ import {
   BackHandler,
   TouchableOpacity,
   StyleSheet,
-} from "react-native";
-import {
-  PanGestureHandler,
-  State,
-  PanGestureHandlerGestureEvent,
-} from "react-native-gesture-handler";
-import { useFocusEffect } from "@react-navigation/native";
-import { ISlide } from "../interfaces/ISlide.interface";
-import SkipButton from "../components/SkipButton";
-import NextButton from "../components/NextButton";
-import DoneButton from "../components/DoneButton";
-import Item from "../components/Item";
-import { IIntroSlider } from "src/interfaces/IIntroSlider.interface";
-import { IData } from "src/interfaces/IData.interface";
+  PanResponder,
+} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { ISlide } from '../interfaces/ISlide.interface';
+import SkipButton from '../components/SkipButton';
+import NextButton from '../components/NextButton';
+import DoneButton from '../components/DoneButton';
+import Item from '../components/Item';
+import { IIntroSlider } from 'src/interfaces/IIntroSlider.interface';
+import { IData } from 'src/interfaces/IData.interface';
 
 const setDefaultState = (setSlide: (arg0: ISlide) => void) => {
   setSlide({
@@ -116,15 +112,13 @@ const goToNewSlide = (
 };
 
 const _onGestureEvent = (
-  event: PanGestureHandlerGestureEvent,
+  translationX: number,
   slide: ISlide,
   dotMaxPossibleWidth: number,
   deviceMaxSize: number,
   dotWidth: number,
   slidesMaxWidth: number
 ) => {
-  const { nativeEvent } = event;
-  const { translationX } = nativeEvent;
   const { marginLeft, dotMarginLeft, animations } = slide;
   const { _moveSlideX, _moveSlideDotX, _moveSlideDotMarginX } = animations;
   const newValue = translationX + marginLeft;
@@ -161,7 +155,7 @@ const _onGestureEvent = (
 };
 
 const _onHandlerStateChange = (
-  event: PanGestureHandlerGestureEvent,
+  translationX: number,
   slide: ISlide,
   slidesMaxWidth: number,
   limitToSlide: number,
@@ -172,11 +166,6 @@ const _onHandlerStateChange = (
   dotWidth: number,
   deviceMaxSize: number
 ) => {
-  const { nativeEvent } = event;
-  const { state, translationX } = nativeEvent;
-  if (state !== State.END) {
-    return;
-  }
   const { marginLeft, active } = slide;
   const newValue = translationX + marginLeft;
   if (newValue <= 0 && newValue >= -slidesMaxWidth) {
@@ -235,6 +224,41 @@ const _onHandlerStateChange = (
   }
 };
 
+const onBackPress = (
+  backHandlerBehaviour: string,
+  slide: ISlide,
+  setSlide: (arg0: ISlide) => void,
+  numberOfSlide: number,
+  onDone: () => void,
+  navContainerMaxSize: number,
+  dotWidth: number,
+  deviceMaxSize: number
+) => {
+  const { active, previous } = slide;
+  backHandlerBehaviour === 'ActiveMinusOne'
+    ? goToNewSlide(
+        active - 1,
+        slide,
+        setSlide,
+        numberOfSlide,
+        onDone,
+        navContainerMaxSize,
+        dotWidth,
+        deviceMaxSize
+      )
+    : goToNewSlide(
+        previous,
+        slide,
+        setSlide,
+        numberOfSlide,
+        onDone,
+        navContainerMaxSize,
+        dotWidth,
+        deviceMaxSize
+      );
+  return true;
+};
+
 const defaultProps: IIntroSlider = {
   data: [],
   renderItem: (item: IData) => {
@@ -264,17 +288,26 @@ const defaultProps: IIntroSlider = {
   navContainerMaxSizePercent: 0.5,
   dotWidth: 12,
   fixDotOpacity: 0.35,
-  fixDotBackgroundColor: "grey",
-  animatedDotBackgroundColor: "white",
+  fixDotBackgroundColor: 'grey',
+  animatedDotBackgroundColor: 'white',
   animateDotSpeed: 8,
   animateDotBouncing: 2,
-  backHandlerBehaviour: "ActiveMinusOne",
-  skipLabel: "Skip",
-  nextLabel: "Next",
-  doneLabel: "Done",
-  renderSkipButton: (skipLabel: string | undefined) => <SkipButton skipLabel={skipLabel} />,
-  renderNextButton: (nextLabel: string | undefined) => <NextButton nextLabel={nextLabel} />,
-  renderDoneButton: (doneLabel: string | undefined) => <DoneButton doneLabel={doneLabel} />,
+  backHandlerBehaviour: 'ActiveMinusOne',
+  hasReactNavigation: false,
+  skipLabel: 'Skip',
+  nextLabel: 'Next',
+  doneLabel: 'Done',
+  renderSkipButton: (skipLabel: string | undefined) => (
+    <SkipButton skipLabel={skipLabel} />
+  ),
+  renderNextButton: (nextLabel: string | undefined) => (
+    <NextButton nextLabel={nextLabel} />
+  ),
+  renderDoneButton: (doneLabel: string | undefined) => (
+    <DoneButton doneLabel={doneLabel} />
+  ),
+  onDone: () => {},
+  onSkip: () => {},
 };
 
 export function IntroSlider({
@@ -290,6 +323,7 @@ export function IntroSlider({
   animateDotSpeed,
   animateDotBouncing,
   backHandlerBehaviour,
+  hasReactNavigation,
   skipLabel,
   nextLabel,
   doneLabel,
@@ -299,6 +333,7 @@ export function IntroSlider({
   onSkip,
   onDone,
 }: IIntroSlider) {
+  const [panResponder, setPanResponder] = useState(PanResponder.create({}));
   const [slide, setSlide] = useState<ISlide>({
     active: 0,
     previous: 0,
@@ -319,7 +354,7 @@ export function IntroSlider({
 
   const { length: numberOfSlide = 1 } = data;
   const arrayOfSlideIndex = [...Array(numberOfSlide).keys()];
-  const deviceMaxSize = Dimensions.get("window").width;
+  const deviceMaxSize = Dimensions.get('window').width;
   const limitToSlide = deviceMaxSize * 0.5;
   const slidesMaxWidth = (numberOfSlide - 1) * deviceMaxSize;
   const navContainerMaxSize = deviceMaxSize * navContainerMaxSizePercent;
@@ -346,6 +381,35 @@ export function IntroSlider({
   } = animations;
 
   useEffect(() => {
+    const panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onPanResponderMove: (_, gesture) => {
+        _onGestureEvent(
+          gesture.dx,
+          slide,
+          dotMaxPossibleWidth,
+          deviceMaxSize,
+          dotWidth,
+          slidesMaxWidth
+        );
+      },
+      onPanResponderRelease: (_, gesture) => {
+        _onHandlerStateChange(
+          gesture.dx,
+          slide,
+          slidesMaxWidth,
+          limitToSlide,
+          setSlide,
+          numberOfSlide,
+          onDone,
+          navContainerMaxSize,
+          dotWidth,
+          deviceMaxSize
+        );
+      },
+    });
+    setPanResponder(panResponder);
     const animateSlide = Animated.spring(_moveSlideX, {
       toValue: marginLeft,
       speed: animateSlideSpeed,
@@ -392,12 +456,26 @@ export function IntroSlider({
     ]).start();
   }, [slide]);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      const onBackPress = () => {
-        backHandlerBehaviour === "ActiveMinusOne"
-          ? goToNewSlide(
-              active - 1,
+  if (hasReactNavigation) {
+    useFocusEffect(
+      React.useCallback(() => {
+        BackHandler.addEventListener('hardwareBackPress', () =>
+          onBackPress(
+            backHandlerBehaviour,
+            slide,
+            setSlide,
+            numberOfSlide,
+            onDone,
+            navContainerMaxSize,
+            dotWidth,
+            deviceMaxSize
+          )
+        );
+
+        return () =>
+          BackHandler.removeEventListener('hardwareBackPress', () =>
+            onBackPress(
+              backHandlerBehaviour,
               slide,
               setSlide,
               numberOfSlide,
@@ -406,45 +484,29 @@ export function IntroSlider({
               dotWidth,
               deviceMaxSize
             )
-          : goToNewSlide(
-              previous,
-              slide,
-              setSlide,
-              numberOfSlide,
-              onDone,
-              navContainerMaxSize,
-              dotWidth,
-              deviceMaxSize
-            );
-        return true;
-      };
-
-      BackHandler.addEventListener("hardwareBackPress", onBackPress);
+          );
+      }, [active])
+    );
+  } else {
+    useEffect(() => {
+      BackHandler.addEventListener('hardwareBackPress', () =>
+        onBackPress(
+          backHandlerBehaviour,
+          slide,
+          setSlide,
+          numberOfSlide,
+          onDone,
+          navContainerMaxSize,
+          dotWidth,
+          deviceMaxSize
+        )
+      );
 
       return () =>
-        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
-    }, [active])
-  );
-
-  return (
-    <>
-      <PanGestureHandler
-        onGestureEvent={(event) =>
-          _onGestureEvent(
-            event,
+        BackHandler.removeEventListener('hardwareBackPress', () =>
+          onBackPress(
+            backHandlerBehaviour,
             slide,
-            dotMaxPossibleWidth,
-            deviceMaxSize,
-            dotWidth,
-            slidesMaxWidth
-          )
-        }
-        onHandlerStateChange={(event) =>
-          _onHandlerStateChange(
-            event,
-            slide,
-            slidesMaxWidth,
-            limitToSlide,
             setSlide,
             numberOfSlide,
             onDone,
@@ -452,24 +514,28 @@ export function IntroSlider({
             dotWidth,
             deviceMaxSize
           )
-        }
+        );
+    }, []);
+  }
+
+  return (
+    <>
+      <Animated.View
+        style={[
+          styles.container,
+          { maxWidth: numberOfSlide * deviceMaxSize },
+          { marginLeft: _moveSlideX },
+        ]}
+        {...panResponder.panHandlers}
       >
-        <Animated.View
-          style={[
-            styles.container,
-            { maxWidth: numberOfSlide * deviceMaxSize },
-            { marginLeft: _moveSlideX },
-          ]}
-        >
-          {data.map((item: IData, index: number) => {
-            return (
-              <View key={index} style={{ width: deviceMaxSize }}>
-                {renderItem(item)}
-              </View>
-            );
-          })}
-        </Animated.View>
-      </PanGestureHandler>
+        {data.map((item: IData, index: number) => {
+          return (
+            <View key={index} style={{ width: deviceMaxSize }}>
+              {renderItem(item)}
+            </View>
+          );
+        })}
+      </Animated.View>
       <View
         style={[
           styles.navContainer,
@@ -569,7 +635,7 @@ export function IntroSlider({
                 style={[
                   styles.doneButton,
                   {
-                    position: "absolute",
+                    position: 'absolute',
                     bottom: 26,
                     opacity: _opacityOfDoneButton,
                   },
@@ -590,44 +656,44 @@ IntroSlider.defaultProps = defaultProps;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   navContainer: {
-    position: "absolute",
-    width: "100%",
-    maxWidth: "100%",
+    position: 'absolute',
+    width: '100%',
+    maxWidth: '100%',
     height: 70,
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     bottom: 0,
   },
   navigation: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   dotMainContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   mainDotContainer: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   animatedDotContainer: {
-    position: "absolute",
+    position: 'absolute',
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   mainDotInnerContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   fixDot: {
     flex: 1,
@@ -635,9 +701,9 @@ const styles = StyleSheet.create({
   },
   animatedDotInnerContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   animatedDot: {
     flex: 1,
@@ -645,32 +711,32 @@ const styles = StyleSheet.create({
   },
   prevContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   skipContainer: {
     flex: 1,
   },
   nextContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   prevButton: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   prevText: {
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    color: "white",
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    color: 'white',
     fontSize: 14,
   },
   nextButton: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   doneButton: {},
 });

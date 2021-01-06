@@ -8,11 +8,5 @@ node_modules
 # Runtime data
 tmp
 
-# Examples
+# Examples (If applicable to your project)
 examples
-
-# Documentation
-docs
-
-# env files
-.env
