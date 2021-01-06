@@ -29,7 +29,7 @@ cd example && npm run example
 <h2>Usage</h2>
 
 <h3>Basic example</h3>
-<p>Make your own data array and pass it to `IntroSlider`.</p>
+<p>Make your own data array and pass it to <b>IntroSlider</b>.</p>
 
 ```js
 import React from 'react';
