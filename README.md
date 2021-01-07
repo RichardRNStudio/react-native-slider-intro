@@ -167,27 +167,6 @@ const ColumnButtonsExample = () => {
 };
 ```
 
-<h3>Custom statusbar example</h3>
-
-![statusbar-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/statusbar-example.gif?raw=true)
-
-```js
-import React from 'react';
-import SliderIntro from 'react-native-slider-intro';
-
-const slides = [...];
-
-const StatusBarExample = () => {
-  return (
-    <SliderIntro
-      data={slides}
-      showStatusBar={true}
-      statusBarColor={'#febe29'}
-    />
-  );
-};
-```
-
 <h2>Props</h2>
 
 <table>
@@ -202,7 +181,7 @@ const StatusBarExample = () => {
   <tbody>
     <tr>
       <td>data</td>
-      <td><b>object</b></td>
+      <td><b>array</b></td>
       <td>none, <b><i>required</i></b></td>
       <td>Array of objects, which represents your slider items. Each item should contain a unique <i>key</i>.</td>
     </tr>
@@ -216,7 +195,7 @@ const StatusBarExample = () => {
       <td>navigationBarBottom</td>
       <td><b>number</b></td>
       <td>0</td>
-      <td>Custom value of dot navigation container bottom</td>
+      <td>Custom value of dot navigation container bottom position</td>
     </tr>
     <tr>
       <td>navigationBarHeight</td>
