@@ -4,7 +4,6 @@ import {
   Dimensions,
   View,
   BackHandler,
-  TouchableOpacity,
   StyleSheet,
   PanResponder,
 } from 'react-native';
@@ -13,9 +12,12 @@ import { ISlide } from '../interfaces/ISlide.interface';
 import SkipButton from './SkipButton';
 import NextButton from './NextButton';
 import DoneButton from './DoneButton';
+import NextContainer from './NextContainer';
 import Item from './Item';
 import { ISliderIntro } from 'src/interfaces/ISliderIntro.interface';
-import { IData } from 'src/interfaces/IData.interface';
+import { IItem } from 'src/interfaces/IItem.interface';
+import PrevContainer from './PrevContainer';
+import DotContainer from './DotContainer';
 
 const setDefaultState = (setSlide: (arg0: ISlide) => void) => {
   setSlide({
@@ -45,7 +47,7 @@ const goToNewSlide = (
   onDone: () => void,
   navContainerMaxSize: number,
   dotWidth: number,
-  deviceMaxSize: number
+  deviceMaxWidth: number
 ) => {
   if (newSlide < 0) {
     return;
@@ -86,9 +88,9 @@ const goToNewSlide = (
   } = animations;
 
   if (newSlide > active) {
-    expectedMarginLeft = -(newSlide * deviceMaxSize);
+    expectedMarginLeft = -(newSlide * deviceMaxWidth);
   } else if (newSlide < active) {
-    expectedMarginLeft = -(newSlide * deviceMaxSize);
+    expectedMarginLeft = -(newSlide * deviceMaxWidth);
   } else {
     expectedMarginLeft = marginLeft;
   }
@@ -115,7 +117,7 @@ const _onGestureEvent = (
   translationX: number,
   slide: ISlide,
   dotMaxPossibleWidth: number,
-  deviceMaxSize: number,
+  deviceMaxWidth: number,
   dotWidth: number,
   slidesMaxWidth: number
 ) => {
@@ -123,7 +125,7 @@ const _onGestureEvent = (
   const { _moveSlideX, _moveSlideDotX, _moveSlideDotMarginX } = animations;
   const newValue = translationX + marginLeft;
   const newDotWidthRawValue =
-    dotMaxPossibleWidth / (deviceMaxSize / translationX);
+    dotMaxPossibleWidth / (deviceMaxWidth / translationX);
   const newDotWidthValue =
     translationX < 0 ? -1 * newDotWidthRawValue : newDotWidthRawValue;
 
@@ -164,7 +166,7 @@ const _onHandlerStateChange = (
   onDone: () => void,
   navContainerMaxSize: number,
   dotWidth: number,
-  deviceMaxSize: number
+  deviceMaxWidth: number
 ) => {
   const { marginLeft, active } = slide;
   const newValue = translationX + marginLeft;
@@ -181,7 +183,7 @@ const _onHandlerStateChange = (
           onDone,
           navContainerMaxSize,
           dotWidth,
-          deviceMaxSize
+          deviceMaxWidth
         );
       } else {
         goToNewSlide(
@@ -192,7 +194,7 @@ const _onHandlerStateChange = (
           onDone,
           navContainerMaxSize,
           dotWidth,
-          deviceMaxSize
+          deviceMaxWidth
         );
       }
     } else {
@@ -206,7 +208,7 @@ const _onHandlerStateChange = (
           onDone,
           navContainerMaxSize,
           dotWidth,
-          deviceMaxSize
+          deviceMaxWidth
         );
       } else {
         goToNewSlide(
@@ -217,7 +219,7 @@ const _onHandlerStateChange = (
           onDone,
           navContainerMaxSize,
           dotWidth,
-          deviceMaxSize
+          deviceMaxWidth
         );
       }
     }
@@ -232,10 +234,10 @@ const onBackPress = (
   onDone: () => void,
   navContainerMaxSize: number,
   dotWidth: number,
-  deviceMaxSize: number
+  deviceMaxWidth: number
 ) => {
   const { active, previous } = slide;
-  backHandlerBehaviour === 'ActiveMinusOne'
+  backHandlerBehaviour === 'activeMinusOne'
     ? goToNewSlide(
         active - 1,
         slide,
@@ -244,7 +246,7 @@ const onBackPress = (
         onDone,
         navContainerMaxSize,
         dotWidth,
-        deviceMaxSize
+        deviceMaxWidth
       )
     : goToNewSlide(
         previous,
@@ -254,14 +256,14 @@ const onBackPress = (
         onDone,
         navContainerMaxSize,
         dotWidth,
-        deviceMaxSize
+        deviceMaxWidth
       );
   return true;
 };
 
 const defaultProps: ISliderIntro = {
   data: [],
-  renderItem: (item: IData) => {
+  renderItem: (item: IItem) => {
     const {
       key,
       title,
@@ -270,6 +272,7 @@ const defaultProps: ISliderIntro = {
       backgroundColor,
       activeLanguage,
       link,
+      slideMaxHeightPercent,
     } = item;
     return (
       <Item
@@ -280,10 +283,12 @@ const defaultProps: ISliderIntro = {
         backgroundColor={backgroundColor}
         activeLanguage={activeLanguage}
         link={link}
+        slideMaxHeightPercent={slideMaxHeightPercent}
       />
     );
   },
-  navigationBarPosition: 0,
+  navigationBarBottom: 0,
+  navigationBarHeight: 70,
   animateSlideSpeed: 15,
   navContainerMaxSizePercent: 0.5,
   dotWidth: 12,
@@ -292,7 +297,7 @@ const defaultProps: ISliderIntro = {
   animatedDotBackgroundColor: 'white',
   animateDotSpeed: 8,
   animateDotBouncing: 2,
-  backHandlerBehaviour: 'ActiveMinusOne',
+  backHandlerBehaviour: 'activeMinusOne',
   hasReactNavigation: false,
   skipLabel: 'Skip',
   nextLabel: 'Next',
@@ -308,12 +313,16 @@ const defaultProps: ISliderIntro = {
   ),
   onDone: () => {},
   onSkip: () => {},
+  showLeftButton: true,
+  leftButtonType: 'skip',
+  columnButtonStyle: false,
 };
 
 export function SliderIntro({
   data,
   renderItem,
-  navigationBarPosition,
+  navigationBarBottom,
+  navigationBarHeight,
   animateSlideSpeed,
   navContainerMaxSizePercent,
   dotWidth,
@@ -332,6 +341,9 @@ export function SliderIntro({
   renderDoneButton,
   onSkip,
   onDone,
+  showLeftButton,
+  leftButtonType,
+  columnButtonStyle,
 }: ISliderIntro) {
   const [panResponder, setPanResponder] = useState(PanResponder.create({}));
   const [slide, setSlide] = useState<ISlide>({
@@ -354,11 +366,11 @@ export function SliderIntro({
 
   const { length: numberOfSlide = 1 } = data;
   const arrayOfSlideIndex = [...Array(numberOfSlide).keys()];
-  const deviceMaxSize = Dimensions.get('window').width;
-  const limitToSlide = deviceMaxSize * 0.5;
-  const slidesMaxWidth = (numberOfSlide - 1) * deviceMaxSize;
-  const navContainerMaxSize = deviceMaxSize * navContainerMaxSizePercent;
-  const buttonsMaxSize = (deviceMaxSize - navContainerMaxSize) / 2 - 1;
+  const deviceMaxWidth = Dimensions.get('window').width;
+  const limitToSlide = deviceMaxWidth * 0.5;
+  const slidesMaxWidth = (numberOfSlide - 1) * deviceMaxWidth;
+  const navContainerMaxSize = deviceMaxWidth * navContainerMaxSizePercent;
+  const buttonsMaxSize = (deviceMaxWidth - navContainerMaxSize) / 2 - 1;
   const dotMaxPossibleWidth = navContainerMaxSize / (numberOfSlide - 1) + 9;
 
   const {
@@ -382,7 +394,7 @@ export function SliderIntro({
   const isLastSlide = active + 1 === numberOfSlide;
 
   useEffect(() => {
-    const panResponder = PanResponder.create({
+    const panResponderItem = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onStartShouldSetPanResponderCapture: () => true,
       onPanResponderMove: (_, gesture) => {
@@ -390,7 +402,7 @@ export function SliderIntro({
           gesture.dx,
           slide,
           dotMaxPossibleWidth,
-          deviceMaxSize,
+          deviceMaxWidth,
           dotWidth,
           slidesMaxWidth
         );
@@ -406,11 +418,11 @@ export function SliderIntro({
           onDone,
           navContainerMaxSize,
           dotWidth,
-          deviceMaxSize
+          deviceMaxWidth
         );
       },
     });
-    setPanResponder(panResponder);
+    setPanResponder(panResponderItem);
     const animateSlide = Animated.spring(_moveSlideX, {
       toValue: marginLeft,
       speed: animateSlideSpeed,
@@ -471,7 +483,7 @@ export function SliderIntro({
             onDone,
             navContainerMaxSize,
             dotWidth,
-            deviceMaxSize
+            deviceMaxWidth
           )
         );
 
@@ -485,7 +497,7 @@ export function SliderIntro({
               onDone,
               navContainerMaxSize,
               dotWidth,
-              deviceMaxSize
+              deviceMaxWidth
             )
           );
       }, [active])
@@ -501,7 +513,7 @@ export function SliderIntro({
           onDone,
           navContainerMaxSize,
           dotWidth,
-          deviceMaxSize
+          deviceMaxWidth
         )
       );
 
@@ -515,7 +527,7 @@ export function SliderIntro({
             onDone,
             navContainerMaxSize,
             dotWidth,
-            deviceMaxSize
+            deviceMaxWidth
           )
         );
     }, []);
@@ -526,14 +538,21 @@ export function SliderIntro({
       <Animated.View
         style={[
           styles.container,
-          { maxWidth: numberOfSlide * deviceMaxSize },
-          { marginLeft: _moveSlideX },
+          {
+            maxWidth: numberOfSlide * deviceMaxWidth,
+            marginLeft: _moveSlideX,
+          },
         ]}
         {...panResponder.panHandlers}
       >
-        {data.map((item: IData, index: number) => {
+        {data.map((item: IItem, index: number) => {
           return (
-            <View key={index} style={{ width: deviceMaxSize }}>
+            <View
+              key={index}
+              style={{
+                width: deviceMaxWidth,
+              }}
+            >
               {renderItem(item)}
             </View>
           );
@@ -543,102 +562,107 @@ export function SliderIntro({
         style={[
           styles.navContainer,
           {
-            bottom: navigationBarPosition,
+            bottom: navigationBarBottom,
+            height: navigationBarHeight,
+            maxHeight: navigationBarHeight,
           },
         ]}
       >
-        <View style={styles.navigation}>
-          <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
-            <TouchableOpacity
-              onPress={() => {
-                setDefaultState(setSlide);
-                onSkip();
-              }}
-            >
-              <Animated.View
-                style={{
-                  maxWidth: buttonsMaxSize,
-                  opacity: _opacityOfSkipButton,
-                }}
-              >
-                {renderSkipButton(skipLabel)}
-              </Animated.View>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}
-          >
-            <View
-              style={[
-                styles.mainDotContainer,
-                { maxWidth: navContainerMaxSize },
-              ]}
-            >
-              <View style={styles.mainDotInnerContainer}>
-                {arrayOfSlideIndex.map((item) => {
-                  return (
-                    <View
-                      key={item}
-                      style={[
-                        styles.fixDot,
-                        {
-                          backgroundColor: fixDotBackgroundColor,
-                          opacity: fixDotOpacity,
-                          width: dotWidth,
-                          maxWidth: dotWidth,
-                          height: dotWidth,
-                          maxHeight: dotWidth,
-                        },
-                      ]}
-                    />
-                  );
-                })}
-              </View>
-            </View>
-            <View style={[styles.animatedDotContainer]}>
-              <View style={styles.animatedDotInnerContainer}>
-                <Animated.View
-                  style={[
-                    styles.animatedDot,
-                    {
-                      width: _moveSlideDotX,
-                      maxWidth: _moveSlideDotX,
-                      height: dotWidth,
-                      maxHeight: dotWidth,
-                      marginLeft: _moveSlideDotMarginX,
-                      backgroundColor: animatedDotBackgroundColor,
-                    },
-                  ]}
-                />
-              </View>
-            </View>
-          </View>
-          <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
-            <TouchableOpacity
-              onPress={() =>
-                goToNewSlide(
-                  active + 1,
-                  slide,
-                  setSlide,
-                  numberOfSlide,
-                  onDone,
-                  navContainerMaxSize,
-                  dotWidth,
-                  deviceMaxSize
-                )
-              }
-            >
-              {!isLastSlide ? (
-                <Animated.View style={{ opacity: _opacityOfNextButton }}>
-                  {renderNextButton(nextLabel)}
-                </Animated.View>
-              ) : (
-                <Animated.View style={{ opacity: _opacityOfDoneButton }}>
-                  {renderDoneButton(doneLabel)}
-                </Animated.View>
-              )}
-            </TouchableOpacity>
-          </View>
+        <View
+          style={[
+            styles.navigation,
+            { flexDirection: columnButtonStyle ? 'column' : 'row' },
+          ]}
+        >
+          {columnButtonStyle ? (
+            <>
+              <DotContainer
+                navContainerMaxSize={navContainerMaxSize}
+                arrayOfSlideIndex={arrayOfSlideIndex}
+                fixDotBackgroundColor={fixDotBackgroundColor}
+                fixDotOpacity={fixDotOpacity}
+                dotWidth={dotWidth}
+                _moveSlideDotX={_moveSlideDotX}
+                _moveSlideDotMarginX={_moveSlideDotMarginX}
+                animatedDotBackgroundColor={animatedDotBackgroundColor}
+              />
+              <NextContainer
+                goToNewSlide={goToNewSlide}
+                slide={slide}
+                setSlide={setSlide}
+                numberOfSlide={numberOfSlide}
+                onDone={onDone}
+                navContainerMaxSize={navContainerMaxSize}
+                dotWidth={dotWidth}
+                deviceMaxWidth={deviceMaxWidth}
+                renderNextButton={() => renderNextButton(nextLabel)}
+                renderDoneButton={() => renderDoneButton(doneLabel)}
+                isLastSlide={isLastSlide}
+                buttonsMaxSize={buttonsMaxSize}
+              />
+              <PrevContainer
+                setDefaultState={() => setDefaultState(setSlide)}
+                onSkip={onSkip}
+                buttonsMaxSize={buttonsMaxSize}
+                _opacityOfSkipButton={_opacityOfSkipButton}
+                renderSkipButton={() => renderSkipButton(skipLabel)}
+                type={leftButtonType}
+                goToNewSlide={goToNewSlide}
+                slide={slide}
+                setSlide={setSlide}
+                numberOfSlide={numberOfSlide}
+                onDone={onDone}
+                navContainerMaxSize={navContainerMaxSize}
+                dotWidth={dotWidth}
+                deviceMaxWidth={deviceMaxWidth}
+                showLeftButton={showLeftButton}
+              />
+            </>
+          ) : (
+            <>
+              <PrevContainer
+                setDefaultState={() => setDefaultState(setSlide)}
+                onSkip={onSkip}
+                buttonsMaxSize={buttonsMaxSize}
+                _opacityOfSkipButton={_opacityOfSkipButton}
+                renderSkipButton={() => renderSkipButton(skipLabel)}
+                type={leftButtonType}
+                goToNewSlide={goToNewSlide}
+                slide={slide}
+                setSlide={setSlide}
+                numberOfSlide={numberOfSlide}
+                onDone={onDone}
+                navContainerMaxSize={navContainerMaxSize}
+                dotWidth={dotWidth}
+                deviceMaxWidth={deviceMaxWidth}
+                showLeftButton={showLeftButton}
+              />
+              <DotContainer
+                navContainerMaxSize={navContainerMaxSize}
+                arrayOfSlideIndex={arrayOfSlideIndex}
+                fixDotBackgroundColor={fixDotBackgroundColor}
+                fixDotOpacity={fixDotOpacity}
+                dotWidth={dotWidth}
+                _moveSlideDotX={_moveSlideDotX}
+                _moveSlideDotMarginX={_moveSlideDotMarginX}
+                animatedDotBackgroundColor={animatedDotBackgroundColor}
+              />
+              <NextContainer
+                goToNewSlide={goToNewSlide}
+                slide={slide}
+                setSlide={setSlide}
+                numberOfSlide={numberOfSlide}
+                onDone={onDone}
+                navContainerMaxSize={navContainerMaxSize}
+                dotWidth={dotWidth}
+                deviceMaxWidth={deviceMaxWidth}
+                renderNextButton={() => renderNextButton(nextLabel)}
+                renderDoneButton={() => renderDoneButton(doneLabel)}
+                isLastSlide={isLastSlide}
+                buttonsMaxSize={buttonsMaxSize}
+              />
+            </>
+          )}
         </View>
       </View>
     </>
@@ -656,12 +680,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     maxWidth: '100%',
-    height: 70,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    bottom: 0,
   },
   navigation: {
     flex: 1,
@@ -669,46 +691,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  dotMainContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mainDotContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  animatedDotContainer: {
-    position: 'absolute',
-    flex: 1,
-    flexDirection: 'row',
-  },
-  mainDotInnerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  fixDot: {
-    flex: 1,
-    borderRadius: 100,
-  },
-  animatedDotInnerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  animatedDot: {
-    flex: 1,
-    borderRadius: 100,
-  },
   prevContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

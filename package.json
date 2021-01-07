@@ -25,6 +25,7 @@
     "test": "jest",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --fix",
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
@@ -119,7 +120,10 @@
           "trailingComma": "es5",
           "useTabs": false
         }
-      ]
+      ],
+      "no-shadow": 0,
+      "react-hooks/exhaustive-deps": 0,
+      "react-hooks/rules-of-hooks": 0
     }
   },
   "eslintIgnore": [

@@ -8,7 +8,7 @@ import {
   Linking,
   Dimensions,
 } from 'react-native';
-import { IData } from '../interfaces/IData.interface';
+import { IItem } from '../interfaces/IItem.interface';
 
 const Item = ({
   key,
@@ -18,15 +18,27 @@ const Item = ({
   link,
   activeLanguage,
   image,
-}: IData) => {
+  slideMaxHeightPercent,
+}: IItem) => {
+  const deviceMaxHeight = Dimensions.get('screen').height;
   const language = activeLanguage || 'en';
+  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.85);
+
   return (
     <View key={key} style={[styles.slide, { backgroundColor }]}>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          {
+            height: slideHeight,
+            maxHeight: slideHeight,
+          },
+        ]}
+      >
         <Text style={styles.title}>
           {Array.isArray(title) ? title[language] : title}
         </Text>
-        <Image style={styles.image} source={image} />
+        {image && <Image style={styles.image} source={image} />}
         <View>
           <Text style={styles.text}>
             {Array.isArray(text) ? text[language] : text}

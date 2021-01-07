@@ -1,4 +1,4 @@
-import { IAnimatedValues } from "./IAnimatedValues.interface";
+import { IAnimatedValues } from './IAnimatedValues.interface';
 
 export interface ISlide {
   active: number;

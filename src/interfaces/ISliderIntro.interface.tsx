@@ -1,10 +1,11 @@
-import React from "react";
-import { IData } from "./IData.interface";
+import React from 'react';
+import { IItem } from './IItem.interface';
 
 export interface ISliderIntro {
-  data: IData[];
-  renderItem: (item: IData) => React.ReactNode;
-  navigationBarPosition: number;
+  data: IItem[];
+  renderItem: (item: IItem) => React.ReactNode;
+  navigationBarBottom: number;
+  navigationBarHeight: number;
   animateSlideSpeed: number;
   navContainerMaxSizePercent: number;
   dotWidth: number;
@@ -14,7 +15,7 @@ export interface ISliderIntro {
   animateDotSpeed: number;
   animateDotBouncing: number;
   hasReactNavigation: boolean;
-  backHandlerBehaviour: 'ActiveMinusOne' | 'Previous';
+  backHandlerBehaviour: 'activeMinusOne' | 'previous';
   skipLabel: string;
   nextLabel: string;
   doneLabel: string;
@@ -23,4 +24,7 @@ export interface ISliderIntro {
   renderDoneButton: (doneLabel: string) => React.ReactNode;
   onSkip: () => void;
   onDone: () => void;
+  showLeftButton: boolean;
+  leftButtonType: 'previous' | 'skip';
+  columnButtonStyle: boolean;
 }

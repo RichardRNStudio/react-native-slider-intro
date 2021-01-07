@@ -33,8 +33,10 @@ const slides = [
   },
 ];
 
-const BasicExample = () => {
-  return <SliderIntro data={slides} />;
+const BasicExample = ({ closeExample }) => {
+  return (
+    <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
+  );
 };
 
 export default BasicExample;

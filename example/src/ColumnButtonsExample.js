@@ -1,11 +1,6 @@
 import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import SliderIntro from 'react-native-slider-intro';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faArrowCircleRight,
-  faCheckCircle,
-  faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons';
 
 const slides = [
   {
@@ -14,6 +9,7 @@ const slides = [
     text: 'Simple description.',
     image: require('./images/step3.jpg'),
     backgroundColor: '#febe29',
+    slideMaxHeightPercent: 0.7,
   },
   {
     index: 2,
@@ -21,6 +17,7 @@ const slides = [
     text: 'Simple description for the second step.',
     image: require('./images/step2.jpg'),
     backgroundColor: '#febe29',
+    slideMaxHeightPercent: 0.7,
   },
   {
     index: 3,
@@ -28,30 +25,43 @@ const slides = [
     text: 'Try to make something beauty here.',
     image: require('./images/step1.jpg'),
     backgroundColor: '#febe29',
+    slideMaxHeightPercent: 0.7,
   },
 ];
 
 const renderNextButton = () => {
   return (
-    <FontAwesomeIcon icon={faArrowCircleRight} color={'white'} size={35} />
+    <View style={styles.nextButton}>
+      <Text style={styles.text}>Next</Text>
+    </View>
   );
 };
 
 const renderDoneButton = () => {
-  return <FontAwesomeIcon icon={faCheckCircle} color={'white'} size={35} />;
+  return (
+    <View style={styles.nextButton}>
+      <Text style={styles.text}>Done</Text>
+    </View>
+  );
 };
 
 const renderSkipButton = () => {
-  return <FontAwesomeIcon icon={faTimesCircle} color={'white'} size={35} />;
+  return (
+    <View>
+      <Text style={styles.text}>Skip</Text>
+    </View>
+  );
 };
 
-const CustomButtonsExample = ({ closeExample }) => {
+const ColumnButtonsExample = ({ closeExample }) => {
   return (
     <SliderIntro
       renderNextButton={renderNextButton}
       renderDoneButton={renderDoneButton}
       renderSkipButton={renderSkipButton}
-      navContainerMaxSizePercent={0.25}
+      navContainerMaxSizePercent={0.3}
+      navigationBarHeight={150}
+      columnButtonStyle={true}
       data={slides}
       onDone={closeExample}
       onSkip={closeExample}
@@ -59,4 +69,20 @@ const CustomButtonsExample = ({ closeExample }) => {
   );
 };
 
-export default CustomButtonsExample;
+const styles = StyleSheet.create({
+  nextButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 90,
+    borderRadius: 10,
+    backgroundColor: '#82817c',
+    marginTop: 10,
+  },
+  text: {
+    color: 'white',
+    fontSize: 18,
+  },
+});
+
+export default ColumnButtonsExample;

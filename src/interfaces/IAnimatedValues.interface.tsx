@@ -1,4 +1,4 @@
-import { Animated } from "react-native";
+import { Animated } from 'react-native';
 
 export interface IAnimatedValues {
   _moveSlideX: Animated.Value;
@@ -7,4 +7,4 @@ export interface IAnimatedValues {
   _opacityOfNextButton: Animated.Value;
   _opacityOfDoneButton: Animated.Value;
   _opacityOfSkipButton: Animated.Value;
-};
+}

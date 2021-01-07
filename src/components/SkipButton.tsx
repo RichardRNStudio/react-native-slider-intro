@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { ISkipButton } from "../interfaces/ISkipButton.interface";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { ISkipButton } from '../interfaces/ISkipButton.interface';
 
 const SkipButton = ({ skipLabel }: ISkipButton) => {
   return (
@@ -14,13 +14,13 @@ export default SkipButton;
 
 const styles = StyleSheet.create({
   skipButton: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   skipText: {
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    color: "white",
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    color: 'white',
     fontSize: 14,
   },
 });
