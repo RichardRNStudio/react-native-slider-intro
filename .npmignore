@@ -13,3 +13,6 @@ example
 
 # Docs 
 docs
+
+# dot-env
+.env
