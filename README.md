@@ -193,6 +193,15 @@ const StatusBarExample = () => {
 | Name | Type | Default value | Description |
 |    :---:     |     :---:      |     :---:     |     :---:     |
 | data  | `object`     | none, `required`    | Array of objects, which represents your slider items. Each item should contain a unique `key`
+| renderItem  | `function`     | Default item renderer    | 
+| navigationBarBottom | `number`     | 0    | Custom value of dot navigation container bottom
+| navigationBarHeight  | `number`     | 70    | Height of dot navigation container
+| animateSlideSpeed  | `number`     | 15    | Speed of slider animation
+| data  | `object`     | none, `required`    | Array of objects, which represents your slider items. Each item should contain a unique `key`
+| data  | `object`     | none, `required`    | Array of objects, which represents your slider items. Each item should contain a unique `key`
+| data  | `object`     | none, `required`    | Array of objects, which represents your slider items. Each item should contain a unique `key`
+| data  | `object`     | none, `required`    | Array of objects, which represents your slider items. Each item should contain a unique `key`
+| data  | `object`     | none, `required`    | Array of objects, which represents your slider items. Each item should contain a unique `key`
 
 <table>
   <thead align="center">
