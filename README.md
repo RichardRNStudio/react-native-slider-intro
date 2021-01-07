@@ -305,20 +305,20 @@ const StatusBarExample = () => {
    <tr>
       <td>renderSkipButton</td>
       <td>function</td>
-      <td>Default skip button renderer</td>
-      <td></td>
+      <td>Default skip/previous button renderer</td>
+      <td>Use to supply your own skip/previous button.</td>
    </tr>
    <tr>
       <td>renderNextButton</td>
       <td>function</td>
       <td>Default next button renderer</td>
-      <td></td>
+      <td>Use to supply your own next button.</td>
    </tr>
    <tr>
       <td>renderDoneButton</td>
       <td>function</td>
       <td>Default done button renderer</td>
-      <td></td>
+      <td>Use to supply your own done button.</td>
    </tr>
    <tr>
       <td>onDone</td>
