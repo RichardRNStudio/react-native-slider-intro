@@ -1,8 +1,9 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm version](https://img.shields.io/badge/npm-1.0.0-brightgreen)
+![npm version](https://img.shields.io/badge/npm-1.0.0-blue)
 ![platform](https://img.shields.io/badge/platform-android-yellow)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
+![prs](https://img.shields.io/badge/PRs-Welcome-green)
 
 <blockquote>
 <p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
@@ -41,21 +42,21 @@ const slides = [
     index: 1,
     title: 'First step',
     text: 'Simple description.',
-    image: require('./images/step1.jpg'),
+    image: require('./images/step1.png'),
     backgroundColor: '#febe29',
   },
   {
     index: 2,
     title: 'Second step',
     text: 'Simple description for the second step.',
-    image: require('./images/step2.jpg'),
+    image: require('./images/step2.png'),
     backgroundColor: '#febe29',
   },
   {
     index: 3,
     title: 'Third step',
     text: 'Try to make something beauty here.',
-    image: require('./images/step3.jpg'),
+    image: require('./images/step3.png'),
     backgroundColor: '#febe29',
   },
   {
@@ -63,7 +64,7 @@ const slides = [
     title: 'Fourth step',
     text: 'Here you can open a custom link.',
     link: 'https://pccontroller.rnstudio.hu',
-    image: require('./images/step4.jpg'),
+    image: require('./images/step4.png'),
     backgroundColor: '#febe29',
   },
 ];
