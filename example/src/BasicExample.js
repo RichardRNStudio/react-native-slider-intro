@@ -35,7 +35,7 @@ const slides = [
 
 const BasicExample = ({ closeExample }) => {
   return (
-    <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} showStatusBar={true} />
+    <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
   );
 };
 

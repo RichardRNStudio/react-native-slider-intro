@@ -3,7 +3,8 @@ import { View, StyleSheet, Button, Dimensions } from 'react-native';
 import BasicExample from './BasicExample';
 import CustomButtonsExample from './CustomButtonsExample';
 import ColumnButtonsExample from './ColumnButtonsExample';
-import CustomStatusBarExample from './CustomStatusBarExample';
+import StatusBarExample from './StatusBarExample';
+import PreviousButtonExample from './PreviousButtonExample';
 
 export default function App() {
   const [example, setExample] = useState(null);
@@ -15,7 +16,9 @@ export default function App() {
   if (example === 'column')
     return <ColumnButtonsExample closeExample={() => setExample(null)} />;
   if (example === 'statusbar')
-    return <CustomStatusBarExample closeExample={() => setExample(null)} />;
+    return <StatusBarExample closeExample={() => setExample(null)} />;
+  if (example === 'previous')
+    return <PreviousButtonExample closeExample={() => setExample(null)} />;
 
   return (
     <View style={styles.container}>
@@ -39,6 +42,11 @@ export default function App() {
         color={'steelblue'}
         onPress={() => setExample('statusbar')}
       />
+      <Button
+        title={'Previous button example'}
+        color={'steelblue'}
+        onPress={() => setExample('previous')}
+      />
     </View>
   );
 }
@@ -46,7 +54,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    maxHeight: Dimensions.get('screen').height * 0.3,
+    maxHeight: Dimensions.get('screen').height,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',

@@ -6,22 +6,22 @@ const slides = [
     index: 1,
     title: 'First step',
     text: 'Simple description.',
-    image: require('./images/step4.png'),
+    image: require('./images/step3.png'),
     backgroundColor: '#febe29',
   },
   {
     index: 2,
     title: 'Second step',
     text: 'Simple description for the second step.',
-    image: require('./images/step3.png'),
-    backgroundColor: '#bb2323',
+    image: require('./images/step4.png'),
+    backgroundColor: '#febe29',
   },
   {
     index: 3,
     title: 'Third step',
     text: 'Try to make something beauty here.',
     image: require('./images/step2.png'),
-    backgroundColor: '#84DAB2',
+    backgroundColor: '#febe29',
   },
   {
     index: 4,
@@ -33,16 +33,16 @@ const slides = [
   },
 ];
 
-const CustomStatusBarExample = ({ closeExample }) => {
+const StatusBarExample = ({ closeExample }) => {
   return (
     <SliderIntro
       data={slides}
       showStatusBar={true}
-      statusBarDefaultColor={'#bb2323'} // when one of slides has not a backgroundColor this value will be approved
+      statusBarColor={'#febe29'}
       onDone={closeExample}
       onSkip={closeExample}
     />
   );
 };
 
-export default CustomStatusBarExample;
+export default StatusBarExample;
