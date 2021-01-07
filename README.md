@@ -193,16 +193,16 @@ const StatusBarExample = () => {
 <table>
   <thead align="center">
     <tr>
-      <td width="25%"><br>Name</b></td>
-      <td width="25%"><br>Type</b></td>
-      <td width="25%"><br>Default value</b></td>
-      <td width="25%"><br>Description</b></td>
+      <td width="25%"><b>Name</b></td>
+      <td width="25%"><b>Type</b></td>
+      <td width="25%"><b>Default value</b></td>
+      <td width="25%"><b>Description</b></td>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>data</td>
-      <td>object</td>
+      <td><p style="background-color:'grey';">object</p></td>
       <td>none, required</td>
       <td>Array of objects, which represents your slider items. Each item should contain a unique <i>key</i>.</td>
     </tr>
