@@ -203,162 +203,162 @@ const StatusBarExample = () => {
     <tr>
       <td>data</td>
       <td><b>object</b></td>
-      <td>none, required</td>
+      <td>none, <b><i>required</i></b></td>
       <td>Array of objects, which represents your slider items. Each item should contain a unique <i>key</i>.</td>
     </tr>
     <tr>
       <td>renderItem</td>
-      <td>function</td>
+      <td><b>function</b></td>
       <td>Default item renderer</td>
       <td></td>
     </tr>
     <tr>
       <td>navigationBarBottom</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>0</td>
       <td>Custom value of dot navigation container bottom</td>
     </tr>
     <tr>
       <td>navigationBarHeight</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>70</td>
       <td>Height of dot navigation container</td>
     </tr>
     <tr>
       <td>animateSlideSpeed</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>15</td>
       <td>Speed of slider animation</td>
     </tr>
     <tr>
       <td>navContainerMaxSizePercent</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>0.5</td>
       <td>Percent value of navigation container's width</td>
    </tr>
    <tr>
       <td>dotWidth</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>12</td>
       <td>The radius of the 'dot' circle of navigation</td>
    </tr>
    <tr>
       <td>fixDotOpacity</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>0.35</td>
       <td>Each dots opacity which don't have animation</td>
    </tr>
    <tr>
       <td>fixDotBackgroundColor</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>grey</td>
       <td>Each dots background which don't have an animation</td>
    </tr>
    <tr>
       <td>animatedDotBackgroundColor</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>white</td>
       <td>Each dots background which have an animation</td>
    </tr>
    <tr>
       <td>animateDotSpeed</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>8</td>
       <td>Speed of dot animation</td>
    </tr>
    <tr>
       <td>animateDotBouncing</td>
-      <td>number</td>
+      <td><b>number</b></td>
       <td>2</td>
       <td>The 'bounciness' value of all animations. (<a href="https://reactnative.dev/docs/animated#spring">https://reactnative.dev/docs/animated#spring</a>)</td>
    </tr>
    <tr>
       <td>hasReactNavigation</td>
-      <td>boolean</td>
+      <td><b>boolean</b></td>
       <td>false</td>
       <td>There is a trouble with backButton behaviour when you're using react-navigation. You should use <b>useFocusEffect</b> in this case for reach the expected behaviour. More info: <a href="https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods">https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods</a></td>
    </tr>
    <tr>
       <td>backHandlerBehaviour</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>activeMinusOne</td>
       <td>This prop can controls the backButton behaviour. The value should be <i>activeMinusOne</i> or 'previous'</td>
    </tr>
    <tr>
       <td>skipLabel</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>Skip</td>
       <td>Custom label of skip button</td>
    </tr>
    <tr>
       <td>nextLabel</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>Next</td>
       <td>Custom label of next button</td>
    </tr>
    <tr>
       <td>doneLabel</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>Done</td>
       <td>Custom label of done button</td>
    </tr>
    <tr>
       <td>renderSkipButton</td>
-      <td>function</td>
+      <td><b>function</b></td>
       <td>Default skip/previous button renderer</td>
       <td>Use to supply your own skip/previous button.</td>
    </tr>
    <tr>
       <td>renderNextButton</td>
-      <td>function</td>
+      <td><b>function</b></td>
       <td>Default next button renderer</td>
       <td>Use to supply your own next button.</td>
    </tr>
    <tr>
       <td>renderDoneButton</td>
-      <td>function</td>
+      <td><b>function</b></td>
       <td>Default done button renderer</td>
       <td>Use to supply your own done button.</td>
    </tr>
    <tr>
       <td>onDone</td>
-      <td>function</td>
+      <td><b>function</b></td>
       <td>none</td>
       <td>Behaviour of done button</td>
    </tr>
    <tr>
       <td>onSkip</td>
-      <td>function</td>
+      <td><b>function</b></td>
       <td>none</td>
       <td>Behaviour of skip button</td>
    </tr>
    <tr>
       <td>showLeftButton</td>
-      <td>boolean</td>
+      <td><b>boolean</b></td>
       <td>true</td>
       <td>Show skip or previous button on the left side</td>
    </tr>
    <tr>
       <td>leftButtonType</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>skip</td>
       <td>The button type on the left side should be <b>skip</b> or <b>previous</b></td>
    </tr>
    <tr>
       <td>columnButtonStyle</td>
-      <td>boolean</td>
+      <td><b>boolean</b></td>
       <td>false</td>
       <td>Buttons will show up in a column</td>
    </tr>
    <tr>
       <td>showStatusBar</td>
-      <td>boolean</td>
+      <td><b>boolean</b></td>
       <td>false</td>
       <td>Show status bar on top of screen. Otherwise, you can make your own status bar outside of this component</td>
    </tr>
    <tr>
       <td>statusBarColor</td>
-      <td>string</td>
+      <td><b>string</b></td>
       <td>#febe29</td>
       <td>Background color of status bar</td>
    </tr>
