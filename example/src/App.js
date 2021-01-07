@@ -3,6 +3,7 @@ import { View, StyleSheet, Button, Dimensions } from 'react-native';
 import BasicExample from './BasicExample';
 import CustomButtonsExample from './CustomButtonsExample';
 import ColumnButtonsExample from './ColumnButtonsExample';
+import CustomStatusBarExample from './CustomStatusBarExample';
 
 export default function App() {
   const [example, setExample] = useState(null);
@@ -13,6 +14,8 @@ export default function App() {
     return <CustomButtonsExample closeExample={() => setExample(null)} />;
   if (example === 'column')
     return <ColumnButtonsExample closeExample={() => setExample(null)} />;
+  if (example === 'statusbar')
+    return <CustomStatusBarExample closeExample={() => setExample(null)} />;
 
   return (
     <View style={styles.container}>
@@ -30,6 +33,11 @@ export default function App() {
         title={'Column buttons example'}
         color={'steelblue'}
         onPress={() => setExample('column')}
+      />
+      <Button
+        title={'Custom statusbar example'}
+        color={'steelblue'}
+        onPress={() => setExample('statusbar')}
       />
     </View>
   );
