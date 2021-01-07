@@ -193,10 +193,10 @@ const StatusBarExample = () => {
 <table>
   <thead align="center">
     <tr>
-      <td><br>Name</b></td>
-      <td><br>Type</b></td>
-      <td><br>Default value</b></td>
-      <td><br>Description</b></td>
+      <td width="25%"><br>Name</b></td>
+      <td width="25%"><br>Type</b></td>
+      <td width="25%"><br>Default value</b></td>
+      <td width="25%"><br>Description</b></td>
     </tr>
   </thead>
   <tbody>
