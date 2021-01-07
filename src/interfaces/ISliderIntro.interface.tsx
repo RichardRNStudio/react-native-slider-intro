@@ -28,5 +28,5 @@ export interface ISliderIntro {
   leftButtonType: 'previous' | 'skip';
   columnButtonStyle: boolean;
   showStatusBar: boolean;
-  statusBarDefaultColor: string;
+  statusBarColor: string;
 }

@@ -318,7 +318,7 @@ const defaultProps: ISliderIntro = {
   leftButtonType: 'skip',
   columnButtonStyle: false,
   showStatusBar: false,
-  statusBarDefaultColor: '#febe29',
+  statusBarColor: '#febe29',
 };
 
 export function SliderIntro({
@@ -348,7 +348,7 @@ export function SliderIntro({
   leftButtonType,
   columnButtonStyle,
   showStatusBar,
-  statusBarDefaultColor,
+  statusBarColor,
 }: ISliderIntro) {
   const [panResponder, setPanResponder] = useState(PanResponder.create({}));
   const [slide, setSlide] = useState<ISlide>({
@@ -542,9 +542,7 @@ export function SliderIntro({
     <>
       {showStatusBar && (
         <StatusBarContainer
-          backgroundColor={
-            data[active].backgroundColor || statusBarDefaultColor
-          }
+          backgroundColor={statusBarColor}
         />
       )}
       <Animated.View

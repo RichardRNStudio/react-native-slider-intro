@@ -6,7 +6,7 @@ const StatusBarContainer = ({ backgroundColor }: IStatusBarContainer) => {
   return (
     <>
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         translucent={true}
         hidden={false}
         backgroundColor={backgroundColor}

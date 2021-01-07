@@ -9,7 +9,7 @@ const slides = [
     text: 'Simple description.',
     image: require('./images/step4.png'),
     backgroundColor: '#febe29',
-    slideMaxHeightPercent: 0.7,
+    slideMaxHeightPercent: 0.65,
   },
   {
     index: 2,
@@ -17,7 +17,7 @@ const slides = [
     text: 'Simple description for the second step.',
     image: require('./images/step3.png'),
     backgroundColor: '#bb2323',
-    slideMaxHeightPercent: 0.7,
+    slideMaxHeightPercent: 0.65,
   },
   {
     index: 3,
@@ -25,7 +25,7 @@ const slides = [
     text: 'Try to make something beauty here.',
     image: require('./images/step2.png'),
     backgroundColor: '#84DAB2',
-    slideMaxHeightPercent: 0.7,
+    slideMaxHeightPercent: 0.65,
   },
 ];
 
@@ -60,7 +60,7 @@ const ColumnButtonsExample = ({ closeExample }) => {
       renderDoneButton={renderDoneButton}
       renderSkipButton={renderSkipButton}
       navContainerMaxSizePercent={0.3}
-      navigationBarHeight={150}
+      navigationBarHeight={130}
       columnButtonStyle={true}
       data={slides}
       onDone={closeExample}

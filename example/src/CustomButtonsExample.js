@@ -20,14 +20,14 @@ const slides = [
     title: 'Second step',
     text: 'Simple description for the second step.',
     image: require('./images/step2.png'),
-    backgroundColor: '#febe29',
+    backgroundColor: '#bb2323',
   },
   {
     index: 3,
     title: 'Third step',
     text: 'Try to make something beauty here.',
     image: require('./images/step3.png'),
-    backgroundColor: '#febe29',
+    backgroundColor: '#84DAB2',
   },
 ];
 

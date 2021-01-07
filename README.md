@@ -3,7 +3,7 @@
 ![npm version](https://img.shields.io/badge/npm-1.0.0-blue)
 ![platform](https://img.shields.io/badge/platform-android-yellow)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
-![prs](https://img.shields.io/badge/PRs-Welcome-green)
+![prs](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
 <blockquote>
 <p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
@@ -76,7 +76,7 @@ const BasicExample = () => {
 
 <h3>Custom buttons example</h3>
 
-![basic-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true)
+![custom-buttons-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/custom-buttons-example.gif?raw=true)
 
 ```js
 import React from 'react';
@@ -112,6 +112,77 @@ const CustomButtonsExample = () => {
       renderSkipButton={renderSkipButton}
       navContainerMaxSizePercent={0.3}
       data={slides}
+    />
+  );
+};
+```
+
+<h3>Column buttons example</h3>
+
+![column-buttons-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/column-buttons-example.gif?raw=true)
+
+```js
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import SliderIntro from 'react-native-slider-intro';
+
+const slides = [...];
+
+const renderNextButton = () => {
+  return (
+    <View style={styles.nextButton}>
+      <Text style={styles.text}>Next</Text>
+    </View>
+  );
+};
+
+const renderDoneButton = () => {
+  return (
+    <View style={styles.nextButton}>
+      <Text style={styles.text}>Done</Text>
+    </View>
+  );
+};
+
+const renderSkipButton = () => {
+  return (
+    <View>
+      <Text style={styles.text}>Skip</Text>
+    </View>
+  );
+};
+
+const ColumnButtonsExample = () => {
+  return (
+    <SliderIntro
+      renderNextButton={renderNextButton}
+      renderDoneButton={renderDoneButton}
+      renderSkipButton={renderSkipButton}
+      navContainerMaxSizePercent={0.3}
+      navigationBarHeight={150}
+      columnButtonStyle={true}
+      data={slides}
+    />
+  );
+};
+```
+
+<h3>Custom statusbar example</h3>
+
+![statusbar-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/statusbar-example.gif?raw=true)
+
+```js
+import React from 'react';
+import SliderIntro from 'react-native-slider-intro';
+
+const slides = [...];
+
+const StatusBarExample = () => {
+  return (
+    <SliderIntro
+      data={slides}
+      showStatusBar={true}
+      statusBarColor={'#febe29'}
     />
   );
 };

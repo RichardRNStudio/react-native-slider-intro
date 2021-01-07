@@ -22,7 +22,7 @@ const Item = ({
 }: IItem) => {
   const deviceMaxHeight = Dimensions.get('screen').height;
   const language = activeLanguage || 'en';
-  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.85);
+  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
 
   return (
     <View key={key} style={[styles.slide, { backgroundColor }]}>
