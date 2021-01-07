@@ -188,6 +188,57 @@ const StatusBarExample = () => {
 };
 ```
 
+<h2>Props</h2>
+
+<table>
+  <thead align="center">
+    <tr>
+      <td><br>Name</b></td>
+      <td><br>Type</b></td>
+      <td><br>Default value</b></td>
+      <td><br>Description</b></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>data</td>
+      <td>object</td>
+      <td>none, required</td>
+      <td>Array of objects, which represents your slider items. Each item should contain a unique <i>key</i>.</td>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2>Contributing</h2>
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.

@@ -540,11 +540,7 @@ export function SliderIntro({
 
   return (
     <>
-      {showStatusBar && (
-        <StatusBarContainer
-          backgroundColor={statusBarColor}
-        />
-      )}
+      {showStatusBar && <StatusBarContainer backgroundColor={statusBarColor} />}
       <Animated.View
         style={[
           styles.container,
