@@ -353,6 +353,10 @@ const ColumnButtonsExample = () => {
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.js">Status bar example</a></li>
 </ul>
 
+<h2>Troubleshooting</h2>
+
+TouchableOpacity onPress function: I've created a new issue on official react-native repository, because neither `TouchableOpacity`, `Button`, `Pressable` don't working inside `PanResponder`. My solution: Import `TouchableOpacity` from `react-native-gesture-handler` instead of `react-native` and overwrite the renderItem function. On this way, you can solve the issue until the bugfix arrive.
+
 <h2>Contributing</h2>
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
