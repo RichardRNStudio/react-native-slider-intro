@@ -228,7 +228,7 @@ const _onHandlerStateChange = (
 };
 
 const onBackPress = (
-  backHandlerBehaviour: string,
+  backHandlerBehaviour: 'activeMinusOne' | 'previous',
   slide: ISlide,
   setSlide: (arg0: ISlide) => void,
   numberOfSlide: number,
@@ -535,7 +535,7 @@ export function SliderIntro({
             deviceMaxWidth
           )
         );
-    }, []);
+    }, [active]);
   }
 
   return (
