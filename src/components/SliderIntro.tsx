@@ -265,7 +265,7 @@ const defaultProps: ISliderIntro = {
   data: [],
   renderItem: (item: IItem) => {
     const {
-      key,
+      index,
       title,
       text,
       image,
@@ -276,7 +276,8 @@ const defaultProps: ISliderIntro = {
     } = item;
     return (
       <Item
-        key={key}
+        key={index}
+        index={index}
         title={title}
         text={text}
         image={image}

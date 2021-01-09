@@ -11,7 +11,7 @@ import {
 import { IItem } from '../interfaces/IItem.interface';
 
 const Item = ({
-  key,
+  index,
   backgroundColor,
   title,
   text,
@@ -25,7 +25,7 @@ const Item = ({
   const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
 
   return (
-    <View key={key} style={[styles.slide, { backgroundColor }]}>
+    <View key={index} style={[styles.slide, { backgroundColor }]}>
       <View
         style={[
           styles.container,

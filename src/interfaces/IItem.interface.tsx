@@ -1,7 +1,7 @@
 import { ImageProps } from 'react-native';
 
 export interface IItem {
-  key: number;
+  index: number;
   title?: object | string;
   text?: object | string;
   link?: string;
