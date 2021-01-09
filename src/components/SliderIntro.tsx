@@ -7,7 +7,6 @@ import {
   StyleSheet,
   PanResponder,
 } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
 import { ISlide } from '../interfaces/ISlide.interface';
 import SkipButton from './SkipButton';
 import NextButton from './NextButton';
@@ -300,6 +299,7 @@ const defaultProps: ISliderIntro = {
   animateDotBouncing: 2,
   backHandlerBehaviour: 'activeMinusOne',
   hasReactNavigation: false,
+  useCustomBackHandlerEffect: () => {},
   skipLabel: 'Skip',
   nextLabel: 'Next',
   doneLabel: 'Done',
@@ -336,6 +336,7 @@ export function SliderIntro({
   animateDotBouncing,
   backHandlerBehaviour,
   hasReactNavigation,
+  useCustomBackHandlerEffect,
   skipLabel,
   nextLabel,
   doneLabel,
@@ -477,35 +478,17 @@ export function SliderIntro({
   // Based on React navigation lifecycle issue:
   // https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods
   if (hasReactNavigation) {
-    useFocusEffect(
-      React.useCallback(() => {
-        BackHandler.addEventListener('hardwareBackPress', () =>
-          onBackPress(
-            backHandlerBehaviour,
-            slide,
-            setSlide,
-            numberOfSlide,
-            onDone,
-            navContainerMaxSize,
-            dotWidth,
-            deviceMaxWidth
-          )
-        );
-
-        return () =>
-          BackHandler.removeEventListener('hardwareBackPress', () =>
-            onBackPress(
-              backHandlerBehaviour,
-              slide,
-              setSlide,
-              numberOfSlide,
-              onDone,
-              navContainerMaxSize,
-              dotWidth,
-              deviceMaxWidth
-            )
-          );
-      }, [active])
+    useCustomBackHandlerEffect(
+      active,
+      onBackPress,
+      backHandlerBehaviour,
+      slide,
+      setSlide,
+      numberOfSlide,
+      onDone,
+      navContainerMaxSize,
+      dotWidth,
+      deviceMaxWidth
     );
   } else {
     useEffect(() => {

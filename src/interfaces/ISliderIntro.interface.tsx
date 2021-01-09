@@ -1,5 +1,6 @@
 import React from 'react';
 import { IItem } from './IItem.interface';
+import { ISlide } from './ISlide.interface';
 
 export interface ISliderIntro {
   data: IItem[];
@@ -15,6 +16,27 @@ export interface ISliderIntro {
   animateDotSpeed: number;
   animateDotBouncing: number;
   hasReactNavigation: boolean;
+  useCustomBackHandlerEffect: (
+    active: number,
+    onBackPress: (
+      backHandlerBehaviour: 'activeMinusOne' | 'previous',
+      slide: ISlide,
+      setSlide: (arg0: ISlide) => void,
+      numberOfSlide: number,
+      onDone: () => void,
+      navContainerMaxSize: number,
+      dotWidth: number,
+      deviceMaxWidth: number
+    ) => boolean,
+    backHandlerBehaviour: 'activeMinusOne' | 'previous',
+    slide: ISlide,
+    setSlide: (arg0: ISlide) => void,
+    numberOfSlide: number,
+    onDone: () => void,
+    navContainerMaxSize: number,
+    dotWidth: number,
+    deviceMaxWidth: number
+  ) => void;
   backHandlerBehaviour: 'activeMinusOne' | 'previous';
   skipLabel: string;
   nextLabel: string;
