@@ -6,6 +6,7 @@ const slides = [
     index: 1,
     title: 'First step',
     text: 'Simple description.',
+    link: 'https://pccontroller.rnstudio.hu',
     image: require('./images/step1.png'),
     backgroundColor: '#febe29',
   },

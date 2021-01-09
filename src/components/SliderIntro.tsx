@@ -403,7 +403,12 @@ export function SliderIntro({
   useEffect(() => {
     const panResponderItem = PanResponder.create({
       onStartShouldSetPanResponder: () => false,
-      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (_, gestureState) => {
+        return gestureState.dx != 0 && gestureState.dy != 0;
+      },
+      onMoveShouldSetPanResponderCapture: (_, gestureState) => {
+        return gestureState.dx != 0 && gestureState.dy != 0;
+      },
       onStartShouldSetPanResponderCapture: () => false,
       onPanResponderMove: (_, gesture) => {
         _onGestureEvent(
