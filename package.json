@@ -1,6 +1,6 @@
 {
   "name": "react-native-slider-intro",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple and fully customizable React Native component that implements an intro slider for your app",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
