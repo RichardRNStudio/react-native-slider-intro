@@ -15,7 +15,7 @@ export interface ISliderIntro {
   animatedDotBackgroundColor: string;
   animateDotSpeed: number;
   animateDotBouncing: number;
-  hasCustomBackHandler: boolean;
+  hasReactNavigation: boolean;
   useCustomBackHandlerEffect: (
     active: number,
     onBackPress: (

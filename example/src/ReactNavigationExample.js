@@ -77,7 +77,7 @@ const ReactNavigationExample = ({ closeExample }) => {
   return (
     <SliderIntro
       data={slides}
-      hasCustomBackHandler={true}
+      hasReactNavigation={true}
       useCustomBackHandlerEffect={(
         active,
         onBackPress,

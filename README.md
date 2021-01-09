@@ -1,6 +1,6 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm version](https://img.shields.io/badge/npm-v1.0.5-blue)
+![npm version](https://img.shields.io/badge/npm-v1.0.6-blue)
 ![platform](https://img.shields.io/badge/platform-android-yellow)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
 ![prs](https://img.shields.io/badge/PRs-welcome-brightgreen)
@@ -252,7 +252,7 @@ const ColumnButtonsExample = () => {
       <td>The 'bounciness' value of all animations. (<a href="https://reactnative.dev/docs/animated#spring">https://reactnative.dev/docs/animated#spring</a>)</td>
    </tr>
    <tr>
-      <td>hasCustomBackHandler</td>
+      <td>hasReactNavigation</td>
       <td><b>boolean</b></td>
       <td>false</td>
       <td>There is a trouble with backButton behaviour when you're using react-navigation. You should use <b>useFocusEffect</b> in this case for reach the expected behaviour. More info: <a href="https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods">https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods</a></td>
