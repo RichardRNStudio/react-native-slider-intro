@@ -298,7 +298,7 @@ const defaultProps: ISliderIntro = {
   animateDotSpeed: 8,
   animateDotBouncing: 2,
   backHandlerBehaviour: 'activeMinusOne',
-  hasReactNavigation: false,
+  hasCustomBackHandler: false,
   useCustomBackHandlerEffect: () => {},
   skipLabel: 'Skip',
   nextLabel: 'Next',
@@ -335,7 +335,7 @@ export function SliderIntro({
   animateDotSpeed,
   animateDotBouncing,
   backHandlerBehaviour,
-  hasReactNavigation,
+  hasCustomBackHandler,
   useCustomBackHandlerEffect,
   skipLabel,
   nextLabel,
@@ -477,7 +477,7 @@ export function SliderIntro({
 
   // Based on React navigation lifecycle issue:
   // https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods
-  if (hasReactNavigation) {
+  if (hasCustomBackHandler) {
     useCustomBackHandlerEffect(
       active,
       onBackPress,

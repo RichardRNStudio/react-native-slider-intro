@@ -1,6 +1,6 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm version](https://img.shields.io/badge/npm-1.0.3-blue)
+![npm version](https://img.shields.io/badge/npm-v1.0.4-blue)
 ![platform](https://img.shields.io/badge/platform-android-yellow)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
 ![prs](https://img.shields.io/badge/PRs-welcome-brightgreen)
@@ -252,10 +252,16 @@ const ColumnButtonsExample = () => {
       <td>The 'bounciness' value of all animations. (<a href="https://reactnative.dev/docs/animated#spring">https://reactnative.dev/docs/animated#spring</a>)</td>
    </tr>
    <tr>
-      <td>hasReactNavigation</td>
+      <td>hasCustomBackHandler</td>
       <td><b>boolean</b></td>
       <td>false</td>
       <td>There is a trouble with backButton behaviour when you're using react-navigation. You should use <b>useFocusEffect</b> in this case for reach the expected behaviour. More info: <a href="https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods">https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods</a></td>
+   </tr>
+   <tr>
+      <td>useCustomBackHandlerEffect</td>
+      <td><b>function</b></td>
+      <td>none</td>
+      <td>As I mentioned above, sometimes we should rewrite the basic <b>backHandler</b> behaviour. This property will be a custom hook. See the example for more info: <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.js">React navigation custom hook example</a></td>
    </tr>
    <tr>
       <td>backHandlerBehaviour</td>
@@ -351,11 +357,12 @@ const ColumnButtonsExample = () => {
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomButtonsExample.js">Custom buttons example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.js">Previous button example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.js">Status bar example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.js">React navigation custom hook example (CANNOT BE RUN, the file includes more information how you can test it.)</a></li>
 </ul>
 
 <h2>Troubleshooting</h2>
 
-TouchableOpacity onPress function: I've created a new issue on official react-native repository, because neither `TouchableOpacity`, `Button`, `Pressable` don't working inside `PanResponder`. My solution: Import `TouchableOpacity` from `react-native-gesture-handler` instead of `react-native` and overwrite the renderItem function. On this way, you can solve the issue until the bugfix arrive. 
+TouchableOpacity onPress function: I've created a new issue on official react-native repository, because neither `TouchableOpacity`, `Button`, `Pressable` don't working inside `PanResponder`. My solution: Import `TouchableOpacity` from `react-native-gesture-handler` instead of `react-native` and overwrite the renderItem function. On this way, you can solve the issue until the bugfix arrive.
 
 The issue: <a href="https://github.com/facebook/react-native/issues/30704">https://github.com/facebook/react-native/issues/30704</a>
 
