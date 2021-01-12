@@ -320,6 +320,9 @@ const defaultProps: ISliderIntro = {
   columnButtonStyle: false,
   showStatusBar: false,
   statusBarColor: '#febe29',
+  renderStatusBar: (backgroundColor: string) => (
+    <StatusBarContainer backgroundColor={backgroundColor} />
+  ),
 };
 
 export function SliderIntro({
@@ -349,6 +352,7 @@ export function SliderIntro({
   showLeftButton,
   leftButtonType,
   columnButtonStyle,
+  renderStatusBar,
   showStatusBar,
   statusBarColor,
 }: ISliderIntro) {
@@ -530,7 +534,7 @@ export function SliderIntro({
 
   return (
     <>
-      {showStatusBar && <StatusBarContainer backgroundColor={statusBarColor} />}
+      {showStatusBar && renderStatusBar(statusBarColor)}
       <Animated.View
         style={[
           styles.container,

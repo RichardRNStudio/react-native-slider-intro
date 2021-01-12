@@ -1,13 +1,12 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm version](https://img.shields.io/badge/npm-v1.0.10-blue)
-![platform](https://img.shields.io/badge/platform-android-yellow)
-![license](https://img.shields.io/badge/license-MIT-yellow)
+![npm version](https://img.shields.io/badge/npm-v1.0.11-blue)
+![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)
+![license](https://img.shields.io/badge/license-MIT-green)
 ![prs](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
 <blockquote>
 <p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
-<p>NOTICE: It doesn't work with IOS yet. If you can help me in this case please contact me on the following email: info@rnstudio.hu</p>
 <p><i>This package has been written for the PC Controller react-native application as a submodule.</i></p>
   <a href="https://pccontroller.rnstudio.hu">Visit the PC Controller website</a>
 </p>
@@ -346,6 +345,12 @@ const ColumnButtonsExample = () => {
       <td><b>string</b></td>
       <td>#febe29</td>
       <td>Background color of status bar</td>
+   </tr>
+    <tr>
+      <td>renderStatusBar</td>
+      <td><b>function</b></td>
+      <td>Default status bar renderer</td>
+      <td>Use to supply your own status bar component.</td>
    </tr>
   </tbody>
 </table>

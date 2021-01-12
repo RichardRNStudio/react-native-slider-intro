@@ -51,4 +51,5 @@ export interface ISliderIntro {
   columnButtonStyle: boolean;
   showStatusBar: boolean;
   statusBarColor: string;
+  renderStatusBar: (backgroundColor: string) => React.ReactNode;
 }
