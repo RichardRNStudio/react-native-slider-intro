@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, View, Platform } from 'react-native';
+import { StatusBar, View, Platform, StyleSheet } from 'react-native';
 import { IStatusBarContainer } from 'src/interfaces/IStatusBar';
 
 const StatusBarContainer = ({ backgroundColor }: IStatusBarContainer) => {
@@ -12,15 +12,16 @@ const StatusBarContainer = ({ backgroundColor }: IStatusBarContainer) => {
         backgroundColor={backgroundColor}
       />
       {Platform.OS === 'android' && Platform.Version >= 20 ? (
-        <View
-          style={{
-            height: 24,
-            backgroundColor,
-          }}
-        />
+        <View style={[styles.viewStyle, { backgroundColor }]} />
       ) : null}
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  viewStyle: {
+    height: 24,
+  },
+});
 
 export default StatusBarContainer;

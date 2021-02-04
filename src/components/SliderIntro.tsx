@@ -408,10 +408,10 @@ export function SliderIntro({
     const panResponderItem = PanResponder.create({
       onStartShouldSetPanResponder: () => false,
       onMoveShouldSetPanResponder: (_, gestureState) => {
-        return gestureState.dx != 0 && gestureState.dy != 0;
+        return gestureState.dx !== 0 && gestureState.dy !== 0;
       },
       onMoveShouldSetPanResponderCapture: (_, gestureState) => {
-        return gestureState.dx != 0 && gestureState.dy != 0;
+        return gestureState.dx !== 0 && gestureState.dy !== 0;
       },
       onStartShouldSetPanResponderCapture: () => false,
       onPanResponderMove: (_, gesture) => {
@@ -571,7 +571,9 @@ export function SliderIntro({
         <View
           style={[
             styles.navigation,
-            { flexDirection: columnButtonStyle ? 'column' : 'row' },
+            columnButtonStyle
+              ? styles.flexDirectionColumn
+              : styles.flexDirectionRow,
           ]}
         >
           {columnButtonStyle ? (
@@ -687,9 +689,14 @@ const styles = StyleSheet.create({
   },
   navigation: {
     flex: 1,
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  flexDirectionRow: {
+    flexDirection: 'row',
+  },
+  flexDirectionColumn: {
+    flexDirection: 'column',
   },
   prevContainer: {
     flex: 1,

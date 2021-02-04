@@ -1,6 +1,6 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm version](https://img.shields.io/badge/npm-v1.0.11-blue)
+![npm_version](https://img.shields.io/badge/npm-v1.0.12-blue)
 ![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![prs](https://img.shields.io/badge/PRs-welcome-brightgreen)
