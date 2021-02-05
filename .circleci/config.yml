@@ -78,9 +78,6 @@ workflows:
       - typescript:
           requires:
             - install-dependencies
-      - unit-tests:
-          requires:
-            - install-dependencies
       - build-package:
           requires:
             - install-dependencies
