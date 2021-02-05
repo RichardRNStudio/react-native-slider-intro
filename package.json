@@ -26,6 +26,7 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --fix",
+    "format": "prettier --write src",
     "prepare": "bob build",
     "release": "dotenv release-it --",
     "example": "yarn --cwd example",

@@ -1,9 +1,9 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm_version](https://img.shields.io/badge/npm-v1.0.12-blue)
+[![npm version](https://img.shields.io/npm/v/react-native-slider-intro.svg)(https://www.npmjs.com/package/react-native-slider-intro)]
+![build](https://img.shields.io/circleci/build/github/RichardRNStudio/react-native-slider-intro/main)]
 ![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)
-![license](https://img.shields.io/badge/license-MIT-green)
-![prs](https://img.shields.io/badge/PRs-welcome-brightgreen)
+[![license](https://img.shields.io/badge/license-MIT-green)(https://opensource.org/licenses/MIT)]
 
 <blockquote>
 <p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
