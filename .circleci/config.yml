@@ -59,6 +59,18 @@ jobs:
           command: |
             yarn typescript
 
+  unit-tests:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Run unit tests
+          command: |
+            yarn test --coverage
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+
   build-package:
     executor: default
     steps:
@@ -76,6 +88,9 @@ workflows:
           requires:
             - install-dependencies
       - typescript:
+          requires:
+            - install-dependencies
+      - unit-tests:
           requires:
             - install-dependencies
       - build-package:
