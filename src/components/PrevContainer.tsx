@@ -60,40 +60,39 @@ const PrevContainer = ({
   dotWidth,
   deviceMaxWidth,
   showLeftButton,
-}: IPrevContainer) => {
-  return (
-    <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
-      {showLeftButton && (
-        <TouchableOpacity
-          onPress={() =>
-            handlePress(
-              onSkip,
-              setDefaultState,
-              type,
-              goToNewSlide,
-              slide,
-              setSlide,
-              numberOfSlide,
-              onDone,
-              navContainerMaxSize,
-              dotWidth,
-              deviceMaxWidth
-            )
-          }
+}: IPrevContainer) => (
+  <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
+    {showLeftButton && (
+      <TouchableOpacity
+        onPress={() =>
+          handlePress(
+            onSkip,
+            setDefaultState,
+            type,
+            goToNewSlide,
+            slide,
+            setSlide,
+            numberOfSlide,
+            onDone,
+            navContainerMaxSize,
+            dotWidth,
+            deviceMaxWidth
+          )
+        }
+      >
+        <Animated.View
+          style={{
+            maxWidth: buttonsMaxSize,
+            opacity: _opacityOfSkipButton,
+          }}
         >
-          <Animated.View
-            style={{
-              maxWidth: buttonsMaxSize,
-              opacity: _opacityOfSkipButton,
-            }}
-          >
-            {renderSkipButton()}
-          </Animated.View>
-        </TouchableOpacity>
-      )}
-    </View>
-  );
-};
+          {renderSkipButton()}
+        </Animated.View>
+      </TouchableOpacity>
+    )}
+  </View>
+);
+
 const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,

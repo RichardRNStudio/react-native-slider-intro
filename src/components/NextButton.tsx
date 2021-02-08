@@ -2,13 +2,9 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { INextButton } from '../interfaces/INextButton.interface';
 
-const NextButton = ({ nextLabel }: INextButton) => {
-  return (
-    <>
-      <Text style={styles.nextText}>{nextLabel}</Text>
-    </>
-  );
-};
+const NextButton = ({ nextLabel }: INextButton) => (
+  <Text style={styles.nextText}>{nextLabel}</Text>
+);
 
 export default NextButton;
 

@@ -2,13 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ISkipButton } from '../interfaces/ISkipButton.interface';
 
-const SkipButton = ({ skipLabel }: ISkipButton) => {
-  return (
-    <View style={styles.skipButton}>
-      <Text style={styles.skipText}>{skipLabel}</Text>
-    </View>
-  );
-};
+const SkipButton = ({ skipLabel }: ISkipButton) => (
+  <View style={styles.skipButton}>
+    <Text style={styles.skipText}>{skipLabel}</Text>
+  </View>
+);
 
 export default SkipButton;
 
