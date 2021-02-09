@@ -11,53 +11,49 @@ const DotContainer = ({
   _moveSlideDotX,
   _moveSlideDotMarginX,
   animatedDotBackgroundColor,
-}: IDotContainer) => {
-  return (
-    <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
-      <View
-        style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}
-      >
-        <View style={styles.mainDotInnerContainer}>
-          {arrayOfSlideIndex.map((item) => {
-            return (
-              <View
-                key={item}
-                style={[
-                  styles.fixDot,
-                  {
-                    backgroundColor: fixDotBackgroundColor,
-                    opacity: fixDotOpacity,
-                    width: dotWidth,
-                    maxWidth: dotWidth,
-                    height: dotWidth,
-                    maxHeight: dotWidth,
-                  },
-                ]}
-              />
-            );
-          })}
-        </View>
-      </View>
-      <View style={[styles.animatedDotContainer]}>
-        <View style={styles.animatedDotInnerContainer}>
-          <Animated.View
-            style={[
-              styles.animatedDot,
-              {
-                width: _moveSlideDotX,
-                maxWidth: _moveSlideDotX,
-                height: dotWidth,
-                maxHeight: dotWidth,
-                marginLeft: _moveSlideDotMarginX,
-                backgroundColor: animatedDotBackgroundColor,
-              },
-            ]}
-          />
-        </View>
+}: IDotContainer) => (
+  <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
+    <View style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}>
+      <View style={styles.mainDotInnerContainer}>
+        {arrayOfSlideIndex.map((item) => {
+          return (
+            <View
+              key={item}
+              style={[
+                styles.fixDot,
+                {
+                  backgroundColor: fixDotBackgroundColor,
+                  opacity: fixDotOpacity,
+                  width: dotWidth,
+                  maxWidth: dotWidth,
+                  height: dotWidth,
+                  maxHeight: dotWidth,
+                },
+              ]}
+            />
+          );
+        })}
       </View>
     </View>
-  );
-};
+    <View style={[styles.animatedDotContainer]}>
+      <View style={styles.animatedDotInnerContainer}>
+        <Animated.View
+          style={[
+            styles.animatedDot,
+            {
+              width: _moveSlideDotX,
+              maxWidth: _moveSlideDotX,
+              height: dotWidth,
+              maxHeight: dotWidth,
+              marginLeft: _moveSlideDotMarginX,
+              backgroundColor: animatedDotBackgroundColor,
+            },
+          ]}
+        />
+      </View>
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   dotMainContainer: {

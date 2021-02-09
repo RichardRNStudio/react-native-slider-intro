@@ -16,3 +16,6 @@ docs
 
 # dot-env
 .env
+
+# coverage folder
+coverage
