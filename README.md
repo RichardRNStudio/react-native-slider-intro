@@ -367,9 +367,7 @@ const ColumnButtonsExample = () => {
 
 <h2>Troubleshooting</h2>
 
-TouchableOpacity onPress function: I've created a new issue on official react-native repository, because neither `TouchableOpacity`, `Button`, `Pressable` don't working inside `PanResponder` with react-navigation `NavigationContainer`. My solution: Import `TouchableWithoutFeedback` from `react-native-gesture-handler` instead of `react-native` and use `onPressIn` instead of `onPress` function then overwrite the renderItem function. On this way, you can solve the issue until the bugfix arrive.
-
-The issue: <a href="https://github.com/facebook/react-native/issues/30704">https://github.com/facebook/react-native/issues/30704</a>
+TouchableOpacity onPress function: I've created a new issue on official react-native repository, because `TouchableOpacity`, `Button` and `Pressable` don't working inside `PanResponder` with react-navigation `NavigationContainer`. My solution: Import `TouchableWithoutFeedback` from `react-native-gesture-handler` instead of `react-native` and use `onPressIn` instead of `onPress` function then overwrite the renderItem function.
 
 <h2>Contributing</h2>
 

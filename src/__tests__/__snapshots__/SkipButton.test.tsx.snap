@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    TestSkip
+  </Text>
+</View>
+`;

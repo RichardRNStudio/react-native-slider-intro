@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "test": "jest",
+    "coverage": "jest --coverage",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --fix",
@@ -132,6 +133,7 @@
   },
   "eslintIgnore": [
     "node_modules/",
+    "coverage/",
     "lib/"
   ],
   "prettier": {
