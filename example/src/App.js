@@ -5,6 +5,7 @@ import CustomButtonsExample from './CustomButtonsExample';
 import ColumnButtonsExample from './ColumnButtonsExample';
 import StatusBarExample from './StatusBarExample';
 import PreviousButtonExample from './PreviousButtonExample';
+import CustomRenderFunctionExample from './CustomRenderFunctionExample';
 
 export default function App() {
   const [example, setExample] = useState(null);
@@ -19,6 +20,10 @@ export default function App() {
     return <StatusBarExample closeExample={() => setExample(null)} />;
   if (example === 'previous')
     return <PreviousButtonExample closeExample={() => setExample(null)} />;
+  if (example === 'customFunction')
+    return (
+      <CustomRenderFunctionExample closeExample={() => setExample(null)} />
+    );
 
   return (
     <View style={styles.container}>
@@ -46,6 +51,11 @@ export default function App() {
         title={'Previous button example'}
         color={'steelblue'}
         onPress={() => setExample('previous')}
+      />
+      <Button
+        title={'Custom render function example'}
+        color={'steelblue'}
+        onPress={() => setExample('customFunction')}
       />
     </View>
   );
