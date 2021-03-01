@@ -62,7 +62,7 @@ export default function App() {
         color={'steelblue'}
         onPress={() => setExample('customFunction')}
       />
-       <Button
+      <Button
         title={'Using third party libraries'}
         color={'steelblue'}
         onPress={() => setExample('thirdParty')}
