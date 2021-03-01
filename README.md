@@ -364,6 +364,7 @@ const ColumnButtonsExample = () => {
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.js">Status bar example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.js">Custom slider render function example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.js">React navigation custom hook example (CANNOT BE RUN, the file includes more information how you can test it.)</a></li>
+ <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.js">Another example for customize the renderItem function with third party libraries.</a></li>
 </ul>
 
 <h2>Troubleshooting</h2>
