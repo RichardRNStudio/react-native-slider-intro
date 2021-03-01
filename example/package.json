@@ -15,6 +15,8 @@
     "@fortawesome/react-native-fontawesome": "^0.2.6",
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-shimmer-placeholder": "^2.0.6",
     "react-native-svg": "^12.1.0"
   },
   "devDependencies": {

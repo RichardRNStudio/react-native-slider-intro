@@ -6,6 +6,7 @@ import ColumnButtonsExample from './ColumnButtonsExample';
 import StatusBarExample from './StatusBarExample';
 import PreviousButtonExample from './PreviousButtonExample';
 import CustomRenderFunctionExample from './CustomRenderFunctionExample';
+import UsingThirdPartyLibrariesExample from './UsingThirdPartyLibrariesExample';
 
 export default function App() {
   const [example, setExample] = useState(null);
@@ -23,6 +24,10 @@ export default function App() {
   if (example === 'customFunction')
     return (
       <CustomRenderFunctionExample closeExample={() => setExample(null)} />
+    );
+  if (example === 'thirdParty')
+    return (
+      <UsingThirdPartyLibrariesExample closeExample={() => setExample(null)} />
     );
 
   return (
@@ -56,6 +61,11 @@ export default function App() {
         title={'Custom render function example'}
         color={'steelblue'}
         onPress={() => setExample('customFunction')}
+      />
+       <Button
+        title={'Using third party libraries'}
+        color={'steelblue'}
+        onPress={() => setExample('thirdParty')}
       />
     </View>
   );
