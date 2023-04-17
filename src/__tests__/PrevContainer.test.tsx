@@ -1,10 +1,9 @@
-import React from 'react';
-import { Dimensions, Animated } from 'react-native';
-import renderer from 'react-test-renderer';
-import PrevContainer from '../components/PrevContainer';
-import SkipButton from '../components/SkipButton';
+import { Animated, Dimensions } from 'react-native'
+import renderer from 'react-test-renderer'
+import PrevContainer from '../components/PrevContainer'
+import SkipButton from '../components/SkipButton'
 
-const maxWidth = Dimensions.get('window').width;
+const maxWidth = Dimensions.get('window').width
 const slide = {
   active: 0,
   previous: 0,
@@ -19,9 +18,9 @@ const slide = {
     _moveSlideDotMarginX: new Animated.Value(0),
     _opacityOfNextButton: new Animated.Value(0),
     _opacityOfDoneButton: new Animated.Value(0),
-    _opacityOfSkipButton: new Animated.Value(0),
-  },
-};
+    _opacityOfSkipButton: new Animated.Value(0)
+  }
+}
 
 test('renders correctly', () => {
   const tree = renderer
@@ -44,6 +43,6 @@ test('renders correctly', () => {
         showLeftButton={true}
       />
     )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})

@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "declaration": true,
+    "baseUrl": "./src",
     "paths": {
-      "react-native-slider-intro": ["./src/index"]
+      "react-native-slider-intro": ["./src/index"],
+      "components/*": ["./components/*"],
+      "interfaces/*": ["./interfaces/*"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
+    "allowUmdGlobalAccess": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "preserve",
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["esnext"],
     "module": "esnext",
     "moduleResolution": "node",

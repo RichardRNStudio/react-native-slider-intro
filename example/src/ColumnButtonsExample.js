@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import SliderIntro from 'react-native-slider-intro';
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import SliderIntro from 'react-native-slider-intro'
 
 const slides = [
   {
@@ -9,7 +9,7 @@ const slides = [
     text: 'Simple description.',
     image: require('./images/step4.png'),
     backgroundColor: '#febe29',
-    slideMaxHeightPercent: 0.65,
+    slideMaxHeightPercent: 0.65
   },
   {
     index: 2,
@@ -17,7 +17,7 @@ const slides = [
     text: 'Simple description for the second step.',
     image: require('./images/step3.png'),
     backgroundColor: '#bb2323',
-    slideMaxHeightPercent: 0.65,
+    slideMaxHeightPercent: 0.65
   },
   {
     index: 3,
@@ -25,33 +25,33 @@ const slides = [
     text: 'Try to make something beauty here.',
     image: require('./images/step2.png'),
     backgroundColor: '#84DAB2',
-    slideMaxHeightPercent: 0.65,
-  },
-];
+    slideMaxHeightPercent: 0.65
+  }
+]
 
 const renderNextButton = () => {
   return (
     <View style={styles.nextButton}>
       <Text style={styles.text}>Next</Text>
     </View>
-  );
-};
+  )
+}
 
 const renderDoneButton = () => {
   return (
     <View style={styles.nextButton}>
       <Text style={styles.text}>Done</Text>
     </View>
-  );
-};
+  )
+}
 
 const renderSkipButton = () => {
   return (
     <View>
       <Text style={styles.text}>Skip</Text>
     </View>
-  );
-};
+  )
+}
 
 const ColumnButtonsExample = ({ closeExample }) => {
   return (
@@ -66,8 +66,8 @@ const ColumnButtonsExample = ({ closeExample }) => {
       onDone={closeExample}
       onSkip={closeExample}
     />
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   nextButton: {
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     width: 90,
     borderRadius: 10,
     backgroundColor: '#82817c',
-    marginTop: 10,
+    marginTop: 10
   },
   text: {
     color: 'white',
-    fontSize: 18,
-  },
-});
+    fontSize: 18
+  }
+})
 
-export default ColumnButtonsExample;
+export default ColumnButtonsExample

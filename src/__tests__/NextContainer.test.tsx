@@ -1,11 +1,10 @@
-import React from 'react';
-import { Dimensions, Animated } from 'react-native';
-import renderer from 'react-test-renderer';
-import NextContainer from '../components/NextContainer';
-import NextButton from '../components/NextButton';
-import DoneButton from '../components/DoneButton';
+import { Animated, Dimensions } from 'react-native'
+import renderer from 'react-test-renderer'
+import DoneButton from '../components/DoneButton'
+import NextButton from '../components/NextButton'
+import NextContainer from '../components/NextContainer'
 
-const maxWidth = Dimensions.get('window').width;
+const maxWidth = Dimensions.get('window').width
 const slide = {
   active: 0,
   previous: 0,
@@ -20,9 +19,9 @@ const slide = {
     _moveSlideDotMarginX: new Animated.Value(0),
     _opacityOfNextButton: new Animated.Value(0),
     _opacityOfDoneButton: new Animated.Value(0),
-    _opacityOfSkipButton: new Animated.Value(0),
-  },
-};
+    _opacityOfSkipButton: new Animated.Value(0)
+  }
+}
 
 test('renders correctly', () => {
   const tree = renderer
@@ -42,6 +41,6 @@ test('renders correctly', () => {
         buttonsMaxSize={maxWidth * 0.2}
       />
     )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})

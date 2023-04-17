@@ -1,6 +1,5 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import Item from '../components/Item';
+import renderer from 'react-test-renderer'
+import Item from '../components/Item'
 
 test('renders correctly', () => {
   const tree = renderer
@@ -15,6 +14,6 @@ test('renders correctly', () => {
         slideMaxHeightPercent={0.9}
       />
     )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})

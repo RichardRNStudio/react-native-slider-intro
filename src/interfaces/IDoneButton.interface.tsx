@@ -1,3 +1,3 @@
 export interface IDoneButton {
-  doneLabel?: string;
+  doneLabel?: string
 }

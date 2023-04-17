@@ -1,8 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import SliderIntro from '../components/SliderIntro';
+import renderer from 'react-test-renderer'
+import SliderIntro from '../components/SliderIntro'
 
-jest.useFakeTimers();
+jest.useFakeTimers()
 
 test('renders correctly', () => {
   const tree = renderer
@@ -12,11 +11,11 @@ test('renders correctly', () => {
           {
             index: 1,
             title: 'Test title',
-            text: 'Test string',
-          },
+            text: 'Test string'
+          }
         ]}
       />
     )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})

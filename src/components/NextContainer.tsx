@@ -1,6 +1,13 @@
-import React from 'react';
-import { View, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import { INextContainer } from 'src/interfaces/INextContainer.interface';
+import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { INextContainer } from 'interfaces/INextContainer.interface'
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
 const NextContainer = ({
   goToNewSlide,
@@ -14,46 +21,23 @@ const NextContainer = ({
   renderNextButton,
   renderDoneButton,
   isLastSlide,
-  buttonsMaxSize,
+  buttonsMaxSize
 }: INextContainer) => {
-  const { active, animations } = slide;
-  const { _opacityOfNextButton, _opacityOfDoneButton } = animations;
+  const { active, animations } = slide
+  const { _opacityOfNextButton, _opacityOfDoneButton } = animations
   return (
     <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
       <TouchableOpacity
-        onPress={() =>
-          goToNewSlide(
-            active + 1,
-            slide,
-            setSlide,
-            numberOfSlide,
-            onDone,
-            navContainerMaxSize,
-            dotWidth,
-            deviceMaxWidth
-          )
-        }
+        onPress={() => goToNewSlide(active + 1, slide, setSlide, numberOfSlide, onDone, navContainerMaxSize, dotWidth, deviceMaxWidth)}
       >
         {!isLastSlide ? (
-          <Animated.View style={{ opacity: _opacityOfNextButton }}>
-            {renderNextButton()}
-          </Animated.View>
+          <Animated.View style={{ opacity: _opacityOfNextButton }}>{renderNextButton()}</Animated.View>
         ) : (
-          <Animated.View style={{ opacity: _opacityOfDoneButton }}>
-            {renderDoneButton()}
-          </Animated.View>
+          <Animated.View style={{ opacity: _opacityOfDoneButton }}>{renderDoneButton()}</Animated.View>
         )}
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default NextContainer;
+export default NextContainer

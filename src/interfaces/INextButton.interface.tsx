@@ -1,3 +1,3 @@
 export interface INextButton {
-  nextLabel?: string;
+  nextLabel?: string
 }

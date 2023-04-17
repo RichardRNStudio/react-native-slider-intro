@@ -1,6 +1,42 @@
-import React from 'react';
-import { View, Animated, StyleSheet } from 'react-native';
-import { IDotContainer } from 'src/interfaces/IDotContainer.interface';
+import { IDotContainer } from 'interfaces/IDotContainer.interface'
+import { Animated, StyleSheet, View } from 'react-native'
+
+const styles = StyleSheet.create({
+  dotMainContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  mainDotContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  animatedDotContainer: {
+    position: 'absolute',
+    flex: 1,
+    flexDirection: 'row'
+  },
+  mainDotInnerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  fixDot: {
+    flex: 1,
+    borderRadius: 100
+  },
+  animatedDotInnerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  animatedDot: {
+    flex: 1,
+    borderRadius: 100
+  }
+})
 
 const DotContainer = ({
   navContainerMaxSize,
@@ -10,7 +46,7 @@ const DotContainer = ({
   dotWidth,
   _moveSlideDotX,
   _moveSlideDotMarginX,
-  animatedDotBackgroundColor,
+  animatedDotBackgroundColor
 }: IDotContainer) => (
   <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
     <View style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}>
@@ -27,11 +63,11 @@ const DotContainer = ({
                   width: dotWidth,
                   maxWidth: dotWidth,
                   height: dotWidth,
-                  maxHeight: dotWidth,
-                },
+                  maxHeight: dotWidth
+                }
               ]}
             />
-          );
+          )
         })}
       </View>
     </View>
@@ -46,50 +82,13 @@ const DotContainer = ({
               height: dotWidth,
               maxHeight: dotWidth,
               marginLeft: _moveSlideDotMarginX,
-              backgroundColor: animatedDotBackgroundColor,
-            },
+              backgroundColor: animatedDotBackgroundColor
+            }
           ]}
         />
       </View>
     </View>
   </View>
-);
+)
 
-const styles = StyleSheet.create({
-  dotMainContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mainDotContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  animatedDotContainer: {
-    position: 'absolute',
-    flex: 1,
-    flexDirection: 'row',
-  },
-  mainDotInnerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  fixDot: {
-    flex: 1,
-    borderRadius: 100,
-  },
-  animatedDotInnerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  animatedDot: {
-    flex: 1,
-    borderRadius: 100,
-  },
-});
-
-export default DotContainer;
+export default DotContainer

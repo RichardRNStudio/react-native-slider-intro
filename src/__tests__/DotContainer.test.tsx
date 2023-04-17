@@ -1,7 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import DotContainer from '../components/DotContainer';
-import { Animated } from 'react-native';
+import { Animated } from 'react-native'
+import renderer from 'react-test-renderer'
+import DotContainer from '../components/DotContainer'
 
 test('renders correctly', () => {
   const tree = renderer
@@ -17,6 +16,6 @@ test('renders correctly', () => {
         navContainerMaxSize={0.3}
       />
     )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})
