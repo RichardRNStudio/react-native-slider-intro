@@ -27,5 +27,7 @@
     "strict": true,
     "target": "esnext",
     "noImplicitAny": false
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
 }
