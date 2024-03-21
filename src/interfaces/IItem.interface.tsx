@@ -9,4 +9,5 @@ export interface IItem {
   backgroundColor?: string;
   activeLanguage?: string;
   slideMaxHeightPercent?: number;
+  icon?: any;
 }

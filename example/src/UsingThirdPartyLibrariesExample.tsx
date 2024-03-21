@@ -15,10 +15,11 @@ import {
   faHorse,
   faAddressBook,
 } from '@fortawesome/free-solid-svg-icons';
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'expo-linear-gradient';
 import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
+import type { IItem } from 'interfaces/IItem.interface';
 
-const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient);
+const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient as any);
 
 const slides = [
   {
@@ -60,8 +61,8 @@ const _renderItem = (
     link,
     activeLanguage,
     slideMaxHeightPercent,
-  },
-  isFetching
+  }: IItem,
+  isFetching: boolean
 ) => {
   const deviceMaxHeight = Dimensions.get('screen').height;
   const language = activeLanguage || 'en';
@@ -80,7 +81,9 @@ const _renderItem = (
       >
         <ShimmerPlaceHolder visible={isFetching} height={30}>
           <Text style={styles.title}>
-            {Array.isArray(title) ? title[language] : title}
+            {Array.isArray(title)
+              ? title[language as unknown as number]
+              : title}
           </Text>
         </ShimmerPlaceHolder>
         {icon && (
@@ -91,7 +94,7 @@ const _renderItem = (
         <ShimmerPlaceHolder visible={isFetching} height={50} width={250}>
           <View>
             <Text style={styles.language}>
-              {Array.isArray(text) ? text[language] : text}
+              {Array.isArray(text) ? text[language as unknown as number] : text}
             </Text>
             {link && (
               <TouchableWithoutFeedback
@@ -109,7 +112,11 @@ const _renderItem = (
   );
 };
 
-const UsingThirdPartyLibrariesExample = ({ closeExample }) => {
+const UsingThirdPartyLibrariesExample = ({
+  closeExample,
+}: {
+  closeExample: () => void;
+}) => {
   const [fakeLoading, setFakeLoading] = useState(false);
 
   useEffect(() => {

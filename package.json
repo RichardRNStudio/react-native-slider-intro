@@ -1,7 +1,7 @@
 {
   "name": "react-native-slider-intro",
   "version": "1.0.22",
-  "description": "A simple and fully customizable React Native component that implements an intro slider for your app",
+  "description": "A simple and full customizable React Native package which implements a unique slider.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -27,6 +27,8 @@
   ],
   "scripts": {
     "example": "yarn workspace react-native-slider-intro-example",
+    "example:ios": "yarn example ios",
+    "example:android": "yarn example android",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",

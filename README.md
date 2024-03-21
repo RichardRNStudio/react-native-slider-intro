@@ -6,13 +6,20 @@
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 <blockquote>
-<p>A simple and fully customizable React Native component that implements an intro slider for your app.</p>
-<p><i>This package has been written for the PC Controller react-native application as a submodule.</i></p>
+<p>A simple and full customizable React Native package which implements a unique slider.</p>
+<p><i>This package is a submodule of PC Controller react-native application.</i></p>
   <a href="https://pccontroller.rnstudio.hu">Visit the PC Controller website</a>
 </p>
 </blockquote>
 
 <h2>Installation</h2>
+
+
+```sh
+yarn add react-native-slider-intro
+```
+
+or
 
 ```sh
 npm install react-native-slider-intro --save
@@ -21,7 +28,7 @@ npm install react-native-slider-intro --save
 <h2>Running the example project</h2>
 
 ```sh
-cd example && npm run example
+yarn example ios / yarn example android
 ```
 
 <h2>Usage</h2>
