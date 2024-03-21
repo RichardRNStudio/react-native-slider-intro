@@ -1,28 +1,33 @@
 {
   "name": "react-native-slider-intro-example",
-  "description": "Example app for react-native-slider-intro",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "clean": "cd android && gradlew clean && cd .."
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-native-fontawesome": "^0.2.6",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
-    "react-native-linear-gradient": "^2.5.6",
-    "react-native-shimmer-placeholder": "^2.0.6",
-    "react-native-svg": "^12.1.0"
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
+    "@react-navigation/native": "^6.1.17",
+    "expo": "~50.0.14",
+    "expo-status-bar": "~1.11.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-linear-gradient": "^2.8.3",
+    "react-native-shimmer-placeholder": "^2.0.9",
+    "react-native-svg": "^15.1.0",
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/runtime": "^7.12.5",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.64.0"
-  }
+    "@babel/core": "^7.20.0",
+    "@expo/webpack-config": "^18.0.1",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-module-resolver": "^5.0.0"
+  },
+  "private": true
 }

@@ -1,60 +1,14 @@
-import React from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
+  Dimensions,
   Image,
   Linking,
-  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { IItem } from '../interfaces/IItem.interface';
-
-const Item = ({
-  index,
-  backgroundColor,
-  title,
-  text,
-  link,
-  activeLanguage,
-  image,
-  slideMaxHeightPercent,
-}: IItem) => {
-  const deviceMaxHeight = Dimensions.get('screen').height;
-  const language = activeLanguage || 'en';
-  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
-
-  return (
-    <View key={index} style={[styles.slide, { backgroundColor }]}>
-      <View
-        style={[
-          styles.container,
-          {
-            height: slideHeight,
-            maxHeight: slideHeight,
-          },
-        ]}
-      >
-        <Text style={styles.title}>
-          {Array.isArray(title) ? title[language] : title}
-        </Text>
-        {image && <Image style={styles.image} source={image} />}
-        <View>
-          <Text style={styles.text}>
-            {Array.isArray(text) ? text[language] : text}
-          </Text>
-          {link && (
-            <TouchableOpacity onPress={() => Linking.openURL(link)}>
-              <Text style={styles.link}>{link}</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
-    </View>
-  );
-};
-
-export default Item;
+import type { IItem } from 'interfaces/IItem.interface';
+import React from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -96,3 +50,49 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+const Item = ({
+  index,
+  backgroundColor,
+  title,
+  text,
+  link,
+  activeLanguage,
+  image,
+  slideMaxHeightPercent,
+}: IItem) => {
+  const deviceMaxHeight = Dimensions.get('screen').height;
+  const language = activeLanguage || 'en';
+  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
+
+  return (
+    <View key={index} style={[styles.slide, { backgroundColor }]}>
+      <View
+        style={[
+          styles.container,
+          {
+            height: slideHeight,
+            maxHeight: slideHeight,
+          },
+        ]}
+      >
+        <Text style={styles.title}>
+          {Array.isArray(title) ? title[language as unknown as number] : title}
+        </Text>
+        {image && <Image style={styles.image} source={image} />}
+        <View>
+          <Text style={styles.text}>
+            {Array.isArray(text) ? text[language as unknown as number] : text}
+          </Text>
+          {link && (
+            <TouchableOpacity onPress={() => Linking.openURL(link)}>
+              <Text style={styles.link}>{link}</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default Item;

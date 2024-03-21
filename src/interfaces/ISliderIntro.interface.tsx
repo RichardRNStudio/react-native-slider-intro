@@ -1,6 +1,6 @@
 import React from 'react';
-import { IItem } from './IItem.interface';
-import { ISlide } from './ISlide.interface';
+import type { IItem } from './IItem.interface';
+import type { ISlide } from './ISlide.interface';
 
 export interface ISliderIntro {
   data: IItem[];

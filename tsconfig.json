@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
-      "react-native-slider-intro": ["./src/index"]
+      "react-native-slider-intro": ["./src/index"],
+      "components/*": ["./src/components/*"],
+      "interfaces/*": ["./src/interfaces/*"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "preserve",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext"],
@@ -17,12 +18,13 @@
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noStrictGenericChecks": false,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "noImplicitAny": false
+    "verbatimModuleSyntax": true
   }
 }

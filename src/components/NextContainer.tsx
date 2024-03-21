@@ -1,6 +1,14 @@
+import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
+import type { INextContainer } from 'interfaces/INextContainer.interface';
 import React from 'react';
-import { View, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import { INextContainer } from 'src/interfaces/INextContainer.interface';
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 const NextContainer = ({
   goToNewSlide,
@@ -47,13 +55,5 @@ const NextContainer = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default NextContainer;

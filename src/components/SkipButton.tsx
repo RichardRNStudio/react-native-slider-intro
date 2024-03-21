@@ -1,14 +1,6 @@
+import { StyleSheet, Text, View } from 'react-native';
+import type { ISkipButton } from '../interfaces/ISkipButton.interface';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { ISkipButton } from '../interfaces/ISkipButton.interface';
-
-const SkipButton = ({ skipLabel }: ISkipButton) => (
-  <View style={styles.skipButton}>
-    <Text style={styles.skipText}>{skipLabel}</Text>
-  </View>
-);
-
-export default SkipButton;
 
 const styles = StyleSheet.create({
   skipButton: {
@@ -22,3 +14,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
+
+const SkipButton = ({ skipLabel }: ISkipButton) => (
+  <View style={styles.skipButton}>
+    <Text style={styles.skipText}>{skipLabel}</Text>
+  </View>
+);
+
+export default SkipButton;

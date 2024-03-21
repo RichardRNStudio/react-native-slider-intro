@@ -1,48 +1,14 @@
+import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
+import type { IPrevContainer } from 'interfaces/IPrevContainer.interface';
 import React from 'react';
-import { View, TouchableOpacity, Animated } from 'react-native';
-import { StyleSheet } from 'react-native';
-import { IPrevContainer } from 'src/interfaces/IPrevContainer.interface';
-import { ISlide } from 'src/interfaces/ISlide.interface';
 
-const handlePress = (
-  onSkip: () => void,
-  setDefaultState: () => void,
-  type: 'previous' | 'skip',
-  goToNewSlide: (
-    nextActive: number,
-    slide: ISlide,
-    setSlide: (arg0: ISlide) => void,
-    numberOfSlide: number,
-    onDone: () => void,
-    navContainerMaxSize: number,
-    dotWidth: number,
-    deviceMaxWidth: number
-  ) => void,
-  slide: ISlide,
-  setSlide: (arg0: ISlide) => void,
-  numberOfSlide: number,
-  onDone: () => void,
-  navContainerMaxSize: number,
-  dotWidth: number,
-  deviceMaxWidth: number
-) => {
-  const { active } = slide;
-  if (type === 'skip') {
-    setDefaultState();
-    onSkip();
-    return;
-  }
-  goToNewSlide(
-    active - 1,
-    slide,
-    setSlide,
-    numberOfSlide,
-    onDone,
-    navContainerMaxSize,
-    dotWidth,
-    deviceMaxWidth
-  );
-};
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 const PrevContainer = ({
   setDefaultState,
@@ -60,45 +26,42 @@ const PrevContainer = ({
   dotWidth,
   deviceMaxWidth,
   showLeftButton,
-}: IPrevContainer) => (
-  <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
-    {showLeftButton && (
-      <TouchableOpacity
-        onPress={() =>
-          handlePress(
-            onSkip,
-            setDefaultState,
-            type,
-            goToNewSlide,
-            slide,
-            setSlide,
-            numberOfSlide,
-            onDone,
-            navContainerMaxSize,
-            dotWidth,
-            deviceMaxWidth
-          )
-        }
-      >
-        <Animated.View
-          style={{
-            maxWidth: buttonsMaxSize,
-            opacity: _opacityOfSkipButton,
-          }}
-        >
-          {renderSkipButton()}
-        </Animated.View>
-      </TouchableOpacity>
-    )}
-  </View>
-);
+}: IPrevContainer) => {
+  const handlePress = () => {
+    const { active } = slide;
+    if (type === 'skip') {
+      setDefaultState();
+      onSkip();
+      return;
+    }
+    goToNewSlide(
+      active - 1,
+      slide,
+      setSlide,
+      numberOfSlide,
+      onDone,
+      navContainerMaxSize,
+      dotWidth,
+      deviceMaxWidth
+    );
+  };
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+  return (
+    <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
+      {showLeftButton && (
+        <TouchableOpacity onPress={handlePress}>
+          <Animated.View
+            style={{
+              maxWidth: buttonsMaxSize,
+              opacity: _opacityOfSkipButton,
+            }}
+          >
+            {renderSkipButton()}
+          </Animated.View>
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
 
 export default PrevContainer;

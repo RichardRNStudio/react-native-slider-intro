@@ -1,6 +1,6 @@
 import React from 'react';
 import { Animated } from 'react-native';
-import { ISlide } from 'src/interfaces/ISlide.interface';
+import type { ISlide } from 'interfaces/ISlide.interface';
 
 export interface IPrevContainer {
   setDefaultState: () => void;

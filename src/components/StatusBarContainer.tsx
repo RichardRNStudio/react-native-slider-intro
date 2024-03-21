@@ -1,8 +1,14 @@
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import type { IStatusBar } from 'interfaces/IStatusBar.interface';
 import React from 'react';
-import { StatusBar, View, Platform, StyleSheet } from 'react-native';
-import { IStatusBarContainer } from 'src/interfaces/IStatusBar';
 
-const StatusBarContainer = ({ backgroundColor }: IStatusBarContainer) => (
+const styles = StyleSheet.create({
+  viewStyle: {
+    height: 24,
+  },
+});
+
+const StatusBarContainer = ({ backgroundColor }: IStatusBar) => (
   <>
     <StatusBar
       barStyle="light-content"
@@ -15,11 +21,5 @@ const StatusBarContainer = ({ backgroundColor }: IStatusBarContainer) => (
     ) : null}
   </>
 );
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    height: 24,
-  },
-});
 
 export default StatusBarContainer;

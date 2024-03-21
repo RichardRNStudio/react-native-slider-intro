@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISlide } from 'src/interfaces/ISlide.interface';
+import type { ISlide } from 'interfaces/ISlide.interface';
 
 export interface INextContainer {
   goToNewSlide: (

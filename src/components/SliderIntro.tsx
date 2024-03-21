@@ -1,23 +1,69 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 import {
   Animated,
-  Dimensions,
-  View,
   BackHandler,
-  StyleSheet,
+  Dimensions,
   PanResponder,
+  StyleSheet,
+  View,
 } from 'react-native';
-import { ISlide } from '../interfaces/ISlide.interface';
-import SkipButton from './SkipButton';
-import NextButton from './NextButton';
+import type { IItem } from 'interfaces/IItem.interface';
+import type { ISliderIntro } from 'interfaces/ISliderIntro.interface';
+import type { ISlide } from '../interfaces/ISlide.interface';
 import DoneButton from './DoneButton';
-import NextContainer from './NextContainer';
-import Item from './Item';
-import { ISliderIntro } from 'src/interfaces/ISliderIntro.interface';
-import { IItem } from 'src/interfaces/IItem.interface';
-import PrevContainer from './PrevContainer';
 import DotContainer from './DotContainer';
+import Item from './Item';
+import NextButton from './NextButton';
+import NextContainer from './NextContainer';
+import PrevContainer from './PrevContainer';
+import SkipButton from './SkipButton';
 import StatusBarContainer from './StatusBarContainer';
+import React from 'react';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  navContainer: {
+    position: 'absolute',
+    width: '100%',
+    maxWidth: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  navigation: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  flexDirectionRow: {
+    flexDirection: 'row',
+  },
+  flexDirectionColumn: {
+    flexDirection: 'column',
+  },
+  prevContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  prevButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  prevText: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 14,
+  },
+});
 
 const setDefaultState = (setSlide: (arg0: ISlide) => void) => {
   setSlide({
@@ -325,7 +371,7 @@ const defaultProps: ISliderIntro = {
   ),
 };
 
-export function SliderIntro({
+const SliderIntro = ({
   data,
   renderItem,
   navigationBarBottom,
@@ -355,7 +401,7 @@ export function SliderIntro({
   renderStatusBar,
   showStatusBar,
   statusBarColor,
-}: ISliderIntro) {
+}: ISliderIntro) => {
   const [panResponder, setPanResponder] = useState(PanResponder.create({}));
   const [slide, setSlide] = useState<ISlide>({
     active: 0,
@@ -669,51 +715,8 @@ export function SliderIntro({
       </View>
     </>
   );
-}
+};
 
 SliderIntro.defaultProps = defaultProps;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  navContainer: {
-    position: 'absolute',
-    width: '100%',
-    maxWidth: '100%',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  navigation: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  flexDirectionRow: {
-    flexDirection: 'row',
-  },
-  flexDirectionColumn: {
-    flexDirection: 'column',
-  },
-  prevContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  prevButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  prevText: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    color: 'white',
-    fontSize: 14,
-  },
-});
 
 export default SliderIntro;
