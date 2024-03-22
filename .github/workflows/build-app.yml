@@ -9,6 +9,7 @@ on:
 
 jobs:
   lint:
+    name: Lint files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,6 +25,7 @@ jobs:
         run: yarn typecheck
 
   test:
+    name: Run unit tests
     runs-on: ubuntu-latest
     needs: lint
     steps:
@@ -37,6 +39,7 @@ jobs:
         run: yarn test --maxWorkers=2 --coverage
 
   build-library:
+    name: Build library
     runs-on: ubuntu-latest
     needs: [lint, test]
     steps:
@@ -50,6 +53,7 @@ jobs:
         run: yarn prepare
   
   update-version:
+    name: Update version
     runs-on: ubuntu-latest
     needs: [build-library]
     steps:
@@ -63,7 +67,7 @@ jobs:
 
       - name: Update version
         run: |
-          npm version patch -m "Bump version to %s [skip ci]"
+          npm version patch -m "Bump version to %s"
           git push --force --follow-tags
         env:
           NODE_AUTH_TOKEN: ${{secrets.ACTIONS_PAT}}
