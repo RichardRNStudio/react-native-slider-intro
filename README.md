@@ -14,7 +14,6 @@
 
 <h2>Installation</h2>
 
-
 ```sh
 yarn add react-native-slider-intro
 ```
