@@ -56,6 +56,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up Git
+        run: |
+          git config --global user.name "RichardRNStudio"
+          git config --global user.email "info@rnstudio.hu"
+
       - name: Update version
         run: |
           npm version patch -m "Bump version to %s [skip ci]"
