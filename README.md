@@ -1,7 +1,7 @@
 <h1>📲 react-native-slider-intro</h1>
 
 ![npm version](https://img.shields.io/npm/v/react-native-slider-intro.svg)
-![build](https://img.shields.io/circleci/build/github/RichardRNStudio/react-native-slider-intro/main)
+[![build](https://github.com/RichardRNStudio/react-native-slider-intro/actions/workflows/build-app.yml/badge.svg?branch=main)](https://github.com/RichardRNStudio/react-native-slider-intro/actions/workflows/build-app.yml)
 ![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
