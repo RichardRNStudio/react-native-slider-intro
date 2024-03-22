@@ -1,4 +1,4 @@
-name: Build app
+name: Build application
 on:
   push:
     branches:
@@ -66,4 +66,4 @@ jobs:
           npm version patch -m "Bump version to %s [skip ci]"
           git push --follow-tags
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.ACTIONS_PAT}}
