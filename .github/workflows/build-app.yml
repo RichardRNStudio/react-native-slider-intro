@@ -64,6 +64,6 @@ jobs:
       - name: Update version
         run: |
           npm version patch -m "Bump version to %s [skip ci]"
-          git push --follow-tags
+          git push --force --follow-tags
         env:
           NODE_AUTH_TOKEN: ${{secrets.ACTIONS_PAT}}
