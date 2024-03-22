@@ -4,7 +4,7 @@
 [![build](https://github.com/RichardRNStudio/react-native-slider-intro/actions/workflows/build-app.yml/badge.svg?branch=main)](https://github.com/RichardRNStudio/react-native-slider-intro/actions/workflows/build-app.yml)
 ![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)
 ![license](https://img.shields.io/badge/license-MIT-green)
-
+ 
 <blockquote>
 <p>A simple and full customizable React Native package which implements a unique slider.</p>
 <p><i>This package is a submodule of PC Controller react-native application.</i></p>
