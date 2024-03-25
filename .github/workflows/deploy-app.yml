@@ -2,6 +2,7 @@ name: Publish NPM package
 on:
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -33,30 +34,22 @@ jobs:
 
       - name: Run unit tests
         run: yarn test --maxWorkers=2 --coverage
-
-  build-library:
-    name: Build library
-    runs-on: ubuntu-latest
-    needs: [lint, test]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup
-        uses: ./.github/actions/setup
-
-      - name: Build package
-        run: yarn prepare
   
   publish-npm:
-    name: Publish NPM package
+    name: Build & Publish NPM package
     runs-on: ubuntu-latest
-    needs: [build-library]
+    needs: [lint, test]
     environment:
       name: NPM package
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build package
+        run: yarn prepare
 
       - name: Publish package
         run: yarn publish --access public
