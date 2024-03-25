@@ -51,5 +51,10 @@ jobs:
       - name: Build package
         run: yarn prepare
 
+      - name: Authenticate with npm
+        run: npm login --registry=https://registry.npmjs.org/ --always-auth=false <<< "$NPM_TOKEN\n$NPM_EMAIL"
+
       - name: Publish package
         run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
