@@ -52,4 +52,4 @@ jobs:
         run: yarn prepare
 
       - name: Publish package
-        run: yarn publish --access public
+        run: npm publish --access public
