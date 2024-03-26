@@ -2,7 +2,6 @@ name: Publish NPM package
 on:
   release:
     types: [created]
-  workflow_dispatch:
 
 jobs:
   lint:
@@ -39,8 +38,6 @@ jobs:
     name: Build & Publish NPM package
     runs-on: ubuntu-latest
     needs: [lint, test]
-    environment:
-      name: NPM package
     steps:
       - name: Checkout
         uses: actions/checkout@v3
