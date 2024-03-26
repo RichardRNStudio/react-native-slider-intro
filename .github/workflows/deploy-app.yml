@@ -48,7 +48,10 @@ jobs:
       - name: Build package
         run: yarn prepare
 
-      - name: Publish package
-        run: npm publish --access public
+      - name: Login to npm registry
+        run: npm login --registry=https://registry.npmjs.org/ --always-auth=false
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish package
+        run: npm publish --access public
