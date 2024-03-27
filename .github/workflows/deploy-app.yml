@@ -2,7 +2,6 @@ name: Publish NPM package
 on:
   release:
     types: [created]
-  workflow_dispatch:
 
 jobs:
   lint:
@@ -51,9 +50,10 @@ jobs:
       - name: Publish
         run: |
           git config --global user.name 'RichardRNStudio'
-          git config --global user.email 'riiichj@gmail.com'
+          git config --global user.email '${NPM_EMAIL}'
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
