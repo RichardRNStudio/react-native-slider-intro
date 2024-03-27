@@ -48,7 +48,7 @@ jobs:
           version: 'latest'
       
       - name: Install pnpm dependencies
-        run: pnpm install -g pnpm
+        run: pnpm install pnpm
 
       - name: Build package
         run: pnpm prepare
