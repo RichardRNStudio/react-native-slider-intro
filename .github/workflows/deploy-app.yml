@@ -42,23 +42,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 'latest'
-      
-      - name: Install pnpm dependencies
-        run: pnpm install pnpm
+      - name: Setup
+        uses: ./.github/actions/setup
 
       - name: Build package
-        run: pnpm prepare
+        run: yarn prepare
 
       - name: Publish
         run: |
           git config --global user.name 'RichardRNStudio'
           git config --global user.email 'riiichj@gmail.com'
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-          pnpm publish --access public
+          npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
