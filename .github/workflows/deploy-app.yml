@@ -45,10 +45,10 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 'latest'
       
-      - name: Setup
-        uses: ./.github/actions/setup
+      - name: Install pnpm dependencies
+        run: pnpm install -g pnpm
 
       - name: Build package
         run: yarn prepare
@@ -58,7 +58,7 @@ jobs:
           git config --global user.name 'RichardRNStudio'
           git config --global user.email 'riiichj@gmail.com'
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-          pnpm run cipublish
+          pnpm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
