@@ -12,13 +12,11 @@ import {
 import type { IItem } from 'interfaces/IItem.interface';
 import type { ISliderIntro } from 'interfaces/ISliderIntro.interface';
 import type { ISlide } from '../interfaces/ISlide.interface';
-import DoneButton from './DoneButton';
+import Button from './Button';
 import DotContainer from './DotContainer';
 import Item from './Item';
-import NextButton from './NextButton';
 import NextContainer from './NextContainer';
 import PrevContainer from './PrevContainer';
-import SkipButton from './SkipButton';
 import StatusBarContainer from './StatusBarContainer';
 import React from 'react';
 
@@ -351,13 +349,13 @@ const defaultProps: ISliderIntro = {
   nextLabel: 'Next',
   doneLabel: 'Done',
   renderSkipButton: (skipLabel: string | undefined) => (
-    <SkipButton skipLabel={skipLabel} />
+    <Button label={skipLabel} type="skip" />
   ),
   renderNextButton: (nextLabel: string | undefined) => (
-    <NextButton nextLabel={nextLabel} />
+    <Button label={nextLabel} type="next" />
   ),
   renderDoneButton: (doneLabel: string | undefined) => (
-    <DoneButton doneLabel={doneLabel} />
+    <Button label={doneLabel} type="done" />
   ),
   onDone: () => {},
   onSkip: () => {},
