@@ -1,16 +1,18 @@
 <h1>📲 react-native-slider-intro</h1>
 
-![npm version](https://img.shields.io/npm/v/react-native-slider-intro.svg)
+[![npm version](https://img.shields.io/npm/v/react-native-slider-intro.svg)](https://www.npmjs.com/package/react-native-slider-intro)
 [![build](https://github.com/RichardRNStudio/react-native-slider-intro/actions/workflows/build-app.yml/badge.svg?branch=main)](https://github.com/RichardRNStudio/react-native-slider-intro/actions/workflows/build-app.yml)
-![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)
-![license](https://img.shields.io/badge/license-MIT-green)
- 
-<blockquote>
-<p>A simple and full customizable React Native package which implements a unique slider.</p>
-<p><i>This package is a submodule of PC Controller react-native application.</i></p>
-  <a href="https://pccontroller.rnstudio.hu">Visit the PC Controller website</a>
+[![platform](https://img.shields.io/badge/platform-Android_%7C_iOS-yellow)](https://github.com/RichardRNStudio/react-native-slider-intro)
+[![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/LICENSE)
+
+<p align="center">
+  A simple and full customizable React Native package which implements a unique slider.
 </p>
-</blockquote>
+<p align="center">
+  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true" height="400"/>
+  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/custom-buttons-example.gif?raw=true" height="400"/>
+  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/column-buttons-example.gif?raw=true" height="400"/>
+</p>
 
 <h2>Installation</h2>
 
@@ -26,15 +28,18 @@ npm install react-native-slider-intro --save
 
 <h2>Running the example project</h2>
 
+iOS
 ```sh
-yarn example ios / yarn example android
+yarn example ios
+```
+Android
+```sh
+yarn example android
 ```
 
 <h2>Usage</h2>
 
 <h3>Basic example</h3>
-
-![basic-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true)
 
 <p>Make your own data array and pass it to <b>SliderIntro</b>.</p>
 
@@ -81,8 +86,6 @@ const BasicExample = () => {
 
 <h3>Custom buttons example</h3>
 
-![custom-buttons-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/custom-buttons-example.gif?raw=true)
-
 ```js
 import React from 'react';
 import SliderIntro from 'react-native-slider-intro';
@@ -123,8 +126,6 @@ const CustomButtonsExample = () => {
 ```
 
 <h3>Column buttons example</h3>
-
-![column-buttons-example](https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/column-buttons-example.gif?raw=true)
 
 ```js
 import React from 'react';
@@ -172,7 +173,7 @@ const ColumnButtonsExample = () => {
 };
 ```
 
-<h2>Props</h2>
+<h2>Properties</h2>
 
 <table>
   <thead align="center">
@@ -363,14 +364,14 @@ const ColumnButtonsExample = () => {
 
 <h2>Examples</h2>
 <ul>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/BasicExample.js">Basic example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ColumnButtonsExample.js">Column buttons example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomButtonsExample.js">Custom buttons example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.js">Previous button example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.js">Status bar example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.js">Custom slider render function example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.js">React navigation custom hook example (CANNOT BE RUN, the file includes more information how you can test it.)</a></li>
- <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.js">Another example for customize the renderItem function with third party libraries.</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/BasicExample.tsx">Basic example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ColumnButtonsExample.tsx">Column buttons example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomButtonsExample.tsx">Custom buttons example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.tsx">Previous button example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Status bar example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.tsx">Custom slider render function example</a></li>
+  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.tsx">React navigation custom hook example (CANNOT BE RUN, the file includes more information how you can test it.)</a></li>
+ <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Another example for customize the renderItem function with third party libraries.</a></li>
 </ul>
 
 <h2>Troubleshooting</h2>
