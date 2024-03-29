@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<Text
+  style={
+    {
+      "color": "white",
+      "fontSize": 14,
+      "fontWeight": "bold",
+      "textTransform": "uppercase",
+    }
+  }
+>
+  test
+</Text>
+`;
