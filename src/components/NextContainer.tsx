@@ -1,6 +1,6 @@
+import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
-import type { INextContainer } from 'interfaces/INextContainer.interface';
-import React from 'react';
+import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -10,45 +10,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const NextContainer = ({
-  goToNewSlide,
-  slide,
-  setSlide,
-  numberOfSlide,
-  onDone,
-  navContainerMaxSize,
-  dotWidth,
-  deviceMaxWidth,
-  renderNextButton,
-  renderDoneButton,
-  isLastSlide,
-  buttonsMaxSize,
-}: INextContainer) => {
-  const { active, animations } = slide;
+const NextContainer = () => {
+  const {
+    sliderState,
+    animations,
+    renderNextButton,
+    renderDoneButton,
+    buttonsMaxSize,
+    goToNewSlide,
+    nextLabel,
+    doneLabel,
+    isLastSlide,
+  } = useContext(SliderContext);
+  const [slide] = sliderState;
   const { _opacityOfNextButton, _opacityOfDoneButton } = animations;
   return (
     <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
-      <TouchableOpacity
-        onPress={() =>
-          goToNewSlide(
-            active + 1,
-            slide,
-            setSlide,
-            numberOfSlide,
-            onDone,
-            navContainerMaxSize,
-            dotWidth,
-            deviceMaxWidth
-          )
-        }
-      >
+      <TouchableOpacity onPress={() => goToNewSlide(slide.active + 1)}>
         {!isLastSlide ? (
           <Animated.View style={{ opacity: _opacityOfNextButton }}>
-            {renderNextButton()}
+            {renderNextButton(nextLabel)}
           </Animated.View>
         ) : (
           <Animated.View style={{ opacity: _opacityOfDoneButton }}>
-            {renderDoneButton()}
+            {renderDoneButton(doneLabel)}
           </Animated.View>
         )}
       </TouchableOpacity>

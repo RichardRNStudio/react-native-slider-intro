@@ -1,6 +1,6 @@
+import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
-import type { IPrevContainer } from 'interfaces/IPrevContainer.interface';
-import React from 'react';
+import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -10,40 +10,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const PrevContainer = ({
-  setDefaultState,
-  onSkip,
-  buttonsMaxSize,
-  _opacityOfSkipButton,
-  renderSkipButton,
-  type,
-  goToNewSlide,
-  slide,
-  setSlide,
-  numberOfSlide,
-  onDone,
-  navContainerMaxSize,
-  dotWidth,
-  deviceMaxWidth,
-  showLeftButton,
-}: IPrevContainer) => {
+const PrevContainer = () => {
+  const {
+    sliderState,
+    goToNewSlide,
+    setDefaultState,
+    onSkip,
+    leftButtonType,
+    buttonsMaxSize,
+    showLeftButton,
+    animations: { _opacityOfSkipButton },
+    renderSkipButton,
+    skipLabel,
+  } = useContext(SliderContext);
+  const [slide] = sliderState;
+
   const handlePress = () => {
     const { active } = slide;
-    if (type === 'skip') {
+    if (leftButtonType === 'skip') {
       setDefaultState();
       onSkip();
       return;
     }
-    goToNewSlide(
-      active - 1,
-      slide,
-      setSlide,
-      numberOfSlide,
-      onDone,
-      navContainerMaxSize,
-      dotWidth,
-      deviceMaxWidth
-    );
+    goToNewSlide(active - 1);
   };
 
   return (
@@ -56,7 +45,7 @@ const PrevContainer = ({
               opacity: _opacityOfSkipButton,
             }}
           >
-            {renderSkipButton()}
+            {renderSkipButton(skipLabel)}
           </Animated.View>
         </TouchableOpacity>
       )}
