@@ -1,6 +1,6 @@
-import type { IDotContainer } from 'interfaces/IDotContainer.interface';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
+import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
   dotMainContainer: {
@@ -39,57 +39,63 @@ const styles = StyleSheet.create({
   },
 });
 
-const DotContainer = ({
-  navContainerMaxSize,
-  arrayOfSlideIndex,
-  fixDotBackgroundColor,
-  fixDotOpacity,
-  dotWidth,
-  _moveSlideDotX,
-  _moveSlideDotMarginX,
-  animatedDotBackgroundColor,
-}: IDotContainer) => (
-  <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
-    <View style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}>
-      <View style={styles.mainDotInnerContainer}>
-        {arrayOfSlideIndex.map((item) => {
-          return (
-            <View
-              key={item}
-              style={[
-                styles.fixDot,
-                {
-                  backgroundColor: fixDotBackgroundColor,
-                  opacity: fixDotOpacity,
-                  width: dotWidth,
-                  maxWidth: dotWidth,
-                  height: dotWidth,
-                  maxHeight: dotWidth,
-                },
-              ]}
-            />
-          );
-        })}
+const DotContainer = () => {
+  const {
+    navContainerMaxSize,
+    numberOfSlides,
+    fixDotBackgroundColor,
+    fixDotOpacity,
+    dotWidth,
+    animations: { _moveSlideDotX, _moveSlideDotMarginX },
+    animatedDotBackgroundColor,
+  } = useContext(SliderContext);
+  const arrayOfSlideIndex = [...Array(numberOfSlides).keys()];
+
+  return (
+    <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
+      <View
+        style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}
+      >
+        <View style={styles.mainDotInnerContainer}>
+          {arrayOfSlideIndex.map((item) => {
+            return (
+              <View
+                key={item}
+                style={[
+                  styles.fixDot,
+                  {
+                    backgroundColor: fixDotBackgroundColor,
+                    opacity: fixDotOpacity,
+                    width: dotWidth,
+                    maxWidth: dotWidth,
+                    height: dotWidth,
+                    maxHeight: dotWidth,
+                  },
+                ]}
+              />
+            );
+          })}
+        </View>
+      </View>
+      <View style={[styles.animatedDotContainer]}>
+        <View style={styles.animatedDotInnerContainer}>
+          <Animated.View
+            style={[
+              styles.animatedDot,
+              {
+                width: _moveSlideDotX,
+                maxWidth: _moveSlideDotX,
+                height: dotWidth,
+                maxHeight: dotWidth,
+                marginLeft: _moveSlideDotMarginX,
+                backgroundColor: animatedDotBackgroundColor,
+              },
+            ]}
+          />
+        </View>
       </View>
     </View>
-    <View style={[styles.animatedDotContainer]}>
-      <View style={styles.animatedDotInnerContainer}>
-        <Animated.View
-          style={[
-            styles.animatedDot,
-            {
-              width: _moveSlideDotX,
-              maxWidth: _moveSlideDotX,
-              height: dotWidth,
-              maxHeight: dotWidth,
-              marginLeft: _moveSlideDotMarginX,
-              backgroundColor: animatedDotBackgroundColor,
-            },
-          ]}
-        />
-      </View>
-    </View>
-  </View>
-);
+  );
+};
 
 export default DotContainer;

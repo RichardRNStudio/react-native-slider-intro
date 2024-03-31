@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const deviceMaxHeight = Dimensions.get('screen').height;
+
 const Item = ({
   index,
   backgroundColor,
@@ -61,7 +63,6 @@ const Item = ({
   image,
   slideMaxHeightPercent,
 }: IItem) => {
-  const deviceMaxHeight = Dimensions.get('screen').height;
   const language = activeLanguage || 'en';
   const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
 

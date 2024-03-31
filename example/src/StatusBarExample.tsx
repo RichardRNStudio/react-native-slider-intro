@@ -38,7 +38,7 @@ const StatusBarExample = ({ closeExample }: { closeExample: () => void }) => {
     <SliderIntro
       data={slides}
       showStatusBar={true}
-      statusBarColor={'#febe29'}
+      statusBarColor="red"
       onDone={closeExample}
       onSkip={closeExample}
     />
