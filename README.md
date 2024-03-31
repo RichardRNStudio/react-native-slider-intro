@@ -10,9 +10,9 @@
   A simple and full customizable React Native package which implements a unique slider.
 </p>
 <p align="center">
-  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true" height="400"/>
-  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/custom-buttons-example.gif?raw=true" height="400"/>
-  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/column-buttons-example.gif?raw=true" height="400"/>
+  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/basic-example.gif?raw=true" height="350"/>
+  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/custom-buttons-example.gif?raw=true" height="350"/>
+  <img src="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/docs/column-buttons-example.gif?raw=true" height="350"/>
 </p>
 
 <h2>Installation</h2>
@@ -53,6 +53,7 @@ const slides = [
     index: 1,
     title: 'First step',
     text: 'Simple description.',
+    link: 'https://pccontroller.rnstudio.hu',
     image: require('./images/step1.png'),
     backgroundColor: '#febe29',
   },
@@ -63,115 +64,15 @@ const slides = [
     image: require('./images/step2.png'),
     backgroundColor: '#febe29',
   },
-  {
-    index: 3,
-    title: 'Third step',
-    text: 'Try to make something beauty here.',
-    image: require('./images/step3.png'),
-    backgroundColor: '#febe29',
-  },
-  {
-    index: 4,
-    title: 'Fourth step',
-    text: 'Here you can open a custom link.',
-    link: 'https://pccontroller.rnstudio.hu',
-    image: require('./images/step4.png'),
-    backgroundColor: '#febe29',
-  },
 ];
 
-const BasicExample = () => {
-  return <SliderIntro data={slides} />;
-};
-```
-
-<h3>Custom buttons example</h3>
-
-```js
-import React from 'react';
-import SliderIntro from 'react-native-slider-intro';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faArrowCircleRight,
-  faCheckCircle,
-  faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons';
-
-const slides = [...];
-
-const renderNextButton = () => {
+const BasicExample = ({ closeExample }: { closeExample: () => void }) => {
   return (
-    <FontAwesomeIcon icon={faArrowCircleRight} color={'white'} size={35} />
+    <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
   );
 };
 
-const renderDoneButton = () => {
-  return <FontAwesomeIcon icon={faCheckCircle} color={'white'} size={35} />;
-};
-
-const renderSkipButton = () => {
-  return <FontAwesomeIcon icon={faTimesCircle} color={'white'} size={35} />;
-};
-
-const CustomButtonsExample = () => {
-  return (
-    <SliderIntro
-      renderNextButton={renderNextButton}
-      renderDoneButton={renderDoneButton}
-      renderSkipButton={renderSkipButton}
-      navContainerMaxSizePercent={0.3}
-      data={slides}
-    />
-  );
-};
-```
-
-<h3>Column buttons example</h3>
-
-```js
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import SliderIntro from 'react-native-slider-intro';
-
-const slides = [...];
-
-const renderNextButton = () => {
-  return (
-    <View style={styles.nextButton}>
-      <Text style={styles.text}>Next</Text>
-    </View>
-  );
-};
-
-const renderDoneButton = () => {
-  return (
-    <View style={styles.nextButton}>
-      <Text style={styles.text}>Done</Text>
-    </View>
-  );
-};
-
-const renderSkipButton = () => {
-  return (
-    <View>
-      <Text style={styles.text}>Skip</Text>
-    </View>
-  );
-};
-
-const ColumnButtonsExample = () => {
-  return (
-    <SliderIntro
-      renderNextButton={renderNextButton}
-      renderDoneButton={renderDoneButton}
-      renderSkipButton={renderSkipButton}
-      navContainerMaxSizePercent={0.3}
-      navigationBarHeight={150}
-      columnButtonStyle={true}
-      data={slides}
-    />
-  );
-};
+export default BasicExample;
 ```
 
 <h2>Properties</h2>
