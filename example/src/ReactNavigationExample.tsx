@@ -3,7 +3,7 @@
 // IMPORTANT: Install the react-navigation with its dependencies and create a NavigationContainer around this component for run this component.
 // Now this component cannot be run, it's just an example code.
 import { useFocusEffect } from '@react-navigation/native';
-import type { ISlide } from 'interfaces/ISlide.interface';
+import type { ISlide } from '../../src/interfaces/ISlide.interface';
 import React from 'react';
 import { BackHandler } from 'react-native';
 import SliderIntro from 'react-native-slider-intro';

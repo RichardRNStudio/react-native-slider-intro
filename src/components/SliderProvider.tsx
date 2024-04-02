@@ -1,13 +1,7 @@
 /* eslint-disable no-void */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
-import type { ISlide } from 'interfaces/ISlide.interface';
-import type {
-  ISliderContextProps,
-  ISliderProviderProps,
-} from 'interfaces/ISliderProvider.interface';
-import { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import {
   Animated,
   BackHandler,
@@ -15,75 +9,12 @@ import {
   PanResponder,
   type PanResponderInstance,
 } from 'react-native';
-import type { ISliderIntro } from 'interfaces/ISliderIntro.interface';
-import type { IItem } from 'interfaces/IItem.interface';
-import Item from './Item';
-import StatusBarContainer from './StatusBarContainer';
-import Button from './Button';
-
-export const defaultProps: ISliderIntro = {
-  data: [],
-  renderItem: (item: IItem) => {
-    const {
-      index,
-      title,
-      text,
-      image,
-      backgroundColor,
-      activeLanguage,
-      link,
-      slideMaxHeightPercent,
-    } = item;
-    return (
-      <Item
-        key={index}
-        index={index}
-        title={title}
-        text={text}
-        image={image}
-        backgroundColor={backgroundColor}
-        activeLanguage={activeLanguage}
-        link={link}
-        slideMaxHeightPercent={slideMaxHeightPercent}
-      />
-    );
-  },
-  navigationBarBottom: 0,
-  navigationBarHeight: 70,
-  animateSlideSpeed: 15,
-  navContainerMaxSizePercent: 0.5,
-  dotWidth: 12,
-  fixDotOpacity: 0.35,
-  fixDotBackgroundColor: 'grey',
-  animatedDotBackgroundColor: 'white',
-  animateDotSpeed: 8,
-  animateDotBouncing: 2,
-  backHandlerBehaviour: 'activeMinusOne',
-  hasReactNavigation: false,
-  useCustomBackHandlerEffect: () => {},
-  skipLabel: 'Skip',
-  nextLabel: 'Next',
-  doneLabel: 'Done',
-  renderSkipButton: (skipLabel: string | undefined) => (
-    <Button label={skipLabel} type="skip" />
-  ),
-  renderNextButton: (nextLabel: string | undefined) => (
-    <Button label={nextLabel} type="next" />
-  ),
-  renderDoneButton: (doneLabel: string | undefined) => (
-    <Button label={doneLabel} type="done" />
-  ),
-  onDone: () => {},
-  onSkip: () => {},
-  showLeftButton: true,
-  leftButtonType: 'skip',
-  columnButtonStyle: false,
-  showStatusBar: false,
-  statusBarColor: '#febe29',
-  renderStatusBar: (backgroundColor: string) => (
-    <StatusBarContainer backgroundColor={backgroundColor} />
-  ),
-};
+import defaultProps from '../defaultProps';
+import type { ISlide } from '../interfaces/ISlide.interface';
+import type {
+  ISliderContextProps,
+  ISliderProviderProps,
+} from '../interfaces/ISliderProvider.interface';
 
 const defaultSlideState: ISlide = {
   active: 0,

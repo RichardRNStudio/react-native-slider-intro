@@ -17,7 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import LinearGradient from 'expo-linear-gradient';
 import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
-import type { IItem } from 'interfaces/IItem.interface';
+import type { IItem } from '../../src/interfaces/IItem.interface';
 
 const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient as any);
 

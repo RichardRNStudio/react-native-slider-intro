@@ -1,5 +1,5 @@
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import type { IStatusBar } from 'interfaces/IStatusBar.interface';
+import type { IStatusBar } from '../interfaces/IStatusBar.interface';
 import React from 'react';
 
 const styles = StyleSheet.create({
