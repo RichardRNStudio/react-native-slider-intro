@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import type { IItem } from 'interfaces/IItem.interface';
+import type { IItem } from '../interfaces/IItem.interface';
 import React from 'react';
 
 const styles = StyleSheet.create({

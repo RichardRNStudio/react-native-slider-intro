@@ -3,8 +3,6 @@
     "rootDir": ".",
     "paths": {
       "react-native-slider-intro": ["./src/index"],
-      "components/*": ["./src/components/*"],
-      "interfaces/*": ["./src/interfaces/*"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

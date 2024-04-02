@@ -1,6 +1,11 @@
 import React from 'react';
 import type { IItem } from './IItem.interface';
 import type { ISlide } from './ISlide.interface';
+import type { ColorValue } from 'react-native';
+
+declare type BackHandlerType = 'activeMinusOne' | 'previous';
+
+declare type LeftButtonType = 'previous' | 'skip';
 
 export interface ISliderIntro {
   data: IItem[];
@@ -11,15 +16,15 @@ export interface ISliderIntro {
   navContainerMaxSizePercent: number;
   dotWidth: number;
   fixDotOpacity: number;
-  fixDotBackgroundColor: string;
-  animatedDotBackgroundColor: string;
+  fixDotBackgroundColor: ColorValue;
+  animatedDotBackgroundColor: ColorValue;
   animateDotSpeed: number;
   animateDotBouncing: number;
   hasReactNavigation: boolean;
   useCustomBackHandlerEffect: (
     active: number,
     onBackPress: (
-      backHandlerBehaviour: 'activeMinusOne' | 'previous',
+      backHandlerBehaviour: BackHandlerType,
       slide: ISlide,
       setSlide: (arg0: ISlide) => void,
       numberOfSlide: number,
@@ -28,7 +33,7 @@ export interface ISliderIntro {
       dotWidth: number,
       deviceMaxWidth: number
     ) => boolean,
-    backHandlerBehaviour: 'activeMinusOne' | 'previous',
+    backHandlerBehaviour: BackHandlerType,
     slide: ISlide,
     setSlide: (arg0: ISlide) => void,
     numberOfSlide: number,
@@ -37,7 +42,7 @@ export interface ISliderIntro {
     dotWidth: number,
     deviceMaxWidth: number
   ) => void;
-  backHandlerBehaviour: 'activeMinusOne' | 'previous';
+  backHandlerBehaviour: BackHandlerType;
   skipLabel: string;
   nextLabel: string;
   doneLabel: string;
@@ -47,9 +52,9 @@ export interface ISliderIntro {
   onSkip: () => void;
   onDone: () => void;
   showLeftButton: boolean;
-  leftButtonType: 'previous' | 'skip';
+  leftButtonType: LeftButtonType;
   columnButtonStyle: boolean;
   showStatusBar: boolean;
-  statusBarColor: string;
-  renderStatusBar: (backgroundColor: string) => React.ReactNode;
+  statusBarColor: ColorValue;
+  renderStatusBar: (backgroundColor: ColorValue) => React.ReactNode;
 }

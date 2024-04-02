@@ -1,4 +1,4 @@
-import type { ImageProps } from 'react-native';
+import type { ImageProps, ColorValue } from 'react-native';
 
 export interface IItem {
   index: number;
@@ -6,7 +6,7 @@ export interface IItem {
   text?: object | string;
   link?: string;
   image?: ImageProps['source'];
-  backgroundColor?: string;
+  backgroundColor?: ColorValue;
   activeLanguage?: string;
   slideMaxHeightPercent?: number;
   icon?: any;
