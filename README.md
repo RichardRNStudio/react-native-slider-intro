@@ -42,9 +42,7 @@ yarn example android
 
 <h3>Basic example</h3>
 
-<p>Make your own data array and pass it to <b>SliderIntro</b>.</p>
-
-```js
+```ts
 import React from 'react';
 import SliderIntro from 'react-native-slider-intro';
 
@@ -77,192 +75,37 @@ export default BasicExample;
 
 <h2>Properties</h2>
 
-<table>
-  <thead align="center">
-    <tr>
-      <td width="25%"><b>Name</b></td>
-      <td width="25%"><b>Type</b></td>
-      <td width="25%"><b>Default value</b></td>
-      <td width="25%"><b>Description</b></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>data</td>
-      <td><b>array</b></td>
-      <td>none, <b><i>required</i></b></td>
-      <td>Array of objects, which represents your slider items. Each item should contain a unique <i>key</i>.</td>
-    </tr>
-    <tr>
-      <td>renderItem</td>
-      <td><b>function</b></td>
-      <td>Default item renderer</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>navigationBarBottom</td>
-      <td><b>number</b></td>
-      <td>0</td>
-      <td>Custom value of dot navigation container bottom position</td>
-    </tr>
-    <tr>
-      <td>navigationBarHeight</td>
-      <td><b>number</b></td>
-      <td>70</td>
-      <td>Height of dot navigation container</td>
-    </tr>
-    <tr>
-      <td>animateSlideSpeed</td>
-      <td><b>number</b></td>
-      <td>15</td>
-      <td>Speed of slider animation</td>
-    </tr>
-    <tr>
-      <td>navContainerMaxSizePercent</td>
-      <td><b>number</b></td>
-      <td>0.5</td>
-      <td>Percent value of navigation container's width</td>
-   </tr>
-   <tr>
-      <td>dotWidth</td>
-      <td><b>number</b></td>
-      <td>12</td>
-      <td>The radius of the 'dot' circle of navigation</td>
-   </tr>
-   <tr>
-      <td>fixDotOpacity</td>
-      <td><b>number</b></td>
-      <td>0.35</td>
-      <td>Each dots opacity which don't have animation</td>
-   </tr>
-   <tr>
-      <td>fixDotBackgroundColor</td>
-      <td><b>string</b></td>
-      <td>grey</td>
-      <td>Each dots background which don't have an animation</td>
-   </tr>
-   <tr>
-      <td>animatedDotBackgroundColor</td>
-      <td><b>string</b></td>
-      <td>white</td>
-      <td>Each dots background which have an animation</td>
-   </tr>
-   <tr>
-      <td>animateDotSpeed</td>
-      <td><b>number</b></td>
-      <td>8</td>
-      <td>Speed of dot animation</td>
-   </tr>
-   <tr>
-      <td>animateDotBouncing</td>
-      <td><b>number</b></td>
-      <td>2</td>
-      <td>The 'bounciness' value of all animations. (<a href="https://reactnative.dev/docs/animated#spring">https://reactnative.dev/docs/animated#spring</a>)</td>
-   </tr>
-   <tr>
-      <td>hasReactNavigation</td>
-      <td><b>boolean</b></td>
-      <td>false</td>
-      <td>There is a trouble with backButton behaviour when you're using react-navigation. You should use <b>useFocusEffect</b> in this case for reach the expected behaviour. More info: <a href="https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods">https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods</a></td>
-   </tr>
-   <tr>
-      <td>useCustomBackHandlerEffect</td>
-      <td><b>function</b></td>
-      <td>none</td>
-      <td>As I mentioned above, sometimes we should rewrite the basic <b>backHandler</b> behaviour. This property will be a custom hook. See the example for more info: <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.js">React navigation custom hook example</a></td>
-   </tr>
-   <tr>
-      <td>backHandlerBehaviour</td>
-      <td><b>string</b></td>
-      <td>activeMinusOne</td>
-      <td>This prop can controls the backButton behaviour. The value should be <i>activeMinusOne</i> or 'previous'</td>
-   </tr>
-   <tr>
-      <td>skipLabel</td>
-      <td><b>string</b></td>
-      <td>Skip</td>
-      <td>Custom label of skip button</td>
-   </tr>
-   <tr>
-      <td>nextLabel</td>
-      <td><b>string</b></td>
-      <td>Next</td>
-      <td>Custom label of next button</td>
-   </tr>
-   <tr>
-      <td>doneLabel</td>
-      <td><b>string</b></td>
-      <td>Done</td>
-      <td>Custom label of done button</td>
-   </tr>
-   <tr>
-      <td>renderSkipButton</td>
-      <td><b>function</b></td>
-      <td>Default skip/previous button renderer</td>
-      <td>Use to supply your own skip/previous button.</td>
-   </tr>
-   <tr>
-      <td>renderNextButton</td>
-      <td><b>function</b></td>
-      <td>Default next button renderer</td>
-      <td>Use to supply your own next button.</td>
-   </tr>
-   <tr>
-      <td>renderDoneButton</td>
-      <td><b>function</b></td>
-      <td>Default done button renderer</td>
-      <td>Use to supply your own done button.</td>
-   </tr>
-   <tr>
-      <td>onDone</td>
-      <td><b>function</b></td>
-      <td>none</td>
-      <td>Behaviour of done button</td>
-   </tr>
-   <tr>
-      <td>onSkip</td>
-      <td><b>function</b></td>
-      <td>none</td>
-      <td>Behaviour of skip button</td>
-   </tr>
-   <tr>
-      <td>showLeftButton</td>
-      <td><b>boolean</b></td>
-      <td>true</td>
-      <td>Show skip or previous button on the left side</td>
-   </tr>
-   <tr>
-      <td>leftButtonType</td>
-      <td><b>string</b></td>
-      <td>skip</td>
-      <td>The button type on the left side should be <b>skip</b> or <b>previous</b></td>
-   </tr>
-   <tr>
-      <td>columnButtonStyle</td>
-      <td><b>boolean</b></td>
-      <td>false</td>
-      <td>Buttons will show up in a column</td>
-   </tr>
-   <tr>
-      <td>showStatusBar</td>
-      <td><b>boolean</b></td>
-      <td>false</td>
-      <td>Show status bar on top of screen. Otherwise, you can make your own status bar outside of this component</td>
-   </tr>
-   <tr>
-      <td>statusBarColor</td>
-      <td><b>string</b></td>
-      <td>#febe29</td>
-      <td>Background color of status bar</td>
-   </tr>
-    <tr>
-      <td>renderStatusBar</td>
-      <td><b>function</b></td>
-      <td>Default status bar renderer</td>
-      <td>Use to supply your own status bar component.</td>
-   </tr>
-  </tbody>
-</table>
+| Name                         | Type     | Default value                         | Description                                                                                  |
+| ---------------------------- | -------- | ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `data`                       | array    | none, required                        | Array of objects, which represents your slider items. Each item should contain a unique key. |
+| `renderItem`                 | function | default item renderer                 |                                                                                              |
+| `navigationBarBottom`        | number   | 0                                     | Custom value of dot navigation container bottom position                                     |
+| `navigationBarHeight`        | number   | 70                                    | Height of dot navigation container                                                           |
+| `animateSlideSpeed`          | number   | 15                                    | Speed of slider animation                                                                    |
+| `navContainerMaxSizePercent` | number   | 0.5                                   | Percent value of navigation container's width                                                |
+| `dotWidth`                   | number   | 12                                    | The radius of the 'dot' circle of navigation                                                 |
+| `fixDotOpacity`              | number   | 0.35                                  | Each dots opacity which don't have animation                                                 |
+| `fixDotBackgroundColor`      | color    | grey                                  | Each dots background which don't have an animation                                           |
+| `animatedDotBackgroundColor` | color    | white                                 | Each dots background which have an animation                                                 |
+| `animateDotSpeed`            | number   | 8                                     | Speed of dot animation                                                                       |
+| `animateDotBouncing`         | number   | 2                                     | The 'bounciness' value of all animations. https://reactnative.dev/docs/animated#spring       |
+| `hasReactNavigation`         | boolean  | false                                 | There is a trouble with backButton behaviour when you're using react-navigation. You should use `useFocusEffect` in this case for reach the expected behaviour. More info: https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods                                     |
+| `useCustomBackHandlerEffect` | function | none                                  | As I mentioned above, sometimes we should rewrite the basic <b>backHandler</b> behaviour. This property will be a custom hook. See the example for more info: <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.js">React navigation custom hook example</a>|
+| `backHandlerBehaviour`       | string   | activeMinusOne                        | This prop can controls the backButton behaviour. The value should be `activeMinusOne` or `previous`|
+| `skipLabel`                  | string   | Skip                                  | Custom label of skip button                                                                  |
+| `nextLabel`                  | string   | Next                                  | Custom label of next button                                                                  |
+| `doneLabel`                  | string   | Done                                  | Custom label of done button                                                                  |
+| `renderSkipButton`           | function | Default skip/previous button renderer | Use to supply your own skip/previous button                                                  |
+| `renderNextButton`           | function | Default next button renderer          | Use to supply your own next button                                                           |
+| `renderDoneButton`           | function | Default done button renderer          | Use to supply your own done button                                                           |
+| `onDone`                     | function | none                                  | Behaviour of done button                                                                     |
+| `onSkip`                     | function | none                                  | Behaviour of skip button                                                                     |
+| `showLeftButton`             | boolean  | true                                  | Show skip or previous button on the left side                                                |
+| `leftButtonType`             | string   | skip                                  | The button type on the left side should be `skip` or `previous`                              |
+| `columnButtonStyle`          | boolean  | false                                 | Buttons will show up in a column                                                             |
+| `showStatusBar`              | boolean  | false                                 | Show status bar on top of screen. You can make your own status bar outside of this component |
+| `statusBarColor`             | color    | #febe29                               | Background color of status bar                                                               |
+| `renderStatusBar`            | function | Default status bar renderer           | Use to supply your own status bar component                                                  |
 
 <h2>Examples</h2>
 <ul>
