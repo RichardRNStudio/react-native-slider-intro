@@ -85,8 +85,8 @@ export default BasicExample;
 | `navContainerMaxSizePercent` | number   | 0.5                                   | Percent value of navigation container's width                                                |
 | `dotWidth`                   | number   | 12                                    | The radius of the 'dot' circle of navigation                                                 |
 | `fixDotOpacity`              | number   | 0.35                                  | Each dots opacity which don't have animation                                                 |
-| `fixDotBackgroundColor`      | color    | grey                                  | Each dots background which don't have an animation                                           |
-| `animatedDotBackgroundColor` | color    | white                                 | Each dots background which have an animation                                                 |
+| `fixDotBackgroundColor`      | <a href="https://reactnative.dev/docs/colors">color</a>| grey  | Each dots background which don't have an animation                             |
+| `animatedDotBackgroundColor` | <a href="https://reactnative.dev/docs/colors">color</a>| white | Each dots background which have an animation                                   |
 | `animateDotSpeed`            | number   | 8                                     | Speed of dot animation                                                                       |
 | `animateDotBouncing`         | number   | 2                                     | The 'bounciness' value of all animations. https://reactnative.dev/docs/animated#spring       |
 | `hasReactNavigation`         | boolean  | false                                 | There is a trouble with backButton behaviour when you're using react-navigation. You should use `useFocusEffect` in this case for reach the expected behaviour. More info: https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods                                     |
@@ -104,7 +104,7 @@ export default BasicExample;
 | `leftButtonType`             | string   | skip                                  | The button type on the left side should be `skip` or `previous`                              |
 | `columnButtonStyle`          | boolean  | false                                 | Buttons will show up in a column                                                             |
 | `showStatusBar`              | boolean  | false                                 | Show status bar on top of screen. You can make your own status bar outside of this component |
-| `statusBarColor`             | color    | #febe29                               | Background color of status bar                                                               |
+| `statusBarColor`             | <a href="https://reactnative.dev/docs/colors">color</a>| #febe29 | Background color of status bar                                               |
 | `renderStatusBar`            | function | Default status bar renderer           | Use to supply your own status bar component                                                  |
 
 <h2>Examples</h2>
