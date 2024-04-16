@@ -1,5 +1,5 @@
 import React from 'react';
-import SliderIntro from 'react-native-slider-intro';
+import SliderIntro, { type ISliderIntroItem } from 'react-native-slider-intro';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faArrowCircleRight,
@@ -7,7 +7,7 @@ import {
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
-const slides = [
+const slides: ISliderIntroItem[] = [
   {
     index: 1,
     title: 'First step',

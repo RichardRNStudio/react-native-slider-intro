@@ -3,8 +3,9 @@ import { Animated, Dimensions, StyleSheet, View } from 'react-native';
 import Navigation from './components/Navigation';
 import SliderProvider, { SliderContext } from './components/SliderProvider';
 import defaultProps from './defaultProps';
-import type { IItem } from './interfaces/IItem.interface';
+import type { ISliderIntroItem } from './interfaces/ISliderIntroItem.interface';
 import type { ISliderIntro } from './interfaces/ISliderIntro.interface';
+import Item from './components/Item';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,9 +23,10 @@ const SliderIntroContainer = () => {
     statusBarColor,
     panResponderState,
     data,
-    renderItem,
     animations: { _moveSlideX },
     numberOfSlides,
+    isCustomRender,
+    children,
   } = useContext(SliderContext);
   const [panResponder] = panResponderState;
   return (
@@ -40,30 +42,40 @@ const SliderIntroContainer = () => {
         ]}
         {...panResponder.panHandlers}
       >
-        {data.map((item: IItem, index: number) => {
-          return (
-            <View
-              key={index}
-              style={{
-                width: deviceMaxWidth,
-              }}
-            >
-              {renderItem(item)}
-            </View>
-          );
-        })}
+        {isCustomRender ? (
+          children
+        ) : (
+          <>
+            {data?.map((item: ISliderIntroItem) => {
+              const { index } = item;
+              return (
+                <View
+                  key={index}
+                  style={{
+                    width: deviceMaxWidth,
+                  }}
+                >
+                  <Item {...item} />
+                </View>
+              );
+            })}
+          </>
+        )}
       </Animated.View>
       <Navigation />
     </>
   );
 };
 
-export default function SliderIntro(props: ISliderIntro) {
+function SliderIntro(props: ISliderIntro) {
   return (
     <SliderProvider {...props}>
       <SliderIntroContainer />
     </SliderProvider>
   );
 }
+
+export default SliderIntro;
+export { type ISliderIntro, type ISliderIntroItem };
 
 SliderIntro.defaultProps = defaultProps;

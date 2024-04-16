@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   Linking,
 } from 'react-native';
-import SliderIntro from 'react-native-slider-intro';
+import SliderIntro, { type ISliderIntroItem } from 'react-native-slider-intro';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faHome,
@@ -17,11 +17,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import LinearGradient from 'expo-linear-gradient';
 import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
-import type { IItem } from '../../src/interfaces/IItem.interface';
 
 const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient as any);
 
-const slides = [
+const slides: ISliderIntroItem[] = [
   {
     index: 1,
     title: 'First step',
@@ -46,71 +45,7 @@ const slides = [
   },
 ];
 
-// Inside the custom render function you can
-// - manage multilanguages, for example title and text would be an array, and based on the active language you can select one of them,
-// - use your custom layout,
-// - use another package for customize the layout.
-
-const _renderItem = (
-  {
-    index,
-    backgroundColor,
-    title,
-    icon,
-    text,
-    link,
-    activeLanguage,
-    slideMaxHeightPercent,
-  }: IItem,
-  isFetching: boolean
-) => {
-  const deviceMaxHeight = Dimensions.get('screen').height;
-  const language = activeLanguage || 'en';
-  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
-
-  return (
-    <View key={index} style={[styles.slide, { backgroundColor }]}>
-      <View
-        style={[
-          styles.container,
-          {
-            height: slideHeight,
-            maxHeight: slideHeight,
-          },
-        ]}
-      >
-        <ShimmerPlaceHolder visible={isFetching} height={30}>
-          <Text style={styles.title}>
-            {Array.isArray(title)
-              ? title[language as unknown as number]
-              : title}
-          </Text>
-        </ShimmerPlaceHolder>
-        {icon && (
-          <ShimmerPlaceHolder visible={isFetching} height={260}>
-            <FontAwesomeIcon icon={icon} color={'steelblue'} size={200} />
-          </ShimmerPlaceHolder>
-        )}
-        <ShimmerPlaceHolder visible={isFetching} height={50} width={250}>
-          <View>
-            <Text style={styles.language}>
-              {Array.isArray(text) ? text[language as unknown as number] : text}
-            </Text>
-            {link && (
-              <TouchableWithoutFeedback
-                onPressIn={() => {
-                  Linking.openURL(link);
-                }}
-              >
-                <Text style={styles.link}>{link}</Text>
-              </TouchableWithoutFeedback>
-            )}
-          </View>
-        </ShimmerPlaceHolder>
-      </View>
-    </View>
-  );
-};
+const deviceMaxHeight = Dimensions.get('screen').height;
 
 const UsingThirdPartyLibrariesExample = ({
   closeExample,
@@ -131,12 +66,81 @@ const UsingThirdPartyLibrariesExample = ({
   return (
     <SliderIntro
       navContainerMaxSizePercent={0.25}
-      renderItem={(item) => _renderItem(item, fakeLoading)}
-      data={slides}
+      numberOfSlides={slides.length}
       onDone={closeExample}
       onSkip={closeExample}
       dotWidth={15}
-    />
+    >
+      {slides.map(
+        (
+          {
+            backgroundColor,
+            title,
+            icon,
+            text,
+            link,
+            activeLanguage,
+            slideMaxHeightPercent,
+          },
+          index
+        ) => {
+          const language = activeLanguage || 'en';
+          const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
+          return (
+            <View key={index} style={[styles.slide, { backgroundColor }]}>
+              <View
+                style={[
+                  styles.container,
+                  {
+                    height: slideHeight,
+                    maxHeight: slideHeight,
+                  },
+                ]}
+              >
+                <ShimmerPlaceHolder visible={fakeLoading} height={30}>
+                  <Text style={styles.title}>
+                    {Array.isArray(title)
+                      ? title[language as unknown as number]
+                      : title}
+                  </Text>
+                </ShimmerPlaceHolder>
+                {icon && (
+                  <ShimmerPlaceHolder visible={fakeLoading} height={260}>
+                    <FontAwesomeIcon
+                      icon={icon}
+                      color={'steelblue'}
+                      size={200}
+                    />
+                  </ShimmerPlaceHolder>
+                )}
+                <ShimmerPlaceHolder
+                  visible={fakeLoading}
+                  height={50}
+                  width={250}
+                >
+                  <View>
+                    <Text style={styles.language}>
+                      {Array.isArray(text)
+                        ? text[language as unknown as number]
+                        : text}
+                    </Text>
+                    {link && (
+                      <TouchableWithoutFeedback
+                        onPressIn={() => {
+                          Linking.openURL(link);
+                        }}
+                      >
+                        <Text style={styles.link}>{link}</Text>
+                      </TouchableWithoutFeedback>
+                    )}
+                  </View>
+                </ShimmerPlaceHolder>
+              </View>
+            </View>
+          );
+        }
+      )}
+    </SliderIntro>
   );
 };
 

@@ -1,4 +1,3 @@
-import type { IItem } from '../../src/interfaces/IItem.interface';
 import React from 'react';
 import {
   StyleSheet,
@@ -9,9 +8,12 @@ import {
   TouchableWithoutFeedback,
   Linking,
 } from 'react-native';
-import SliderIntro from 'react-native-slider-intro';
+import SliderIntro, { type ISliderIntroItem } from 'react-native-slider-intro';
 
-const slides = [
+const deviceMaxHeight = Dimensions.get('screen').height;
+const { width, height } = Dimensions.get('window');
+
+const slides: ISliderIntroItem[] = [
   {
     index: 1,
     title: 'First step',
@@ -36,59 +38,6 @@ const slides = [
   },
 ];
 
-// Inside the custom render function you can
-// - manage multilanguages, for example title and text would be an array, and based on the active language you can select one of them,
-// - use your custom layout,
-// - use another package for customize the layout.
-
-const _renderItem = ({
-  index,
-  backgroundColor,
-  title,
-  text,
-  link,
-  activeLanguage,
-  image,
-  slideMaxHeightPercent,
-}: IItem) => {
-  const deviceMaxHeight = Dimensions.get('screen').height;
-  const language = activeLanguage || 'en';
-  const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
-
-  return (
-    <View key={index} style={[styles.slide, { backgroundColor }]}>
-      <View
-        style={[
-          styles.container,
-          {
-            height: slideHeight,
-            maxHeight: slideHeight,
-          },
-        ]}
-      >
-        <Text style={styles.title}>
-          {Array.isArray(title) ? title[language as unknown as number] : title}
-        </Text>
-        {image && <Image style={styles.image} source={image} />}
-        <View>
-          <Text style={styles.language}>
-            {Array.isArray(text) ? text[language as unknown as number] : text}
-          </Text>
-          {link && (
-            <TouchableWithoutFeedback
-              onPressIn={() => {
-                Linking.openURL(link);
-              }}
-            >
-              <Text style={styles.link}>{link}</Text>
-            </TouchableWithoutFeedback>
-          )}
-        </View>
-      </View>
-    </View>
-  );
-};
-
 const CustomRenderFunctionExample = ({
   closeExample,
 }: {
@@ -97,16 +46,67 @@ const CustomRenderFunctionExample = ({
   return (
     <SliderIntro
       navContainerMaxSizePercent={0.25}
-      renderItem={_renderItem}
-      data={slides}
+      numberOfSlides={slides.length}
       onDone={closeExample}
       onSkip={closeExample}
       dotWidth={15}
-    />
+    >
+      {slides.map(
+        (
+          {
+            backgroundColor,
+            title,
+            text,
+            link,
+            activeLanguage,
+            image,
+            slideMaxHeightPercent,
+          },
+          index
+        ) => {
+          const language = activeLanguage || 'en';
+          const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
+          return (
+            <View key={index} style={[styles.slide, { backgroundColor }]}>
+              <View
+                style={[
+                  styles.container,
+                  {
+                    height: slideHeight,
+                    maxHeight: slideHeight,
+                  },
+                ]}
+              >
+                <Text style={styles.title}>
+                  {Array.isArray(title)
+                    ? title[language as unknown as number]
+                    : title}
+                </Text>
+                {image && <Image style={styles.image} source={image} />}
+                <View>
+                  <Text style={styles.language}>
+                    {Array.isArray(text)
+                      ? text[language as unknown as number]
+                      : text}
+                  </Text>
+                  {link && (
+                    <TouchableWithoutFeedback
+                      onPressIn={() => {
+                        Linking.openURL(link);
+                      }}
+                    >
+                      <Text style={styles.link}>{link}</Text>
+                    </TouchableWithoutFeedback>
+                  )}
+                </View>
+              </View>
+            </View>
+          );
+        }
+      )}
+    </SliderIntro>
   );
 };
-
-const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
