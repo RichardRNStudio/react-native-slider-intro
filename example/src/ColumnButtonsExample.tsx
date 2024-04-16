@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import SliderIntro from 'react-native-slider-intro';
+import SliderIntro, { type ISliderIntroItem } from 'react-native-slider-intro';
 
-const slides = [
+const slides: ISliderIntroItem[] = [
   {
     index: 1,
     title: 'First step',

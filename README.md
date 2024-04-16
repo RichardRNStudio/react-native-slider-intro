@@ -84,7 +84,6 @@ export default BasicExample;
 | Name                         | Type     | Default value                         | Description                                                                                  |
 | ---------------------------- | -------- | ------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `data`                       | array    | none, required                        | Array of objects, which represents your slider items. Each item should contain a unique key. |
-| `renderItem`                 | function | default item renderer                 |                                                                                              |
 | `navigationBarBottom`        | number   | 0                                     | Custom value of dot navigation container bottom position                                     |
 | `navigationBarHeight`        | number   | 70                                    | Height of dot navigation container                                                           |
 | `animateSlideSpeed`          | number   | 15                                    | Speed of slider animation                                                                    |
@@ -122,7 +121,7 @@ export default BasicExample;
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Status bar example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.tsx">Custom slider render function example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.tsx">React navigation custom hook example (CANNOT BE RUN, the file includes more information how you can test it.)</a></li>
- <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Another example for customize the renderItem function with third party libraries.</a></li>
+ <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Another example for customize the package with third party libraries.</a></li>
 </ul>
 
 <h2>Troubleshooting</h2>

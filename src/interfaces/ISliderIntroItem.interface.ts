@@ -1,6 +1,6 @@
 import type { ImageProps, ColorValue } from 'react-native';
 
-export interface IItem {
+export interface ISliderIntroItem {
   index: number;
   title?: object | string;
   text?: object | string;

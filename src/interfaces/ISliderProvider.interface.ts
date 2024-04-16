@@ -15,6 +15,7 @@ export interface ISliderContextProps extends ISliderIntro {
   goToNewSlide: (newSlide: number) => void;
   setDefaultState: () => void;
   isLastSlide: boolean;
+  isCustomRender: boolean;
 }
 
 export interface ISliderProviderProps extends ISliderIntro {

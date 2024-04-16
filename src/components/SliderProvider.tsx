@@ -42,13 +42,14 @@ export const SliderContext = createContext<ISliderContextProps>({
   ],
   sliderState: [defaultSlideState, () => defaultSlideState],
   animations: defaultSlideState.animations,
-  numberOfSlides: defaultProps.data.length,
+  numberOfSlides: defaultProps.data?.length ?? 1,
   navContainerMaxSize: 0,
   dotMaxPossibleWidth: 0,
   buttonsMaxSize: 0,
   goToNewSlide: () => void 0,
   isLastSlide: false,
   setDefaultState: () => void 0,
+  isCustomRender: false,
 });
 
 const deviceMaxWidth = Dimensions.get('window').width;
@@ -65,8 +66,10 @@ const SliderProvider = (props: ISliderProviderProps) => {
     hasReactNavigation,
     useCustomBackHandlerEffect,
     data,
+    children,
   } = props;
-  const { length: numberOfSlides = 1 } = data;
+  const isCustomRender = !data?.length && !!children;
+  const numberOfSlides = data?.length ?? props?.numberOfSlides ?? 1;
   const panResponderState = useState<PanResponderInstance>(
     PanResponder.create(Object.create(null))
   );
@@ -339,6 +342,7 @@ const SliderProvider = (props: ISliderProviderProps) => {
     isLastSlide,
     goToNewSlide,
     setDefaultState,
+    isCustomRender,
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IItem } from './IItem.interface';
+import type { ISliderIntroItem } from './ISliderIntroItem.interface';
 import type { ISlide } from './ISlide.interface';
 import type { ColorValue } from 'react-native';
 
@@ -8,8 +8,18 @@ declare type BackHandlerType = 'activeMinusOne' | 'previous';
 declare type LeftButtonType = 'previous' | 'skip';
 
 export interface ISliderIntro {
-  data: IItem[];
-  renderItem: (item: IItem) => React.ReactNode;
+  /**
+   * Default render - array of items. Children will be ignored if data is passed.
+   */
+  data: ISliderIntroItem[];
+  /**
+   * Custom render - if children is passed, data will be ignored. numberOfSlides is required in this case.
+   */
+  numberOfSlides: number;
+  /**
+   * Custom render - children elements to render.
+   */
+  children: React.ReactNode;
   navigationBarBottom: number;
   navigationBarHeight: number;
   animateSlideSpeed: number;

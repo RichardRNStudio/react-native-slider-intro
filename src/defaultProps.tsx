@@ -1,38 +1,13 @@
 import React from 'react';
-import Item from './components/Item';
-import StatusBarContainer from './components/StatusBarContainer';
-import type { IItem } from './interfaces/IItem.interface';
-import type { ISliderIntro } from './interfaces/ISliderIntro.interface';
-import Button from './components/Button';
 import type { ColorValue } from 'react-native';
+import Button from './components/Button';
+import StatusBarContainer from './components/StatusBarContainer';
+import type { ISliderIntro } from './interfaces/ISliderIntro.interface';
 
 const defaultProps: ISliderIntro = {
   data: [],
-  renderItem: (item: IItem) => {
-    const {
-      index,
-      title,
-      text,
-      image,
-      backgroundColor,
-      activeLanguage,
-      link,
-      slideMaxHeightPercent,
-    } = item;
-    return (
-      <Item
-        key={index}
-        index={index}
-        title={title}
-        text={text}
-        image={image}
-        backgroundColor={backgroundColor}
-        activeLanguage={activeLanguage}
-        link={link}
-        slideMaxHeightPercent={slideMaxHeightPercent}
-      />
-    );
-  },
+  children: null,
+  numberOfSlides: 0,
   navigationBarBottom: 0,
   navigationBarHeight: 70,
   animateSlideSpeed: 15,
