@@ -79,11 +79,15 @@ const BasicExample = ({ closeExample }: { closeExample: () => void }) => {
 export default BasicExample;
 ```
 
+The package includes two render options. Besides the `default render` when you can pass `data` as an array of <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/src/interfaces/ISliderIntroItem.interface.ts">ISliderIntroItem</a> props, you can use a `custom render` with `children` and `numberOfSlides` properties.
+
 <h2>Properties</h2>
 
 | Name                         | Type     | Default value                         | Description                                                                                  |
 | ---------------------------- | -------- | ------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `data`                       | array    | none, required                        | Array of objects, which represents your slider items. Each item should contain a unique key. |
+| `data`                       | array    | []                                    | `Default render` - array of items. Children will be ignored if data is passed.                 |
+| `numberOfSlides`             | array    | number                                | `Custom render` - if children is passed, data will be ignored. numberOfSlides is required in this case. |
+| `children`                   | ReactNode| null                                  | `Custom render` - JSX elements to render.                                                      |
 | `navigationBarBottom`        | number   | 0                                     | Custom value of dot navigation container bottom position                                     |
 | `navigationBarHeight`        | number   | 70                                    | Height of dot navigation container                                                           |
 | `animateSlideSpeed`          | number   | 15                                    | Speed of slider animation                                                                    |
