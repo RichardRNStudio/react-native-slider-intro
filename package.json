@@ -37,19 +37,20 @@
     "release": "release-it"
   },
   "keywords": [
+    "react native",
     "react-native",
     "ios",
     "android",
-    "react-component",
     "slider",
-    "tutorial",
-    "intro",
     "swiper",
+    "intro",
+    "carousel",
+    "tutorial",
     "app",
     "animation",
     "mobile",
     "ui",
-    "carousel"
+    "react-component"
   ],
   "repository": {
     "type": "git",
