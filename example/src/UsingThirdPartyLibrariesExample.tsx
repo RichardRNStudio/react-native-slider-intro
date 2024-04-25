@@ -20,6 +20,8 @@ import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
 
 const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient as any);
 
+const { width, height } = Dimensions.get('window');
+
 const slides: ISliderIntroItem[] = [
   {
     index: 1,
@@ -46,6 +48,9 @@ const slides: ISliderIntroItem[] = [
 ];
 
 const deviceMaxHeight = Dimensions.get('screen').height;
+
+// Do not forget to add the following wrapper inside your map to make sure each slide uses the maximum size of the screen:
+// <View style={{ width: Dimensions.get('window').width }} key={index}>{YOUR ITEM}</View>
 
 const UsingThirdPartyLibrariesExample = ({
   closeExample,
@@ -87,54 +92,56 @@ const UsingThirdPartyLibrariesExample = ({
           const language = activeLanguage || 'en';
           const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
           return (
-            <View key={index} style={[styles.slide, { backgroundColor }]}>
-              <View
-                style={[
-                  styles.container,
-                  {
-                    height: slideHeight,
-                    maxHeight: slideHeight,
-                  },
-                ]}
-              >
-                <ShimmerPlaceHolder visible={fakeLoading} height={30}>
-                  <Text style={styles.title}>
-                    {Array.isArray(title)
-                      ? title[language as unknown as number]
-                      : title}
-                  </Text>
-                </ShimmerPlaceHolder>
-                {icon && (
-                  <ShimmerPlaceHolder visible={fakeLoading} height={260}>
-                    <FontAwesomeIcon
-                      icon={icon}
-                      color={'steelblue'}
-                      size={200}
-                    />
-                  </ShimmerPlaceHolder>
-                )}
-                <ShimmerPlaceHolder
-                  visible={fakeLoading}
-                  height={50}
-                  width={250}
+            <View style={{ width: width }} key={index}>
+              <View key={index} style={[styles.slide, { backgroundColor }]}>
+                <View
+                  style={[
+                    styles.container,
+                    {
+                      height: slideHeight,
+                      maxHeight: slideHeight,
+                    },
+                  ]}
                 >
-                  <View>
-                    <Text style={styles.language}>
-                      {Array.isArray(text)
-                        ? text[language as unknown as number]
-                        : text}
+                  <ShimmerPlaceHolder visible={fakeLoading} height={30}>
+                    <Text style={styles.title}>
+                      {Array.isArray(title)
+                        ? title[language as unknown as number]
+                        : title}
                     </Text>
-                    {link && (
-                      <TouchableWithoutFeedback
-                        onPressIn={() => {
-                          Linking.openURL(link);
-                        }}
-                      >
-                        <Text style={styles.link}>{link}</Text>
-                      </TouchableWithoutFeedback>
-                    )}
-                  </View>
-                </ShimmerPlaceHolder>
+                  </ShimmerPlaceHolder>
+                  {icon && (
+                    <ShimmerPlaceHolder visible={fakeLoading} height={260}>
+                      <FontAwesomeIcon
+                        icon={icon}
+                        color={'steelblue'}
+                        size={200}
+                      />
+                    </ShimmerPlaceHolder>
+                  )}
+                  <ShimmerPlaceHolder
+                    visible={fakeLoading}
+                    height={50}
+                    width={250}
+                  >
+                    <View>
+                      <Text style={styles.language}>
+                        {Array.isArray(text)
+                          ? text[language as unknown as number]
+                          : text}
+                      </Text>
+                      {link && (
+                        <TouchableWithoutFeedback
+                          onPressIn={() => {
+                            Linking.openURL(link);
+                          }}
+                        >
+                          <Text style={styles.link}>{link}</Text>
+                        </TouchableWithoutFeedback>
+                      )}
+                    </View>
+                  </ShimmerPlaceHolder>
+                </View>
               </View>
             </View>
           );
@@ -143,8 +150,6 @@ const UsingThirdPartyLibrariesExample = ({
     </SliderIntro>
   );
 };
-
-const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
