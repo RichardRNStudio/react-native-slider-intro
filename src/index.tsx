@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 const deviceMaxWidth = Dimensions.get('window').width;
 
-const SliderIntroContainer = () => {
+const SliderIntroContainer = ({ children }: { children: React.ReactNode }) => {
   const {
     showStatusBar,
     renderStatusBar,
@@ -25,10 +25,9 @@ const SliderIntroContainer = () => {
     data,
     animations: { _moveSlideX },
     numberOfSlides,
-    isCustomRender,
-    children,
   } = useContext(SliderContext);
   const [panResponder] = panResponderState;
+
   return (
     <>
       {showStatusBar && renderStatusBar(statusBarColor)}
@@ -42,8 +41,8 @@ const SliderIntroContainer = () => {
         ]}
         {...panResponder.panHandlers}
       >
-        {isCustomRender ? (
-          children
+        {children ? (
+          <>{children}</>
         ) : (
           <>
             {data?.map((item: ISliderIntroItem) => {
@@ -69,8 +68,8 @@ const SliderIntroContainer = () => {
 
 function SliderIntro(props: ISliderIntro) {
   return (
-    <SliderProvider {...props}>
-      <SliderIntroContainer />
+    <SliderProvider {...props} isCustomRender={!!props.children}>
+      <SliderIntroContainer children={props.children} />
     </SliderProvider>
   );
 }
