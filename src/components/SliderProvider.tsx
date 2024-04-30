@@ -66,6 +66,7 @@ const SliderProvider = (props: ISliderProviderProps) => {
     useCustomBackHandlerEffect,
     isCustomRender,
     data,
+    limitToSlide,
   } = props;
   const numberOfSlides = isCustomRender
     ? props?.numberOfSlides
@@ -233,7 +234,6 @@ const SliderProvider = (props: ISliderProviderProps) => {
     return true;
   };
 
-  const limitToSlide = deviceMaxWidth * 0.5;
   const slidesMaxWidth = (numberOfSlides - 1) * deviceMaxWidth;
   const navContainerMaxSize = deviceMaxWidth * navContainerMaxSizePercent;
   const buttonsMaxSize = (deviceMaxWidth - navContainerMaxSize) / 2 - 1;
