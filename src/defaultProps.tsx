@@ -1,8 +1,10 @@
 import React from 'react';
-import type { ColorValue } from 'react-native';
+import { Dimensions, type ColorValue } from 'react-native';
 import Button from './components/Button';
 import StatusBarContainer from './components/StatusBarContainer';
 import type { ISliderIntro } from './interfaces/ISliderIntro.interface';
+
+const deviceMaxWidth = Dimensions.get('window').width;
 
 const defaultProps: ISliderIntro = {
   data: [],
@@ -43,6 +45,7 @@ const defaultProps: ISliderIntro = {
   renderStatusBar: (backgroundColor: ColorValue) => (
     <StatusBarContainer backgroundColor={backgroundColor} />
   ),
+  limitToSlide: deviceMaxWidth * 0.35,
 };
 
 export default defaultProps;

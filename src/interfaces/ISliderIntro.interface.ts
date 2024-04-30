@@ -67,4 +67,5 @@ export interface ISliderIntro {
   showStatusBar: boolean;
   statusBarColor: ColorValue;
   renderStatusBar: (backgroundColor: ColorValue) => React.ReactNode;
+  limitToSlide: number;
 }

@@ -117,6 +117,7 @@ The package includes two render options. Besides the `default render` when you c
 | `showStatusBar`              | boolean  | false                                 | Show status bar on top of screen. You can make your own status bar outside of this component |
 | `statusBarColor`             | <a href="https://reactnative.dev/docs/colors">color</a>| #febe29 | Background color of status bar                                               |
 | `renderStatusBar`            | function | Default status bar renderer           | Use to supply your own status bar component                                                  |
+| `limitToSlide`               | number | (Device max width) * 0.35               | Use to change the limit of the slide animation. It is calculated based on the <a href="https://reactnative.dev/docs/panresponder">PanResponder's `gestureState.dx`</a> property. For example, your device's width: 400px, the limit is 400 * 0.35 = 140px, so you need to swipe at least 140px to left or right to reach the next slide in the row.  
 
 <h2>Examples</h2>
 <ul>
