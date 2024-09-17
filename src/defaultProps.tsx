@@ -2,11 +2,15 @@ import React from 'react';
 import { Dimensions, type ColorValue } from 'react-native';
 import Button from './components/Button';
 import StatusBarContainer from './components/StatusBarContainer';
-import type { ISliderIntro } from './interfaces/ISliderIntro.interface';
+import {
+  BackHandlerType,
+  type SliderIntroProps,
+} from './types/SliderIntro.types';
+import { ButtonType } from './types';
 
 const deviceMaxWidth = Dimensions.get('window').width;
 
-const defaultProps: ISliderIntro = {
+const defaultProps: SliderIntroProps = {
   data: [],
   children: null,
   numberOfSlides: 0,
@@ -20,20 +24,20 @@ const defaultProps: ISliderIntro = {
   animatedDotBackgroundColor: 'white',
   animateDotSpeed: 8,
   animateDotBouncing: 2,
-  backHandlerBehaviour: 'activeMinusOne',
+  backHandlerBehaviour: BackHandlerType.ActiveMinusOne,
   hasReactNavigation: false,
   useCustomBackHandlerEffect: () => {},
   skipLabel: 'Skip',
   nextLabel: 'Next',
   doneLabel: 'Done',
   renderSkipButton: (skipLabel: string | undefined) => (
-    <Button label={skipLabel} type="skip" />
+    <Button label={skipLabel} type={ButtonType.Skip} />
   ),
   renderNextButton: (nextLabel: string | undefined) => (
-    <Button label={nextLabel} type="next" />
+    <Button label={nextLabel} type={ButtonType.Next} />
   ),
   renderDoneButton: (doneLabel: string | undefined) => (
-    <Button label={doneLabel} type="done" />
+    <Button label={doneLabel} type={ButtonType.Done} />
   ),
   onDone: () => {},
   onSkip: () => {},

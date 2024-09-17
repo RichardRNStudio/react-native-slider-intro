@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
-import type { IAnimatedValues } from '../interfaces/IAnimatedValues.interface';
+import type { AnimatedValues } from '../types/AnimatedValues.types';
 
 const styles = StyleSheet.create({
   dotMainContainer: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DotContainer = ({ animations }: { animations: IAnimatedValues }) => {
+const DotContainer = ({ animations }: { animations: AnimatedValues }) => {
   const {
     navContainerMaxSize,
     numberOfSlides,

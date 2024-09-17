@@ -1,4 +1,4 @@
-export interface IPrevContainerProps {
+export interface PrevContainerProps {
   goToNewSlide: (slideIndex: number) => void;
   setDefaultState: () => void;
 }

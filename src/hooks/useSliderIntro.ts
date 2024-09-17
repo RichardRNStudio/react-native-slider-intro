@@ -3,6 +3,7 @@
 import { useContext, useEffect } from 'react';
 import { Animated, BackHandler, Dimensions, PanResponder } from 'react-native';
 import { SliderContext } from '../components/SliderProvider';
+import { BackHandlerType } from '../types';
 
 const deviceMaxWidth = Dimensions.get('window').width;
 
@@ -177,7 +178,7 @@ const useSliderIntro = () => {
   };
 
   const onBackPress = () => {
-    backHandlerBehaviour === 'activeMinusOne'
+    backHandlerBehaviour === BackHandlerType.ActiveMinusOne
       ? goToNewSlide(active - 1)
       : goToNewSlide(previous);
     return true;

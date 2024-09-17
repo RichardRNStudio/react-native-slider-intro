@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import type { ISliderIntroItem } from '../interfaces/ISliderIntroItem.interface';
+import type { SliderIntroItemProps } from '../types/SliderIntroItem.types';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,7 +62,7 @@ const Item = ({
   activeLanguage,
   image,
   slideMaxHeightPercent,
-}: ISliderIntroItem) => {
+}: SliderIntroItemProps) => {
   const language = activeLanguage || 'en';
   const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
 

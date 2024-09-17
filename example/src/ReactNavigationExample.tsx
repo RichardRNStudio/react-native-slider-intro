@@ -3,12 +3,15 @@
 // IMPORTANT: Install the react-navigation with its dependencies and create a NavigationContainer around this component for run this component.
 // Now this component cannot be run, it's just an example code.
 import { useFocusEffect } from '@react-navigation/native';
-import type { ISlide } from '../../src/interfaces/ISlide.interface';
+import type { Slide } from '../../src/types/Slide.types';
 import React from 'react';
 import { BackHandler } from 'react-native';
-import SliderIntro, { type ISliderIntroItem } from 'react-native-slider-intro';
+import SliderIntro, {
+  type SliderIntroItemProps,
+} from 'react-native-slider-intro';
+import type { BackHandlerType } from '../../src/types/SliderIntro.types';
 
-const slides: ISliderIntroItem[] = [
+const slides: SliderIntroItemProps[] = [
   {
     index: 1,
     title: 'First step',
@@ -40,18 +43,18 @@ const ReactNavigationExample = ({
   const useCustomBackHandlerEffect = (
     active: number,
     onBackPress: (
-      backHandlerBehaviour: 'activeMinusOne' | 'previous',
-      slide: ISlide,
-      setSlide: (arg0: ISlide) => void,
+      backHandlerBehaviour: BackHandlerType,
+      slide: Slide,
+      setSlide: (arg0: Slide) => void,
       numberOfSlide: number,
       onDone: () => void,
       navContainerMaxSize: number,
       dotWidth: number,
       deviceMaxWidth: number
     ) => boolean,
-    backHandlerBehaviour: 'activeMinusOne' | 'previous',
-    slide: ISlide,
-    setSlide: (arg0: ISlide) => void,
+    backHandlerBehaviour: BackHandlerType,
+    slide: Slide,
+    setSlide: (arg0: Slide) => void,
     numberOfSlide: number,
     onDone: () => void,
     navContainerMaxSize: number,

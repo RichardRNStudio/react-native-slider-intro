@@ -1,20 +1,20 @@
 import type { PanResponderInstance } from 'react-native';
-import type { ISliderIntro } from './ISliderIntro.interface';
-import type { ISlide } from './ISlide.interface';
+import type { SliderIntroProps } from './SliderIntro.types';
+import type { Slide } from './Slide.types';
 
 declare type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
-export interface ISliderContextProps extends ISliderIntro {
+export interface SliderContextProps extends SliderIntroProps {
   numberOfSlides: number;
   navContainerMaxSize: number;
   dotMaxPossibleWidth: number;
   buttonsMaxSize: number;
   slidesMaxWidth: number;
   panResponderState: [PanResponderInstance, SetState<PanResponderInstance>];
-  sliderState: [ISlide, SetState<ISlide>];
+  sliderState: [Slide, SetState<Slide>];
 }
 
-export interface ISliderProviderProps extends ISliderIntro {
+export interface SliderProviderProps extends SliderIntroProps {
   children: React.ReactNode;
   isCustomRender: boolean;
 }

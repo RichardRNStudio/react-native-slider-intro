@@ -1,5 +1,5 @@
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import type { IStatusBar } from '../interfaces/IStatusBar.interface';
+import type { StatusBarProps } from '../types/StatusBar.types';
 import React from 'react';
 
 const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const StatusBarContainer = ({ backgroundColor }: IStatusBar) => (
+const StatusBarContainer = ({ backgroundColor }: StatusBarProps) => (
   <>
     <StatusBar
       barStyle="light-content"

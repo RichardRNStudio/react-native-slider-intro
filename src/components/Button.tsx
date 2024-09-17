@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import type { IButton } from '../interfaces/IButton.interface';
+import { ButtonType, type ButtonProps } from '../types/Button.types';
 
 const styles = StyleSheet.create({
   skipButton: {
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Button = ({ label, type }: IButton) => {
-  if (type === 'skip') {
+const Button = ({ label, type }: ButtonProps) => {
+  if (type === ButtonType.Skip) {
     return (
       <View style={styles.skipButton}>
         <Text style={styles.label}>{label}</Text>

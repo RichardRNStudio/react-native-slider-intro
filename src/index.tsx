@@ -3,8 +3,8 @@ import { Animated, Dimensions, StyleSheet, View } from 'react-native';
 import Navigation from './components/Navigation';
 import SliderProvider, { SliderContext } from './components/SliderProvider';
 import defaultProps from './defaultProps';
-import type { ISliderIntroItem } from './interfaces/ISliderIntroItem.interface';
-import type { ISliderIntro } from './interfaces/ISliderIntro.interface';
+import type { SliderIntroItemProps } from './types/SliderIntroItem.types';
+import type { SliderIntroProps } from './types/SliderIntro.types';
 import Item from './components/Item';
 
 const styles = StyleSheet.create({
@@ -48,7 +48,7 @@ const SliderIntroContainer = ({ children }: { children: React.ReactNode }) => {
           <>{children}</>
         ) : (
           <>
-            {data?.map((item: ISliderIntroItem) => {
+            {data?.map((item: SliderIntroItemProps) => {
               const { index } = item;
               return (
                 <View
@@ -69,7 +69,7 @@ const SliderIntroContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-function SliderIntro(props: ISliderIntro) {
+function SliderIntro(props: SliderIntroProps) {
   return (
     <SliderProvider {...props} isCustomRender={!!props.children}>
       <SliderIntroContainer children={props.children} />
@@ -78,6 +78,6 @@ function SliderIntro(props: ISliderIntro) {
 }
 
 export default SliderIntro;
-export { type ISliderIntro, type ISliderIntroItem };
+export { type SliderIntroProps, type SliderIntroItemProps };
 
 SliderIntro.defaultProps = defaultProps;

@@ -1,6 +1,6 @@
-import type { IAnimatedValues } from './IAnimatedValues.interface';
+import type { AnimatedValues } from './AnimatedValues.types';
 
-export interface ISlide {
+export type Slide = {
   active: number;
   previous: number;
   marginLeft: number;
@@ -8,5 +8,5 @@ export interface ISlide {
   expectOpacityOfNext: number;
   expectOpacityOfDone: number;
   expectOpacityOfSkip: number;
-  animations: IAnimatedValues;
-}
+  animations: AnimatedValues;
+};

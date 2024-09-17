@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
-import type { INextContainerProps } from '../interfaces/INextContainer.interface';
+import type { NextContainerProps } from '../types/NextContainer.types';
 import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
@@ -15,7 +15,7 @@ const NextContainer = ({
   goToNewSlide,
   isLastSlide,
   animations,
-}: INextContainerProps) => {
+}: NextContainerProps) => {
   const {
     sliderState,
     renderNextButton,

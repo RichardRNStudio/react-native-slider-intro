@@ -8,7 +8,9 @@ import {
   TouchableWithoutFeedback,
   Linking,
 } from 'react-native';
-import SliderIntro, { type ISliderIntroItem } from 'react-native-slider-intro';
+import SliderIntro, {
+  type SliderIntroItemProps,
+} from 'react-native-slider-intro';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faHome,
@@ -22,7 +24,7 @@ const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient as any);
 
 const { width, height } = Dimensions.get('window');
 
-const slides: ISliderIntroItem[] = [
+const slides: SliderIntroItemProps[] = [
   {
     index: 1,
     title: 'First step',
