@@ -1,6 +1,6 @@
 {
   "name": "react-native-slider-intro",
-  "version": "2.1.16",
+  "version": "2.1.17",
   "description": "A simple and full customizable React Native package which implements a unique slider.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
