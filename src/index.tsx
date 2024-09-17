@@ -23,10 +23,13 @@ const SliderIntroContainer = ({ children }: { children: React.ReactNode }) => {
     statusBarColor,
     panResponderState,
     data,
-    animations: { _moveSlideX },
+    sliderState,
     numberOfSlides,
   } = useContext(SliderContext);
   const [panResponder] = panResponderState;
+  const [slide] = sliderState;
+
+  const { _moveSlideX } = slide.animations;
 
   return (
     <>

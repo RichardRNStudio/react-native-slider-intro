@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
+import type { IAnimatedValues } from '../interfaces/IAnimatedValues.interface';
 
 const styles = StyleSheet.create({
   dotMainContainer: {
@@ -39,16 +40,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const DotContainer = () => {
+const DotContainer = ({ animations }: { animations: IAnimatedValues }) => {
   const {
     navContainerMaxSize,
     numberOfSlides,
     fixDotBackgroundColor,
     fixDotOpacity,
     dotWidth,
-    animations: { _moveSlideDotX, _moveSlideDotMarginX },
     animatedDotBackgroundColor,
   } = useContext(SliderContext);
+  const { _moveSlideDotMarginX, _moveSlideDotX } = animations;
   const arrayOfSlideIndex = [...Array(numberOfSlides).keys()];
 
   return (
