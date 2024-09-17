@@ -82,7 +82,7 @@ const BasicExample = ({ closeExample }: { closeExample: () => void }) => {
 export default BasicExample;
 ```
 
-The package includes two render options. Besides the `default render` when you can pass `data` as an array of <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/src/interfaces/ISliderIntroItem.interface.ts">ISliderIntroItem</a> props, you can use a `custom render` with `children` and `numberOfSlides` properties.
+The package includes two render options. Besides the `default render` when you can pass `data` as an array of <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/src/types/SliderIntroItem.types.ts">SliderIntroItemProps</a> props, you can use a `custom render` with `children` and `numberOfSlides` properties.
 
 <h2>Properties</h2>
 

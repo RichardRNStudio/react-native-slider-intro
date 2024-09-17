@@ -3,7 +3,7 @@
 import { useContext, useEffect } from 'react';
 import { Animated, BackHandler, Dimensions, PanResponder } from 'react-native';
 import { SliderContext } from '../components/SliderProvider';
-import { BackHandlerType } from '../types';
+import { BackHandlerType } from '../types/SliderIntro.types';
 
 const deviceMaxWidth = Dimensions.get('window').width;
 
