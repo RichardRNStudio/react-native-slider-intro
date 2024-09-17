@@ -6,7 +6,7 @@ import {
   BackHandlerType,
   type SliderIntroProps,
 } from './types/SliderIntro.types';
-import { ButtonType } from './types';
+import { ButtonType } from './types/Button.types';
 
 const deviceMaxWidth = Dimensions.get('window').width;
 
