@@ -6,13 +6,13 @@ import {
   type PanResponderInstance,
 } from 'react-native';
 import defaultProps from '../defaultProps';
-import type { ISlide } from '../interfaces/ISlide.interface';
+import type { Slide } from '../types/Slide.types';
 import type {
-  ISliderContextProps,
-  ISliderProviderProps,
-} from '../interfaces/ISliderProvider.interface';
+  SliderContextProps,
+  SliderProviderProps,
+} from '../types/SliderProvider.types';
 
-const defaultSlideState: ISlide = {
+const defaultSlideState: Slide = {
   active: 0,
   previous: 0,
   marginLeft: 0,
@@ -30,7 +30,7 @@ const defaultSlideState: ISlide = {
   },
 };
 
-export const SliderContext = createContext<ISliderContextProps>({
+export const SliderContext = createContext<SliderContextProps>({
   ...defaultProps,
   numberOfSlides: defaultProps.data?.length ?? 1,
   navContainerMaxSize: 0,
@@ -47,7 +47,7 @@ export const SliderContext = createContext<ISliderContextProps>({
 
 const deviceMaxWidth = Dimensions.get('window').width;
 
-const SliderProvider = (props: ISliderProviderProps) => {
+const SliderProvider = (props: SliderProviderProps) => {
   const {
     onDone,
     dotWidth,
@@ -69,7 +69,7 @@ const SliderProvider = (props: ISliderProviderProps) => {
   const panResponderState = useState<PanResponderInstance>(
     PanResponder.create(Object.create(null))
   );
-  const sliderState = useState<ISlide>(defaultSlideState);
+  const sliderState = useState<Slide>(defaultSlideState);
 
   const slidesMaxWidth = (numberOfSlides - 1) * deviceMaxWidth;
   const navContainerMaxSize = deviceMaxWidth * navContainerMaxSizePercent;

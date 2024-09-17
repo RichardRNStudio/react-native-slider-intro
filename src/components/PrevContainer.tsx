@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
-import type { IPrevContainerProps } from '../interfaces/IPrevContainer.interface';
+import type { PrevContainerProps } from '../types/PrevContainer.types';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 const PrevContainer = ({
   setDefaultState,
   goToNewSlide,
-}: IPrevContainerProps) => {
+}: PrevContainerProps) => {
   const {
     sliderState,
     onSkip,

@@ -1,17 +1,20 @@
 import React from 'react';
-import type { ISliderIntroItem } from './ISliderIntroItem.interface';
-import type { ISlide } from './ISlide.interface';
+import type { SliderIntroItemProps } from './SliderIntroItem.types';
+import type { Slide } from './Slide.types';
 import type { ColorValue } from 'react-native';
 
-export type BackHandlerType = 'activeMinusOne' | 'previous';
+export enum BackHandlerType {
+  ActiveMinusOne = 'activeMinusOne',
+  Previous = 'previous',
+}
 
 type LeftButtonType = 'previous' | 'skip';
 
-export interface ISliderIntro {
+export interface SliderIntroProps {
   /**
    * Default render - array of items. Children will be ignored if data is passed.
    */
-  data: ISliderIntroItem[];
+  data: SliderIntroItemProps[];
   /**
    * Custom render - if children is passed, data will be ignored. numberOfSlides is required in this case.
    */
@@ -35,8 +38,8 @@ export interface ISliderIntro {
     active: number,
     onBackPress: (
       backHandlerBehaviour: BackHandlerType,
-      slide: ISlide,
-      setSlide: (arg0: ISlide) => void,
+      slide: Slide,
+      setSlide: (arg0: Slide) => void,
       numberOfSlide: number,
       onDone: () => void,
       navContainerMaxSize: number,
@@ -44,8 +47,8 @@ export interface ISliderIntro {
       deviceMaxWidth: number
     ) => boolean,
     backHandlerBehaviour: BackHandlerType,
-    slide: ISlide,
-    setSlide: (arg0: ISlide) => void,
+    slide: Slide,
+    setSlide: (arg0: Slide) => void,
     numberOfSlide: number,
     onDone: () => void,
     navContainerMaxSize: number,

@@ -1,5 +1,5 @@
 import type { ColorValue } from 'react-native';
 
-export interface IStatusBar {
+export interface StatusBarProps {
   backgroundColor: ColorValue;
 }
