@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Button from '../components/Button';
 import { Text } from 'react-native';
-import { ButtonType } from '../types';
+import { ButtonType } from '../types/Button.types';
 
 describe('Button', () => {
   it('renders correctly', () => {
