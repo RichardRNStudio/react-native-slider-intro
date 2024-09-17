@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
+import type { IPrevContainerProps } from '../interfaces/IPrevContainer.interface';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -10,20 +11,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const PrevContainer = () => {
+const PrevContainer = ({
+  setDefaultState,
+  goToNewSlide,
+}: IPrevContainerProps) => {
   const {
     sliderState,
-    goToNewSlide,
-    setDefaultState,
     onSkip,
     leftButtonType,
     buttonsMaxSize,
     showLeftButton,
-    animations: { _opacityOfSkipButton },
     renderSkipButton,
     skipLabel,
   } = useContext(SliderContext);
   const [slide] = sliderState;
+  const { _opacityOfSkipButton } = slide.animations;
 
   const handlePress = () => {
     const { active } = slide;

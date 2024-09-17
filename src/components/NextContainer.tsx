@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
+import type { INextContainerProps } from '../interfaces/INextContainer.interface';
 import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
@@ -10,17 +11,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const NextContainer = () => {
+const NextContainer = ({
+  goToNewSlide,
+  isLastSlide,
+  animations,
+}: INextContainerProps) => {
   const {
     sliderState,
-    animations,
     renderNextButton,
     renderDoneButton,
     buttonsMaxSize,
-    goToNewSlide,
     nextLabel,
     doneLabel,
-    isLastSlide,
   } = useContext(SliderContext);
   const [slide] = sliderState;
   const { _opacityOfNextButton, _opacityOfDoneButton } = animations;

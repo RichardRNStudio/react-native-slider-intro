@@ -3,9 +3,9 @@ import type { ISliderIntroItem } from './ISliderIntroItem.interface';
 import type { ISlide } from './ISlide.interface';
 import type { ColorValue } from 'react-native';
 
-declare type BackHandlerType = 'activeMinusOne' | 'previous';
+export type BackHandlerType = 'activeMinusOne' | 'previous';
 
-declare type LeftButtonType = 'previous' | 'skip';
+type LeftButtonType = 'previous' | 'skip';
 
 export interface ISliderIntro {
   /**
