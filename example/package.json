@@ -12,7 +12,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
-    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/native": "^7.0.9",
     "expo": "~50.0.14",
     "expo-linear-gradient": "^12.7.2",
     "expo-status-bar": "~1.11.1",
