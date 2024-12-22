@@ -13,7 +13,7 @@ const compat = new FlatCompat({
 });
 
 export default [{
-  ignores: ["**/node_modules/", "**/lib/"],
+  ignores: ["**/node_modules/", "**/lib/", "/babel.config.js", "**/example/"],
 }, ...compat.extends("@react-native", "prettier"), {
   plugins: {
     prettier,

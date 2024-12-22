@@ -9,20 +9,20 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/react-native-fontawesome": "^0.3.0",
-    "@react-navigation/native": "^6.1.17",
-    "expo": "~50.0.14",
-    "expo-linear-gradient": "^12.7.2",
-    "expo-status-bar": "~1.11.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.73.6",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-native-fontawesome": "^0.3.2",
+    "@react-navigation/native": "^7.0.14",
+    "expo": "~52.0.21",
+    "expo-linear-gradient": "^14.0.1",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.5",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-shimmer-placeholder": "^2.0.9",
-    "react-native-svg": "^15.1.0",
-    "react-native-web": "~0.19.6"
+    "react-native-svg": "^15.10.1",
+    "react-native-web": "~0.19.13"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
