@@ -64,7 +64,7 @@ const SliderProvider = (props: SliderProviderProps) => {
   } = props;
   const numberOfSlides = isCustomRender
     ? props?.numberOfSlides
-    : data?.length ?? 1;
+    : (data?.length ?? 1);
 
   const panResponderState = useState<PanResponderInstance>(
     PanResponder.create(Object.create(null))
