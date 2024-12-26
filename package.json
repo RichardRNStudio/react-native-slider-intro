@@ -69,7 +69,7 @@
     "@evilmartians/lefthook": "^1.10.0",
     "@react-native/babel-preset": "^0.76.5",
     "@react-native/eslint-config": "^0.75.3",
-    "@release-it/conventional-changelog": "^5.0.0",
+    "@release-it/conventional-changelog": "^9.0.4",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.1",
     "@types/react-test-renderer": "^18.3.0",
