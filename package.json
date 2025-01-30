@@ -84,7 +84,7 @@
     "react-native": "0.76.5",
     "react-native-builder-bob": "^0.35.2",
     "react-test-renderer": "^18.3.1",
-    "release-it": "^15.0.0",
+    "release-it": "^18.1.2",
     "typescript": "^5.0.4"
   },
   "resolutions": {
