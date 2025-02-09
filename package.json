@@ -67,8 +67,8 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^19.6.0",
     "@evilmartians/lefthook": "^1.10.0",
-    "@react-native/babel-preset": "^0.76.5",
-    "@react-native/eslint-config": "^0.75.3",
+    "@react-native/babel-preset": "^0.77.0",
+    "@react-native/eslint-config": "^0.77.0",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.1",
@@ -81,11 +81,11 @@
     "jest": "^29.7.0",
     "prettier": "^3.4.2",
     "react": "18.3.1",
-    "react-native": "0.76.5",
-    "react-native-builder-bob": "^0.35.2",
+    "react-native": "0.77.0",
+    "react-native-builder-bob": "^0.36.0",
     "react-test-renderer": "^18.3.1",
     "release-it": "^15.0.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.7.3"
   },
   "resolutions": {
     "@types/react": "^18.2.44"

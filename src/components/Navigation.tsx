@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-import useSliderIntro from '../hooks/useSliderIntro';
 import DotContainer from './DotContainer';
 import NextContainer from './NextContainer';
 import PrevContainer from './PrevContainer';
@@ -46,8 +45,6 @@ const styles = StyleSheet.create({
 });
 
 const Navigation = () => {
-  const { goToNewSlide, setDefaultState, animations, isLastSlide } =
-    useSliderIntro();
   const { navigationBarBottom, navigationBarHeight, columnButtonStyle } =
     useContext(SliderContext);
 
@@ -72,29 +69,15 @@ const Navigation = () => {
       >
         {columnButtonStyle ? (
           <>
-            <DotContainer animations={animations} />
-            <NextContainer
-              goToNewSlide={goToNewSlide}
-              isLastSlide={isLastSlide}
-              animations={animations}
-            />
-            <PrevContainer
-              setDefaultState={setDefaultState}
-              goToNewSlide={goToNewSlide}
-            />
+            <DotContainer />
+            <NextContainer />
+            <PrevContainer />
           </>
         ) : (
           <>
-            <PrevContainer
-              setDefaultState={setDefaultState}
-              goToNewSlide={goToNewSlide}
-            />
-            <DotContainer animations={animations} />
-            <NextContainer
-              goToNewSlide={goToNewSlide}
-              isLastSlide={isLastSlide}
-              animations={animations}
-            />
+            <PrevContainer />
+            <DotContainer />
+            <NextContainer />
           </>
         )}
       </View>
