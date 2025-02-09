@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
-import type { AnimatedValues } from '../types/AnimatedValues.types';
 
 const styles = StyleSheet.create({
   dotMainContainer: {
@@ -13,11 +12,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  animatedDotContainer: {
-    position: 'absolute',
-    flex: 1,
-    flexDirection: 'row',
-  },
   mainDotInnerContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -26,7 +20,12 @@ const styles = StyleSheet.create({
   },
   fixDot: {
     flex: 1,
-    borderRadius: 100,
+    borderRadius: 10,
+  },
+  animatedDotContainer: {
+    position: 'absolute',
+    flex: 1,
+    flexDirection: 'row',
   },
   animatedDotInnerContainer: {
     flex: 1,
@@ -35,22 +34,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   animatedDot: {
+    borderRadius: 10,
     flex: 1,
-    borderRadius: 100,
+    maxWidth: 2,
   },
 });
 
-const DotContainer = ({ animations }: { animations: AnimatedValues }) => {
+const DotContainer = () => {
   const {
     navContainerMaxSize,
     numberOfSlides,
     fixDotBackgroundColor,
     fixDotOpacity,
     dotWidth,
+    animations,
     animatedDotBackgroundColor,
   } = useContext(SliderContext);
-  const { _moveSlideDotMarginX, _moveSlideDotX } = animations;
   const arrayOfSlideIndex = [...Array(numberOfSlides).keys()];
+
+  const { _slideDotScaleX, _slideDotTranslateX } = animations;
 
   return (
     <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
@@ -58,10 +60,10 @@ const DotContainer = ({ animations }: { animations: AnimatedValues }) => {
         style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}
       >
         <View style={styles.mainDotInnerContainer}>
-          {arrayOfSlideIndex.map((item) => {
+          {arrayOfSlideIndex.map((_, index) => {
             return (
               <View
-                key={item}
+                key={index}
                 style={[
                   styles.fixDot,
                   {
@@ -78,17 +80,24 @@ const DotContainer = ({ animations }: { animations: AnimatedValues }) => {
           })}
         </View>
       </View>
-      <View style={[styles.animatedDotContainer]}>
+      <View style={styles.animatedDotContainer}>
         <View style={styles.animatedDotInnerContainer}>
           <Animated.View
             style={[
               styles.animatedDot,
               {
-                width: _moveSlideDotX,
-                maxWidth: _moveSlideDotX,
+                transform: [
+                  { translateX: _slideDotTranslateX },
+                  {
+                    scaleX: _slideDotScaleX,
+                  },
+                ],
+                borderRadius: Animated.divide(dotWidth, _slideDotScaleX),
+                width: dotWidth,
+                minWidth: dotWidth,
                 height: dotWidth,
+                minHeight: dotWidth,
                 maxHeight: dotWidth,
-                marginLeft: _moveSlideDotMarginX,
                 backgroundColor: animatedDotBackgroundColor,
               },
             ]}
