@@ -1,16 +1,16 @@
 import React from 'react';
-import type { SliderIntroItemProps } from './SliderIntroItem.types';
-import type { Slide } from './Slide.types';
 import type { ColorValue } from 'react-native';
+import type { SliderIntroItemProps } from './SliderIntroItem.types';
+import type { ButtonType } from './Button.types';
 
 export enum BackHandlerType {
   ActiveMinusOne = 'activeMinusOne',
   Previous = 'previous',
 }
 
-type LeftButtonType = 'previous' | 'skip';
+type LeftButtonType = 'previous' | ButtonType.Skip;
 
-export interface SliderIntroProps {
+export type SliderIntroProps = {
   /**
    * Default render - array of items. Children will be ignored if data is passed.
    */
@@ -33,42 +33,16 @@ export interface SliderIntroProps {
   animatedDotBackgroundColor: ColorValue;
   animateDotSpeed: number;
   animateDotBouncing: number;
-  hasReactNavigation: boolean;
-  useCustomBackHandlerEffect: (
-    active: number,
-    onBackPress: (
-      backHandlerBehaviour: BackHandlerType,
-      slide: Slide,
-      setSlide: (arg0: Slide) => void,
-      numberOfSlide: number,
-      onDone: () => void,
-      navContainerMaxSize: number,
-      dotWidth: number,
-      deviceMaxWidth: number
-    ) => boolean,
-    backHandlerBehaviour: BackHandlerType,
-    slide: Slide,
-    setSlide: (arg0: Slide) => void,
-    numberOfSlide: number,
-    onDone: () => void,
-    navContainerMaxSize: number,
-    dotWidth: number,
-    deviceMaxWidth: number
-  ) => void;
-  backHandlerBehaviour: BackHandlerType;
   skipLabel: string;
   nextLabel: string;
   doneLabel: string;
-  renderSkipButton: (skipLabel: string) => React.ReactNode;
-  renderNextButton: (nextLabel: string) => React.ReactNode;
-  renderDoneButton: (doneLabel: string) => React.ReactNode;
-  onSkip: () => void;
-  onDone: () => void;
   showLeftButton: boolean;
   leftButtonType: LeftButtonType;
   columnButtonStyle: boolean;
-  showStatusBar: boolean;
-  statusBarColor: ColorValue;
-  renderStatusBar: (backgroundColor: ColorValue) => React.ReactNode;
   limitToSlide: number;
-}
+  renderSkipButton?: (skipLabel: string) => React.ReactNode;
+  renderNextButton?: (nextLabel: string) => React.ReactNode;
+  renderDoneButton?: (doneLabel: string) => React.ReactNode;
+  onSkip?: () => void;
+  onDone?: () => void;
+};

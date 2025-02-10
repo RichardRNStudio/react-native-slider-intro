@@ -7,12 +7,11 @@ import {
   View,
   type PanResponderCallbacks,
 } from 'react-native';
-import Item from './components/Item';
 import Navigation from './components/Navigation';
+import Slide from './components/Slide';
 import SliderProvider, { SliderContext } from './components/SliderProvider';
 import { type SliderIntroProps } from './types/SliderIntro.types';
 import type { SliderIntroItemProps } from './types/SliderIntroItem.types';
-import defaultProps from './defaultProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,12 +24,9 @@ const deviceMaxWidth = Dimensions.get('window').width;
 
 const Slider = ({ children }: { children: React.ReactNode }) => {
   const {
-    showStatusBar,
-    renderStatusBar,
-    statusBarColor,
     data,
     numberOfSlides,
-    dotWidth,
+    dotWidth = 12,
     slidesMaxWidth,
     limitToSlide,
     dotMaxPossibleWidth,
@@ -38,34 +34,34 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
     goToNewSlide,
     animations,
   } = useContext(SliderContext);
-  const { active, marginLeft, dotMarginLeft } = slide;
+  const { active, slideToValue, dotWidthToValue } = slide;
   const { _moveSlideTranslateX, _slideDotScaleX, _slideDotTranslateX } =
     animations;
 
   const panResponderConfig: PanResponderCallbacks = useMemo(() => {
     const _onGestureEvent = (translationX: number) => {
-      const newValue = translationX + marginLeft;
+      const newValue = translationX + slideToValue;
       const newDotWidthRawValue =
         dotMaxPossibleWidth / (deviceMaxWidth / translationX);
       const newDotWidthValue =
         translationX < 0 ? -1 * newDotWidthRawValue : newDotWidthRawValue;
 
       if (newValue > 0) {
-        _slideDotTranslateX.setValue(dotMarginLeft);
+        _slideDotTranslateX.setValue(dotWidthToValue);
         _moveSlideTranslateX.setValue(0);
         _slideDotScaleX.setValue(1);
         return;
       }
       if (newValue < -slidesMaxWidth) {
-        _slideDotTranslateX.setValue(dotMarginLeft);
-        _moveSlideTranslateX.setValue(marginLeft);
+        _slideDotTranslateX.setValue(dotWidthToValue);
+        _moveSlideTranslateX.setValue(slideToValue);
         _slideDotScaleX.setValue(1);
         return;
       }
       _moveSlideTranslateX.setValue(newValue);
 
       if (newDotWidthValue <= dotWidth) {
-        _slideDotTranslateX.setValue(dotMarginLeft);
+        _slideDotTranslateX.setValue(dotWidthToValue);
         _slideDotScaleX.setValue(1);
         return;
       }
@@ -75,25 +71,27 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
 
       if (translationX < 0) {
         _slideDotTranslateX.setValue(
-          dotMarginLeft + newDotWidthValue - dotWidth
+          dotWidthToValue + newDotWidthValue - dotWidth
         );
         _slideDotScaleX.setValue(newDotWidth);
 
         return;
       }
-      _slideDotTranslateX.setValue(dotMarginLeft - newDotWidthValue + dotWidth);
+      _slideDotTranslateX.setValue(
+        dotWidthToValue - newDotWidthValue + dotWidth
+      );
       _slideDotScaleX.setValue(newDotWidth);
     };
 
     const _onHandlerStateChange = (translationX: number) => {
-      const newValue = translationX + marginLeft;
+      const newValue = translationX + slideToValue;
       if (!(newValue <= 0 && newValue >= -slidesMaxWidth)) {
         return;
       }
       let absoluteTranslation = 0;
       if (translationX < 0) {
         absoluteTranslation = translationX * -1;
-        if (absoluteTranslation > limitToSlide) {
+        if (limitToSlide && absoluteTranslation > limitToSlide) {
           goToNewSlide(active + 1);
           return;
         }
@@ -101,7 +99,7 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
       absoluteTranslation = translationX;
-      if (absoluteTranslation > limitToSlide) {
+      if (limitToSlide && absoluteTranslation > limitToSlide) {
         goToNewSlide(active - 1);
         return;
       }
@@ -129,58 +127,51 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
     _slideDotScaleX,
     _moveSlideTranslateX,
     active,
-    dotMarginLeft,
+    dotWidthToValue,
     dotMaxPossibleWidth,
     dotWidth,
     goToNewSlide,
     limitToSlide,
-    marginLeft,
+    slideToValue,
     slidesMaxWidth,
   ]);
 
   const panResponder = PanResponder.create(panResponderConfig);
 
   return (
-    <>
-      {showStatusBar && renderStatusBar(statusBarColor)}
-      <Animated.View
-        style={[
-          styles.container,
-          {
-            maxWidth: numberOfSlides * deviceMaxWidth,
-            transform: [{ translateX: _moveSlideTranslateX }],
-          },
-        ]}
-        {...panResponder.panHandlers}
-      >
-        {children ? (
-          <>{children}</>
-        ) : (
-          <>
-            {data?.map((item: SliderIntroItemProps, index) => (
-              <View
-                key={index}
-                style={{
-                  width: deviceMaxWidth,
-                }}
-              >
-                <Item item={item} />
-              </View>
-            ))}
-          </>
-        )}
-      </Animated.View>
-    </>
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          maxWidth: numberOfSlides * deviceMaxWidth,
+          transform: [{ translateX: _moveSlideTranslateX }],
+        },
+      ]}
+      {...panResponder.panHandlers}
+    >
+      {children ? (
+        <>{children}</>
+      ) : (
+        <>
+          {data?.map((item: SliderIntroItemProps, index) => (
+            <View
+              key={index}
+              style={{
+                width: deviceMaxWidth,
+              }}
+            >
+              <Slide item={item} />
+            </View>
+          ))}
+        </>
+      )}
+    </Animated.View>
   );
 };
 
-const SliderIntro = (props: SliderIntroProps) => {
-  const providerProps = {
-    ...defaultProps,
-    ...props,
-  };
+const SliderIntro = (props: Partial<SliderIntroProps>) => {
   return (
-    <SliderProvider {...providerProps} isCustomRender={!!props.children}>
+    <SliderProvider {...props} isCustomRender={!!props.children}>
       <>
         <Slider children={props.children} />
         <Navigation />

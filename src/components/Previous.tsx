@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
+import { ButtonType } from '../types/Button.types';
+import Button from './Button';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -10,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PrevContainer = () => {
+const Previous = () => {
   const {
     onSkip,
     leftButtonType,
@@ -27,13 +29,17 @@ const PrevContainer = () => {
 
   const handlePress = () => {
     const { active } = slide;
-    if (leftButtonType === 'skip') {
+    if (leftButtonType === ButtonType.Skip) {
       setDefaultState();
-      onSkip();
+      onSkip?.();
       return;
     }
     goToNewSlide(active - 1);
   };
+
+  const renderDefaultSkipButton = (label: string | undefined) => (
+    <Button label={label} type={ButtonType.Skip} />
+  );
 
   return (
     <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
@@ -45,7 +51,9 @@ const PrevContainer = () => {
               opacity: _opacityOfSkipButton,
             }}
           >
-            {renderSkipButton(skipLabel)}
+            {renderSkipButton
+              ? renderSkipButton(skipLabel)
+              : renderDefaultSkipButton(skipLabel)}
           </Animated.View>
         </TouchableOpacity>
       )}
@@ -53,4 +61,4 @@ const PrevContainer = () => {
   );
 };
 
-export default PrevContainer;
+export default Previous;

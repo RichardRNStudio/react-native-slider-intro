@@ -101,9 +101,6 @@ The package includes two render options. Besides the `default render` when you c
 | `animatedDotBackgroundColor` | <a href="https://reactnative.dev/docs/colors">color</a>| white | Each dots background which have an animation                                   |
 | `animateDotSpeed`            | number   | 8                                     | Speed of dot animation                                                                       |
 | `animateDotBouncing`         | number   | 2                                     | The 'bounciness' value of all animations. https://reactnative.dev/docs/animated#spring       |
-| `hasReactNavigation`         | boolean  | false                                 | There is a trouble with backButton behaviour when you're using react-navigation. You should use `useFocusEffect` in this case for reach the expected behaviour. More info: https://reactnavigation.org/docs/custom-android-back-button-handling/#why-not-use-component-lifecycle-methods                                     |
-| `useCustomBackHandlerEffect` | function | none                                  | As I mentioned above, sometimes we should rewrite the basic <b>backHandler</b> behaviour. This property will be a custom hook. See the example for more info: <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.tsx">React navigation custom hook example</a>|
-| `backHandlerBehaviour`       | string   | activeMinusOne                        | This prop can controls the backButton behaviour. The value should be `activeMinusOne` or `previous`|
 | `skipLabel`                  | string   | Skip                                  | Custom label of skip button                                                                  |
 | `nextLabel`                  | string   | Next                                  | Custom label of next button                                                                  |
 | `doneLabel`                  | string   | Done                                  | Custom label of done button                                                                  |
@@ -128,13 +125,8 @@ The package includes two render options. Besides the `default render` when you c
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.tsx">Previous button example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Status bar example</a></li>
   <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.tsx">Custom slider render function example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample.tsx">React navigation custom hook example (CANNOT BE RUN, the file includes more information how you can test it.)</a></li>
  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Another example for customize the package with third party libraries.</a></li>
 </ul>
-
-<h2>Troubleshooting</h2>
-
-TouchableOpacity onPress function: I've created a new issue on official react-native repository, because `TouchableOpacity`, `Button` and `Pressable` don't working inside `PanResponder` with react-navigation `NavigationContainer`. My solution: Import `TouchableWithoutFeedback` from `react-native-gesture-handler` instead of `react-native` and use `onPressIn` instead of `onPress` function then overwrite the renderItem function.
 
 <h2>Contributing</h2>
 

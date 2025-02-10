@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Button, Dimensions } from 'react-native';
+import { Button, Dimensions, StyleSheet, View } from 'react-native';
 import BasicExample from './BasicExample';
-import CustomButtonsExample from './CustomButtonsExample';
 import ColumnButtonsExample from './ColumnButtonsExample';
-import StatusBarExample from './StatusBarExample';
-import PreviousButtonExample from './PreviousButtonExample';
+import CustomButtonsExample from './CustomButtonsExample';
 import CustomRenderFunctionExample from './CustomRenderFunctionExample';
+import PreviousButtonExample from './PreviousButtonExample';
 import UsingThirdPartyLibrariesExample from './UsingThirdPartyLibrariesExample';
 
 export default function App() {
@@ -17,8 +16,6 @@ export default function App() {
     return <CustomButtonsExample closeExample={() => setExample(null)} />;
   if (example === 'column')
     return <ColumnButtonsExample closeExample={() => setExample(null)} />;
-  if (example === 'statusbar')
-    return <StatusBarExample closeExample={() => setExample(null)} />;
   if (example === 'previous')
     return <PreviousButtonExample closeExample={() => setExample(null)} />;
   if (example === 'customFunction')
@@ -46,11 +43,6 @@ export default function App() {
         title={'Column buttons example'}
         color={'steelblue'}
         onPress={() => setExample('column')}
-      />
-      <Button
-        title={'Custom statusbar example'}
-        color={'steelblue'}
-        onPress={() => setExample('statusbar')}
       />
       <Button
         title={'Previous button example'}

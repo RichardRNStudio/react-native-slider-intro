@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
 const deviceMaxHeight = Dimensions.get('screen').height;
 
-const Item = ({ item }: { item: SliderIntroItemProps }) => {
+const Slide = ({ item }: { item: SliderIntroItemProps }) => {
   const {
     activeLanguage,
     slideMaxHeightPercent,
@@ -97,4 +97,4 @@ const Item = ({ item }: { item: SliderIntroItemProps }) => {
   );
 };
 
-export default Item;
+export default Slide;

@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
+import { ButtonType } from '../types/Button.types';
+import Button from './Button';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -10,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const NextContainer = () => {
+const Next = () => {
   const {
     renderNextButton,
     renderDoneButton,
@@ -23,16 +25,28 @@ const NextContainer = () => {
     animations,
   } = useContext(SliderContext);
   const { _opacityOfNextButton, _opacityOfDoneButton } = animations;
+
+  const renderDefaultNextButton = (label: string) => (
+    <Button label={label} type={ButtonType.Next} />
+  );
+  const renderDefaultDoneButton = (label: string) => (
+    <Button label={label} type={ButtonType.Done} />
+  );
+
   return (
     <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
       <TouchableOpacity onPress={() => goToNewSlide(slide.active + 1)}>
         {!isLastSlide ? (
           <Animated.View style={{ opacity: _opacityOfNextButton }}>
-            {renderNextButton(nextLabel)}
+            {renderNextButton
+              ? renderNextButton(nextLabel)
+              : renderDefaultNextButton(nextLabel)}
           </Animated.View>
         ) : (
           <Animated.View style={{ opacity: _opacityOfDoneButton }}>
-            {renderDoneButton(doneLabel)}
+            {renderDoneButton
+              ? renderDoneButton(doneLabel)
+              : renderDefaultDoneButton(doneLabel)}
           </Animated.View>
         )}
       </TouchableOpacity>
@@ -40,4 +54,4 @@ const NextContainer = () => {
   );
 };
 
-export default NextContainer;
+export default Next;

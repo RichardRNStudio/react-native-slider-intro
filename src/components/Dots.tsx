@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DotContainer = () => {
+const Dots = () => {
   const {
     navContainerMaxSize,
     numberOfSlides,
@@ -108,4 +108,4 @@ const DotContainer = () => {
   );
 };
 
-export default DotContainer;
+export default Dots;

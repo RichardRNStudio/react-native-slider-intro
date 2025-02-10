@@ -14,7 +14,7 @@ export interface SliderContextProps extends SliderIntroProps {
   isLastSlide: boolean;
 }
 
-export interface SliderProviderProps extends SliderIntroProps {
+export interface SliderProviderProps extends Partial<SliderIntroProps> {
   children: React.ReactNode;
   isCustomRender: boolean;
 }

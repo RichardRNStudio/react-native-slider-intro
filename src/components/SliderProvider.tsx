@@ -5,39 +5,61 @@ import React, {
   useState,
 } from 'react';
 import { Animated, Dimensions, Easing, useAnimatedValue } from 'react-native';
-import defaultProps from '../defaultProps';
 import type { Slide } from '../types/Slide.types';
 import type {
   SliderContextProps,
   SliderProviderProps,
 } from '../types/SliderProvider.types';
+import { ButtonType } from '../types/Button.types';
 
 const defaultSlideState: Slide = {
   active: 0,
   previous: 0,
-  marginLeft: 0,
-  dotMarginLeft: 0,
+  slideToValue: 0,
+  dotWidthToValue: 0,
   expectOpacityOfNext: 1,
   expectOpacityOfDone: 0,
   expectOpacityOfSkip: 1,
 };
 
+const deviceMaxWidth = Dimensions.get('window').width;
+
 export const SliderContext = createContext<SliderContextProps>({
-  ...defaultProps,
-  numberOfSlides: defaultProps.data?.length ?? 1,
+  data: [],
+  children: null,
+  navigationBarBottom: 0,
+  navigationBarHeight: 70,
+  animateSlideSpeed: 15,
+  navContainerMaxSizePercent: 0.5,
+  dotWidth: 12,
+  fixDotOpacity: 0.35,
+  fixDotBackgroundColor: 'grey',
+  animatedDotBackgroundColor: 'white',
+  animateDotSpeed: 8,
+  animateDotBouncing: 2,
+  showLeftButton: true,
+  leftButtonType: ButtonType.Skip,
+  columnButtonStyle: false,
+  limitToSlide: deviceMaxWidth * 0.35,
+  renderSkipButton: () => null,
+  renderNextButton: () => null,
+  renderDoneButton: () => null,
+  skipLabel: ButtonType.Skip,
+  nextLabel: ButtonType.Next,
+  doneLabel: ButtonType.Done,
+  onDone: () => {},
+  onSkip: () => {},
+  numberOfSlides: 1,
   navContainerMaxSize: 0,
   dotMaxPossibleWidth: 0,
   buttonsMaxSize: 0,
   slidesMaxWidth: 0,
-  limitToSlide: 0,
   slide: defaultSlideState,
   setDefaultState: () => {},
   animations: Object.create(null),
   goToNewSlide: () => {},
   isLastSlide: false,
 });
-
-const deviceMaxWidth = Dimensions.get('window').width;
 
 const SliderProvider = (props: SliderProviderProps) => {
   const {
@@ -53,7 +75,7 @@ const SliderProvider = (props: SliderProviderProps) => {
   } = props;
 
   const numberOfSlides = isCustomRender
-    ? props?.numberOfSlides
+    ? (props?.numberOfSlides ?? 1)
     : (data?.length ?? 1);
 
   const slidesMaxWidth = (numberOfSlides - 1) * deviceMaxWidth;
@@ -72,25 +94,25 @@ const SliderProvider = (props: SliderProviderProps) => {
 
   const {
     active,
-    marginLeft,
-    dotMarginLeft,
+    slideToValue,
+    dotWidthToValue,
     expectOpacityOfNext,
     expectOpacityOfDone,
     expectOpacityOfSkip,
   } = slide;
 
-  const animateSlide = useMemo(
+  const slideAnimation = useMemo(
     () =>
       Animated.spring(_moveSlideTranslateX, {
-        toValue: marginLeft,
+        toValue: slideToValue,
         speed: animateSlideSpeed,
         bounciness: animateDotBouncing,
         useNativeDriver: true,
       }),
-    [marginLeft, animateSlideSpeed, animateDotBouncing, _moveSlideTranslateX]
+    [slideToValue, animateSlideSpeed, animateDotBouncing, _moveSlideTranslateX]
   );
 
-  const animateDotWidth = useMemo(
+  const dotAnimation = useMemo(
     () =>
       Animated.spring(_slideDotScaleX, {
         toValue: 1,
@@ -101,18 +123,18 @@ const SliderProvider = (props: SliderProviderProps) => {
     [_slideDotScaleX, animateDotBouncing, animateDotSpeed]
   );
 
-  const animateDotMarginLeft = useMemo(
+  const dotWidthAnimation = useMemo(
     () =>
       Animated.spring(_slideDotTranslateX, {
-        toValue: dotMarginLeft,
+        toValue: dotWidthToValue,
         speed: animateDotSpeed,
         bounciness: animateDotBouncing,
         useNativeDriver: true,
       }),
-    [dotMarginLeft, animateDotSpeed, animateDotBouncing, _slideDotTranslateX]
+    [dotWidthToValue, animateDotSpeed, animateDotBouncing, _slideDotTranslateX]
   );
 
-  const animateOpacityOfNext = useMemo(
+  const nextOpacityAnimation = useMemo(
     () =>
       Animated.timing(_opacityOfNextButton, {
         toValue: expectOpacityOfNext,
@@ -123,7 +145,7 @@ const SliderProvider = (props: SliderProviderProps) => {
     [expectOpacityOfNext, animateDotSpeed, _opacityOfNextButton]
   );
 
-  const animateOpacityOfDone = useMemo(
+  const doneOpacityAnimation = useMemo(
     () =>
       Animated.timing(_opacityOfDoneButton, {
         toValue: expectOpacityOfDone,
@@ -134,7 +156,7 @@ const SliderProvider = (props: SliderProviderProps) => {
     [expectOpacityOfDone, animateDotSpeed, _opacityOfDoneButton]
   );
 
-  const animateOpacityOfSkip = useMemo(
+  const skipOpacityAnimation = useMemo(
     () =>
       Animated.timing(_opacityOfSkipButton, {
         toValue: expectOpacityOfSkip,
@@ -147,12 +169,12 @@ const SliderProvider = (props: SliderProviderProps) => {
 
   useLayoutEffect(() => {
     const animationGroup = Animated.parallel([
-      animateSlide,
-      animateDotWidth,
-      animateDotMarginLeft,
-      animateOpacityOfNext,
-      animateOpacityOfDone,
-      animateOpacityOfSkip,
+      slideAnimation,
+      dotAnimation,
+      dotWidthAnimation,
+      nextOpacityAnimation,
+      doneOpacityAnimation,
+      skipOpacityAnimation,
     ]);
     animationGroup.start();
     return () => animationGroup.stop();
@@ -193,14 +215,14 @@ const SliderProvider = (props: SliderProviderProps) => {
     } else if (newSlide < active) {
       expectedMarginLeft = -(newSlide * deviceMaxWidth);
     } else {
-      expectedMarginLeft = marginLeft;
+      expectedMarginLeft = slideToValue;
     }
 
     setSlide({
       active: newSlide,
       previous: active,
-      dotMarginLeft: expectedMarginLeftDot,
-      marginLeft: expectedMarginLeft,
+      dotWidthToValue: expectedMarginLeftDot,
+      slideToValue: expectedMarginLeft,
       expectOpacityOfNext: opacityOfNext,
       expectOpacityOfDone: opacityOfDone,
       expectOpacityOfSkip: opacityOfSkip,
@@ -208,7 +230,30 @@ const SliderProvider = (props: SliderProviderProps) => {
   };
 
   const contextValue = {
-    ...props,
+    data: props?.data ?? [],
+    children: props?.children ?? null,
+    navigationBarBottom: props?.navigationBarBottom ?? 0,
+    navigationBarHeight: props?.navigationBarHeight ?? 70,
+    animateSlideSpeed: props?.animateSlideSpeed ?? 15,
+    navContainerMaxSizePercent: props?.navContainerMaxSizePercent ?? 0.5,
+    dotWidth: props?.dotWidth ?? 12,
+    fixDotOpacity: props?.fixDotOpacity ?? 0.35,
+    fixDotBackgroundColor: props?.fixDotBackgroundColor ?? 'grey',
+    animatedDotBackgroundColor: props?.animatedDotBackgroundColor ?? 'white',
+    animateDotSpeed: props?.animateDotSpeed ?? 8,
+    animateDotBouncing: props?.animateDotBouncing ?? 2,
+    showLeftButton: props?.showLeftButton ?? true,
+    leftButtonType: props?.leftButtonType ?? ButtonType.Skip,
+    columnButtonStyle: !!props?.columnButtonStyle,
+    limitToSlide: props?.limitToSlide ?? deviceMaxWidth * 0.35,
+    renderSkipButton: props?.renderSkipButton,
+    renderNextButton: props?.renderNextButton,
+    renderDoneButton: props?.renderDoneButton,
+    onDone: props?.onDone,
+    onSkip: props?.onSkip,
+    skipLabel: props?.skipLabel ?? ButtonType.Skip,
+    doneLabel: props?.doneLabel ?? ButtonType.Done,
+    nextLabel: props?.nextLabel ?? ButtonType.Next,
     slide,
     setDefaultState: () => setSlide(defaultSlideState),
     isLastSlide: active + 1 === numberOfSlides,

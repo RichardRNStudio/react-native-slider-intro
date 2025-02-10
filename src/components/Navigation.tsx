@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-import DotContainer from './DotContainer';
-import NextContainer from './NextContainer';
-import PrevContainer from './PrevContainer';
+import Dots from './Dots';
+import Next from './Next';
+import Previous from './Previous';
 import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
@@ -69,15 +69,15 @@ const Navigation = () => {
       >
         {columnButtonStyle ? (
           <>
-            <DotContainer />
-            <NextContainer />
-            <PrevContainer />
+            <Dots />
+            <Next />
+            <Previous />
           </>
         ) : (
           <>
-            <PrevContainer />
-            <DotContainer />
-            <NextContainer />
+            <Previous />
+            <Dots />
+            <Next />
           </>
         )}
       </View>
