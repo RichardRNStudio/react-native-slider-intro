@@ -41,15 +41,15 @@ const deviceMaxWidth = Dimensions.get('window').width;
 
 const SliderProvider = (props: SliderProviderProps) => {
   const {
-    onDone,
-    dotWidth,
-    navContainerMaxSizePercent,
-    animateDotBouncing,
-    animateSlideSpeed,
-    animateDotSpeed,
+    data = [],
+    children = null,
+    animateSlideSpeed = 15,
+    navContainerMaxSizePercent = 0.5,
+    dotWidth = 12,
+    animateDotSpeed = 8,
+    animateDotBouncing = 2,
+    onDone = () => {},
     isCustomRender,
-    data,
-    children,
   } = props;
 
   const numberOfSlides = isCustomRender

@@ -10,9 +10,9 @@ import {
 import Item from './components/Item';
 import Navigation from './components/Navigation';
 import SliderProvider, { SliderContext } from './components/SliderProvider';
-import defaultProps from './defaultProps';
-import type { SliderIntroProps } from './types/SliderIntro.types';
+import { type SliderIntroProps } from './types/SliderIntro.types';
 import type { SliderIntroItemProps } from './types/SliderIntroItem.types';
+import defaultProps from './defaultProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -175,8 +175,12 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const SliderIntro = (props: SliderIntroProps) => {
+  const providerProps = {
+    ...defaultProps,
+    ...props,
+  };
   return (
-    <SliderProvider {...props} isCustomRender={!!props.children}>
+    <SliderProvider {...providerProps} isCustomRender={!!props.children}>
       <>
         <Slider children={props.children} />
         <Navigation />
@@ -187,5 +191,3 @@ const SliderIntro = (props: SliderIntroProps) => {
 
 export default SliderIntro;
 export { type SliderIntroItemProps, type SliderIntroProps };
-
-SliderIntro.defaultProps = defaultProps;
