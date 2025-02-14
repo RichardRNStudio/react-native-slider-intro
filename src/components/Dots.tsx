@@ -3,16 +3,16 @@ import { Animated, StyleSheet, View } from 'react-native';
 import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
-  dotMainContainer: {
+  wrapper: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  mainDotContainer: {
+  dotWrapper: {
     flex: 1,
     flexDirection: 'row',
   },
-  mainDotInnerContainer: {
+  dotList: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
   },
-  animatedDotContainer: {
+  animatedDotWrapper: {
     position: 'absolute',
     flex: 1,
     flexDirection: 'row',
   },
-  animatedDotInnerContainer: {
+  animatedDotInnerWrapper: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -55,11 +55,9 @@ const Dots = () => {
   const { _slideDotScaleX, _slideDotTranslateX } = animations;
 
   return (
-    <View style={[styles.dotMainContainer, { maxWidth: navContainerMaxSize }]}>
-      <View
-        style={[styles.mainDotContainer, { maxWidth: navContainerMaxSize }]}
-      >
-        <View style={styles.mainDotInnerContainer}>
+    <View style={[styles.wrapper, { maxWidth: navContainerMaxSize }]}>
+      <View style={[styles.dotWrapper, { maxWidth: navContainerMaxSize }]}>
+        <View style={styles.dotList}>
           {arrayOfSlideIndex.map((_, index) => {
             return (
               <View
@@ -80,8 +78,8 @@ const Dots = () => {
           })}
         </View>
       </View>
-      <View style={styles.animatedDotContainer}>
-        <View style={styles.animatedDotInnerContainer}>
+      <View style={styles.animatedDotWrapper}>
+        <View style={styles.animatedDotInnerWrapper}>
           <Animated.View
             style={[
               styles.animatedDot,

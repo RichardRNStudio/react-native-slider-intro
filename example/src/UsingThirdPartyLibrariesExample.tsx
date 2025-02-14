@@ -43,7 +43,7 @@ const slides: SliderIntroItemProps[] = [
     index: 3,
     title: 'Third step',
     text: 'Custom FontAwesome Icon.',
-    link: 'https://pccontroller.rnstudio.hu',
+    link: 'https://rnstudio.hu',
     icon: faAddressBook,
     backgroundColor: '#84DAB2',
   },
@@ -51,7 +51,7 @@ const slides: SliderIntroItemProps[] = [
 
 const deviceMaxHeight = Dimensions.get('screen').height;
 
-// Do not forget to add the following wrapper inside your map to make sure each slide uses the maximum size of the screen:
+// Do not forget to add the following wrapper inside your map to make sure each slide use the maximum size of the screen:
 // <View style={{ width: Dimensions.get('window').width }} key={index}>{YOUR ITEM}</View>
 
 const UsingThirdPartyLibrariesExample = ({

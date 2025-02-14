@@ -34,7 +34,7 @@ const slides: SliderIntroItemProps[] = [
     index: 3,
     title: 'Third step',
     text: 'Try to make something beauty here.',
-    link: 'https://pccontroller.rnstudio.hu',
+    link: 'https://rnstudio.hu',
     image: require('./images/step3.png'),
     backgroundColor: '#84DAB2',
   },
@@ -47,73 +47,71 @@ const CustomRenderFunctionExample = ({
   closeExample,
 }: {
   closeExample: () => void;
-}) => {
-  return (
-    <SliderIntro
-      navContainerMaxSizePercent={0.25}
-      numberOfSlides={slides.length}
-      onDone={closeExample}
-      onSkip={closeExample}
-      dotWidth={15}
-    >
-      {slides.map(
-        (
-          {
-            backgroundColor,
-            title,
-            text,
-            link,
-            activeLanguage,
-            image,
-            slideMaxHeightPercent,
-          },
-          index
-        ) => {
-          const language = activeLanguage || 'en';
-          const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
-          return (
-            <View style={{ width: width }} key={index}>
-              <View style={[styles.slide, { backgroundColor }]}>
-                <View
-                  style={[
-                    styles.container,
-                    {
-                      height: slideHeight,
-                      maxHeight: slideHeight,
-                    },
-                  ]}
-                >
-                  <Text style={styles.title}>
-                    {Array.isArray(title)
-                      ? title[language as unknown as number]
-                      : title}
+}) => (
+  <SliderIntro
+    navContainerMaxSizePercent={0.25}
+    numberOfSlides={slides.length}
+    onDone={closeExample}
+    onSkip={closeExample}
+    dotWidth={15}
+  >
+    {slides.map(
+      (
+        {
+          backgroundColor,
+          title,
+          text,
+          link,
+          activeLanguage,
+          image,
+          slideMaxHeightPercent,
+        },
+        index
+      ) => {
+        const language = activeLanguage || 'en';
+        const slideHeight = deviceMaxHeight * (slideMaxHeightPercent || 0.78);
+        return (
+          <View style={{ width: width }} key={index}>
+            <View style={[styles.slide, { backgroundColor }]}>
+              <View
+                style={[
+                  styles.container,
+                  {
+                    height: slideHeight,
+                    maxHeight: slideHeight,
+                  },
+                ]}
+              >
+                <Text style={styles.title}>
+                  {Array.isArray(title)
+                    ? title[language as unknown as number]
+                    : title}
+                </Text>
+                {image && <Image style={styles.image} source={image} />}
+                <View>
+                  <Text style={styles.language}>
+                    {Array.isArray(text)
+                      ? text[language as unknown as number]
+                      : text}
                   </Text>
-                  {image && <Image style={styles.image} source={image} />}
-                  <View>
-                    <Text style={styles.language}>
-                      {Array.isArray(text)
-                        ? text[language as unknown as number]
-                        : text}
-                    </Text>
-                    {link && (
-                      <TouchableWithoutFeedback
-                        onPressIn={() => {
-                          Linking.openURL(link);
-                        }}
-                      >
-                        <Text style={styles.link}>{link}</Text>
-                      </TouchableWithoutFeedback>
-                    )}
-                  </View>
+                  {link && (
+                    <TouchableWithoutFeedback
+                      onPressIn={() => {
+                        Linking.openURL(link);
+                      }}
+                    >
+                      <Text style={styles.link}>{link}</Text>
+                    </TouchableWithoutFeedback>
+                  )}
                 </View>
               </View>
             </View>
-          );
-        }
-      )}
-    </SliderIntro>
-  );
-};
+          </View>
+        );
+      }
+    )}
+  </SliderIntro>
+);
 
 const styles = StyleSheet.create({
   container: {

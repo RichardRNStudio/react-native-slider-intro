@@ -14,7 +14,7 @@ import { type SliderIntroProps } from './types/SliderIntro.types';
 import type { SliderIntroItemProps } from './types/SliderIntroItem.types';
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
     flexDirection: 'row',
   },
@@ -141,7 +141,7 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
   return (
     <Animated.View
       style={[
-        styles.container,
+        styles.wrapper,
         {
           maxWidth: numberOfSlides * deviceMaxWidth,
           transform: [{ translateX: _moveSlideTranslateX }],
@@ -169,16 +169,12 @@ const Slider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const SliderIntro = (props: Partial<SliderIntroProps>) => {
-  return (
-    <SliderProvider {...props} isCustomRender={!!props.children}>
-      <>
-        <Slider children={props.children} />
-        <Navigation />
-      </>
-    </SliderProvider>
-  );
-};
+const SliderIntro = (props: Partial<SliderIntroProps>) => (
+  <SliderProvider {...props} isCustomRender={!!props.children}>
+    <Slider children={props.children} />
+    <Navigation />
+  </SliderProvider>
+);
 
 export default SliderIntro;
 export { type SliderIntroItemProps, type SliderIntroProps };

@@ -5,7 +5,7 @@ import { ButtonType } from '../types/Button.types';
 import Button from './Button';
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  wrapper: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,7 +42,7 @@ const Previous = () => {
   );
 
   return (
-    <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
+    <View style={[styles.wrapper, { maxWidth: buttonsMaxSize }]}>
       {showLeftButton && (
         <TouchableOpacity onPress={handlePress}>
           <Animated.View

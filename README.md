@@ -60,7 +60,7 @@ const slides = [
     index: 1,
     title: 'First step',
     text: 'Simple description.',
-    link: 'https://pccontroller.rnstudio.hu',
+    link: 'https://rnstudio.hu',
     image: require('./images/step1.png'),
     backgroundColor: '#febe29',
   },
@@ -73,11 +73,9 @@ const slides = [
   },
 ];
 
-const BasicExample = ({ closeExample }: { closeExample: () => void }) => {
-  return (
-    <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
-  );
-};
+const BasicExample = ({ closeExample }: { closeExample: () => void }) => (
+  <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
+);
 
 export default BasicExample;
 ```
@@ -88,44 +86,43 @@ The package includes two render options. Besides the `default render` when you c
 
 | Name                         | Type     | Default value                         | Description                                                                                  |
 | ---------------------------- | -------- | ------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `data`                       | array    | []                                    | `Default render` - array of items. Children will be ignored if data is passed.                 |
-| `numberOfSlides`             | array    | number                                | `Custom render` - if children is passed, data will be ignored. numberOfSlides is required in this case. |
+| `data`                       | array    | []                                    | `Default render` - An array of items. If data is provided, children will be ignored.                 |
+| `numberOfSlides`             | array    | number                                | `Custom render` - if children is provided, data will be ignored. numberOfSlides is required in this case. |
 | `children`                   | ReactNode| null                                  | `Custom render` - JSX elements to render.                                                      |
-| `navigationBarBottom`        | number   | 0                                     | Custom value of dot navigation container bottom position                                     |
-| `navigationBarHeight`        | number   | 70                                    | Height of dot navigation container                                                           |
-| `animateSlideSpeed`          | number   | 15                                    | Speed of slider animation                                                                    |
-| `navContainerMaxSizePercent` | number   | 0.5                                   | Percent value of navigation container's width                                                |
-| `dotWidth`                   | number   | 12                                    | The radius of the 'dot' circle of navigation                                                 |
-| `fixDotOpacity`              | number   | 0.35                                  | Each dots opacity which don't have animation                                                 |
-| `fixDotBackgroundColor`      | <a href="https://reactnative.dev/docs/colors">color</a>| grey  | Each dots background which don't have an animation                             |
-| `animatedDotBackgroundColor` | <a href="https://reactnative.dev/docs/colors">color</a>| white | Each dots background which have an animation                                   |
-| `animateDotSpeed`            | number   | 8                                     | Speed of dot animation                                                                       |
-| `animateDotBouncing`         | number   | 2                                     | The 'bounciness' value of all animations. https://reactnative.dev/docs/animated#spring       |
-| `skipLabel`                  | string   | Skip                                  | Custom label of skip button                                                                  |
-| `nextLabel`                  | string   | Next                                  | Custom label of next button                                                                  |
-| `doneLabel`                  | string   | Done                                  | Custom label of done button                                                                  |
-| `renderSkipButton`           | function | Default skip/previous button renderer | Use to supply your own skip/previous button                                                  |
-| `renderNextButton`           | function | Default next button renderer          | Use to supply your own next button                                                           |
-| `renderDoneButton`           | function | Default done button renderer          | Use to supply your own done button                                                           |
-| `onDone`                     | function | none                                  | Behaviour of done button                                                                     |
-| `onSkip`                     | function | none                                  | Behaviour of skip button                                                                     |
-| `showLeftButton`             | boolean  | true                                  | Show skip or previous button on the left side                                                |
-| `leftButtonType`             | string   | skip                                  | The button type on the left side should be `skip` or `previous`                              |
-| `columnButtonStyle`          | boolean  | false                                 | Buttons will show up in a column                                                             |
-| `showStatusBar`              | boolean  | false                                 | Show status bar on top of screen. You can make your own status bar outside of this component |
-| `statusBarColor`             | <a href="https://reactnative.dev/docs/colors">color</a>| #febe29 | Background color of status bar                                               |
-| `renderStatusBar`            | function | Default status bar renderer           | Use to supply your own status bar component                                                  |
-| `limitToSlide`               | number | (Device max width) * 0.35               | Use to change the limit of the slide animation. It is calculated based on the <a href="https://reactnative.dev/docs/panresponder">PanResponder's `gestureState.dx`</a> property.
+| `navigationBarBottom`        | number   | 0                                     | Custom bottom position of the dot navigation container.                                   |
+| `navigationBarHeight`        | number   | 70                                    | Height of the dot navigation container.                                                           |
+| `animateSlideSpeed`          | number   | 15                                    | Speed of the slider animation.                                                               |
+| `navContainerMaxSizePercent` | number   | 0.5                                   | The maximum width of the navigation container as a percentage of the total width.                                              |
+| `dotWidth`                   | number   | 12                                    | The radius of the navigation dots.                                                |
+| `fixDotOpacity`              | number   | 0.35                                  | Opacity of inactive (non-animated) dots.                                                 |
+| `fixDotBackgroundColor`      | <a href="https://reactnative.dev/docs/colors">color</a>| grey  | Background color of inactive dots.                             |
+| `animatedDotBackgroundColor` | <a href="https://reactnative.dev/docs/colors">color</a>| white | Background color of the animated dot.                                   |
+| `animateDotSpeed`            | number   | 8                                     | Speed of the dot animation.                                                                     |
+| `animateDotBouncing`         | number   | 2                                     | Bounciness value of all animations. https://reactnative.dev/docs/animated#spring       |
+| `skipLabel`                  | string   | Skip                                  | Custom label for skip button.                                                               |
+| `nextLabel`                  | string   | Next                                  | Custom label for next button.                                                                  |
+| `doneLabel`                  | string   | Done                                  | Custom label for done button.                                                                  |
+| `renderSkipButton`           | function | Default skip/previous button renderer | Custom renderer for the skip/previous button.                                                  |
+| `renderNextButton`           | function | Default next button renderer          | Custom renderer for the next button.                                                       |
+| `renderDoneButton`           | function | Default done button renderer          | Custom renderer for the done button.                                                           |
+| `onDone`                     | function | none                                  | Callback function executed when the done button is pressed.                                                                     |
+| `onSkip`                     | function | none                                  | Callback function executed when the skip button is pressed.                                                                     |
+| `showLeftButton`             | boolean  | true                                  | Whether to show the skip/previous button on the left side.                                                |
+| `leftButtonType`             | string   | skip                                  | The button type on the left side, either `skip` or `previous`.                             |
+| `columnButtonStyle`          | boolean  | false                                 | If true, buttons will be displayed in a column.                                                             |
+| `limitToSlide`               | number | (Device max width) * 0.35               | Defines the slide animation limit, based on <a href="https://reactnative.dev/docs/panresponder">PanResponder's `gestureState.dx`</a> property.
 
 <h2>Examples</h2>
 <ul>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/BasicExample.tsx">Basic example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ColumnButtonsExample.tsx">Column buttons example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomButtonsExample.tsx">Custom buttons example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.tsx">Previous button example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Status bar example</a></li>
-  <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.tsx">Custom slider render function example</a></li>
- <li><a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Another example for customize the package with third party libraries.</a></li>
+  <li>1. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/BasicExample.tsx">Basic example</a></li>
+  <li>2.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomButtonsExample.tsx">Custom buttons example</a></li>
+  <li>3.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ColumnButtonsExample.tsx">Column buttons example</a></li>
+  <li>4.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.tsx">Previous button example</a></li>
+  <li>5.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.tsx">Custom slider render function example</a></li>
+  <li>6.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Status bar example</a></li>
+  <li>7.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample/ReactNavigationExample.tsx">React navigation example</a></li>
+  <li>8.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/GifExample.tsx">Gif example</a></li>
+  <li>9.<a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Third party library example</a></li>
 </ul>
 
 <h2>Contributing</h2>

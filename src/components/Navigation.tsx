@@ -6,7 +6,7 @@ import Previous from './Previous';
 import { SliderContext } from './SliderProvider';
 
 const styles = StyleSheet.create({
-  navContainer: {
+  wrapper: {
     position: 'absolute',
     width: '100%',
     maxWidth: '100%',
@@ -26,22 +26,6 @@ const styles = StyleSheet.create({
   flexDirectionColumn: {
     flexDirection: 'column',
   },
-  prevContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  prevButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  prevText: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    color: 'white',
-    fontSize: 14,
-  },
 });
 
 const Navigation = () => {
@@ -51,7 +35,7 @@ const Navigation = () => {
   return (
     <View
       style={[
-        styles.navContainer,
+        styles.wrapper,
         {
           bottom: navigationBarBottom,
           height: navigationBarHeight,

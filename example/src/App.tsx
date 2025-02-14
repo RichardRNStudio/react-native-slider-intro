@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Dimensions, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import BasicExample from './BasicExample';
 import ColumnButtonsExample from './ColumnButtonsExample';
 import CustomButtonsExample from './CustomButtonsExample';
 import CustomRenderFunctionExample from './CustomRenderFunctionExample';
+import GifExample from './GifExample';
 import PreviousButtonExample from './PreviousButtonExample';
+import ReactNavigationExample from './ReactNavigationExample/ReactNavigationExample';
+import StatusBarExample from './StatusBarExample';
 import UsingThirdPartyLibrariesExample from './UsingThirdPartyLibrariesExample';
 
 export default function App() {
@@ -22,53 +25,101 @@ export default function App() {
     return (
       <CustomRenderFunctionExample closeExample={() => setExample(null)} />
     );
+  if (example === 'statusBar')
+    return <StatusBarExample closeExample={() => setExample(null)} />;
+  if (example === 'navigation')
+    return <ReactNavigationExample closeExample={() => setExample(null)} />;
+  if (example === 'gif')
+    return <GifExample closeExample={() => setExample(null)} />;
   if (example === 'thirdParty')
     return (
       <UsingThirdPartyLibrariesExample closeExample={() => setExample(null)} />
     );
 
   return (
-    <View style={styles.container}>
-      <Button
-        title={'Basic example'}
-        color={'steelblue'}
-        onPress={() => setExample('basic')}
-      />
-      <Button
-        title={'Custom buttons example'}
-        color={'steelblue'}
-        onPress={() => setExample('custom')}
-      />
-      <Button
-        title={'Column buttons example'}
-        color={'steelblue'}
-        onPress={() => setExample('column')}
-      />
-      <Button
-        title={'Previous button example'}
-        color={'steelblue'}
-        onPress={() => setExample('previous')}
-      />
-      <Button
-        title={'Custom render function example'}
-        color={'steelblue'}
-        onPress={() => setExample('customFunction')}
-      />
-      <Button
-        title={'Using third party libraries'}
-        color={'steelblue'}
-        onPress={() => setExample('thirdParty')}
-      />
+    <View style={styles.table}>
+      <View style={styles.row}>
+        <Button
+          title={'1. Basic'}
+          color={'steelblue'}
+          onPress={() => setExample('basic')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'2. Custom buttons'}
+          color={'steelblue'}
+          onPress={() => setExample('custom')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'3. Column buttons'}
+          color={'steelblue'}
+          onPress={() => setExample('column')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'4. Previous button'}
+          color={'steelblue'}
+          onPress={() => setExample('previous')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'5. Custom render function'}
+          color={'steelblue'}
+          onPress={() => setExample('customFunction')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'6. Custom status bar'}
+          color={'steelblue'}
+          onPress={() => setExample('statusBar')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'7. React navigation'}
+          color={'steelblue'}
+          onPress={() => setExample('navigation')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'8. Gif'}
+          color={'steelblue'}
+          onPress={() => setExample('gif')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Button
+          title={'9. Using third parties'}
+          color={'steelblue'}
+          onPress={() => setExample('thirdParty')}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  table: {
     flex: 1,
-    maxHeight: Dimensions.get('screen').height,
+    marginTop: 50,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+  },
+  row: {
+    flex: 1,
+    marginTop: 2,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    maxHeight: 50,
+    borderWidth: 1,
   },
 });

@@ -1,3 +1,4 @@
+import type { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SliderIntro, {
@@ -8,24 +9,21 @@ const slides: SliderIntroItemProps[] = [
   {
     index: 1,
     title: 'First step',
-    text: 'Simple description.',
-    image: require('./images/step4.png'),
+    image: require('../images/step4.png'),
     backgroundColor: '#febe29',
     slideMaxHeightPercent: 0.65,
   },
   {
     index: 2,
     title: 'Second step',
-    text: 'Simple description for the second step.',
-    image: require('./images/step3.png'),
+    image: require('../images/step3.png'),
     backgroundColor: '#bb2323',
     slideMaxHeightPercent: 0.65,
   },
   {
     index: 3,
     title: 'Third step',
-    text: 'Try to make something beauty here.',
-    image: require('./images/step2.png'),
+    image: require('../images/step2.png'),
     backgroundColor: '#84DAB2',
     slideMaxHeightPercent: 0.65,
   },
@@ -39,7 +37,7 @@ const renderNextButton = () => (
 
 const renderDoneButton = () => (
   <View style={styles.nextButton}>
-    <Text style={styles.text}>Done</Text>
+    <Text style={styles.text}>Slider 1</Text>
   </View>
 );
 
@@ -49,10 +47,10 @@ const renderSkipButton = () => (
   </View>
 );
 
-const ColumnButtonsExample = ({
-  closeExample,
+const SecondSliderScreen = ({
+  navigation,
 }: {
-  closeExample: () => void;
+  navigation: NavigationProp<ParamListBase>;
 }) => (
   <SliderIntro
     renderNextButton={renderNextButton}
@@ -62,8 +60,8 @@ const ColumnButtonsExample = ({
     navigationBarHeight={130}
     columnButtonStyle={true}
     data={slides}
-    onDone={closeExample}
-    onSkip={closeExample}
+    onDone={() => navigation.navigate('SliderOne')}
+    onSkip={() => navigation.navigate('SliderOne')}
   />
 );
 
@@ -83,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColumnButtonsExample;
+export default SecondSliderScreen;
