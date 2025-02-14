@@ -119,7 +119,7 @@ The package includes two rendering options. In addition to the `default render`,
   <li>3. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ColumnButtonsExample.tsx">Column buttons example</a></li>
   <li>4. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/PreviousButtonExample.tsx">Previous button example</a></li>
   <li>5. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/CustomRenderFunctionExample.tsx">Custom slider render function example</a></li>
-  <li>6. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Status bar example</a></li>
+  <li>6. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/StatusBarExample.tsx">Statusbar example</a></li>
   <li>7. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/ReactNavigationExample/ReactNavigationExample.tsx">React navigation example</a></li>
   <li>8. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/GifExample.tsx">Gif example</a></li>
   <li>9. <a href="https://github.com/RichardRNStudio/react-native-slider-intro/blob/main/example/src/UsingThirdPartyLibrariesExample.tsx">Third party library example</a></li>
