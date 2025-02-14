@@ -11,7 +11,7 @@ import {
 import type { SliderIntroItemProps } from '../types/SliderIntroItem.types';
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     marginTop: 10,
     flex: 1,
     flexDirection: 'column',
@@ -71,7 +71,7 @@ const Slide = ({ item }: { item: SliderIntroItemProps }) => {
     <View key={index} style={[styles.slide, { backgroundColor }]}>
       <View
         style={[
-          styles.container,
+          styles.wrapper,
           {
             height: slideHeight,
             maxHeight: slideHeight,

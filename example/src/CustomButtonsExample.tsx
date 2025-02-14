@@ -33,36 +33,32 @@ const slides: SliderIntroItemProps[] = [
   },
 ];
 
-const renderNextButton = () => {
-  return (
-    <FontAwesomeIcon icon={faArrowCircleRight} color={'white'} size={35} />
-  );
-};
+const renderNextButton = () => (
+  <FontAwesomeIcon icon={faArrowCircleRight} color={'white'} size={35} />
+);
 
-const renderDoneButton = () => {
-  return <FontAwesomeIcon icon={faCheckCircle} color={'white'} size={35} />;
-};
+const renderDoneButton = () => (
+  <FontAwesomeIcon icon={faCheckCircle} color={'white'} size={35} />
+);
 
-const renderSkipButton = () => {
-  return <FontAwesomeIcon icon={faTimesCircle} color={'white'} size={35} />;
-};
+const renderSkipButton = () => (
+  <FontAwesomeIcon icon={faTimesCircle} color={'white'} size={35} />
+);
 
 const CustomButtonsExample = ({
   closeExample,
 }: {
   closeExample: () => void;
-}) => {
-  return (
-    <SliderIntro
-      renderNextButton={renderNextButton}
-      renderDoneButton={renderDoneButton}
-      renderSkipButton={renderSkipButton}
-      navContainerMaxSizePercent={0.25}
-      data={slides}
-      onDone={closeExample}
-      onSkip={closeExample}
-    />
-  );
-};
+}) => (
+  <SliderIntro
+    renderNextButton={renderNextButton}
+    renderDoneButton={renderDoneButton}
+    renderSkipButton={renderSkipButton}
+    navContainerMaxSizePercent={0.25}
+    data={slides}
+    onDone={closeExample}
+    onSkip={closeExample}
+  />
+);
 
 export default CustomButtonsExample;

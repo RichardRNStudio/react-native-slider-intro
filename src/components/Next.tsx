@@ -5,7 +5,7 @@ import { ButtonType } from '../types/Button.types';
 import Button from './Button';
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  wrapper: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -34,7 +34,7 @@ const Next = () => {
   );
 
   return (
-    <View style={[styles.buttonContainer, { maxWidth: buttonsMaxSize }]}>
+    <View style={[styles.wrapper, { maxWidth: buttonsMaxSize }]}>
       <TouchableOpacity onPress={() => goToNewSlide(slide.active + 1)}>
         {!isLastSlide ? (
           <Animated.View style={{ opacity: _opacityOfNextButton }}>

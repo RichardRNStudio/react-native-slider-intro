@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import SliderIntro, {
   type SliderIntroItemProps,
 } from 'react-native-slider-intro';
@@ -36,8 +37,19 @@ const slides: SliderIntroItemProps[] = [
   },
 ];
 
-const BasicExample = ({ closeExample }: { closeExample: () => void }) => (
-  <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
+const StatusBarExample = ({ closeExample }: { closeExample: () => void }) => (
+  <>
+    <StatusBar backgroundColor="#79B45D" barStyle="light-content" />
+    <SafeAreaView style={styles.safeAreViewContainer} />
+    <SliderIntro data={slides} onDone={closeExample} onSkip={closeExample} />
+  </>
 );
 
-export default BasicExample;
+const styles = StyleSheet.create({
+  safeAreViewContainer: {
+    backgroundColor: '#79B45D',
+    height: StatusBar.currentHeight,
+  },
+});
+
+export default StatusBarExample;

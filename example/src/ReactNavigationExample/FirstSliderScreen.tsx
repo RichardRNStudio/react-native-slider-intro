@@ -1,3 +1,4 @@
+import type { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SliderIntro, {
@@ -8,24 +9,21 @@ const slides: SliderIntroItemProps[] = [
   {
     index: 1,
     title: 'First step',
-    text: 'Simple description.',
-    image: require('./images/step4.png'),
+    image: require('../images/step4.png'),
     backgroundColor: '#febe29',
     slideMaxHeightPercent: 0.65,
   },
   {
     index: 2,
     title: 'Second step',
-    text: 'Simple description for the second step.',
-    image: require('./images/step3.png'),
+    image: require('../images/step3.png'),
     backgroundColor: '#bb2323',
     slideMaxHeightPercent: 0.65,
   },
   {
     index: 3,
     title: 'Third step',
-    text: 'Try to make something beauty here.',
-    image: require('./images/step2.png'),
+    image: require('../images/step2.png'),
     backgroundColor: '#84DAB2',
     slideMaxHeightPercent: 0.65,
   },
@@ -39,31 +37,23 @@ const renderNextButton = () => (
 
 const renderDoneButton = () => (
   <View style={styles.nextButton}>
-    <Text style={styles.text}>Done</Text>
+    <Text style={styles.text}>Slider 2</Text>
   </View>
 );
 
-const renderSkipButton = () => (
-  <View>
-    <Text style={styles.text}>Skip</Text>
-  </View>
-);
-
-const ColumnButtonsExample = ({
-  closeExample,
+const FirstSliderScreen = ({
+  navigation,
 }: {
-  closeExample: () => void;
+  navigation: NavigationProp<ParamListBase>;
 }) => (
   <SliderIntro
     renderNextButton={renderNextButton}
     renderDoneButton={renderDoneButton}
-    renderSkipButton={renderSkipButton}
     navContainerMaxSizePercent={0.3}
     navigationBarHeight={130}
     columnButtonStyle={true}
     data={slides}
-    onDone={closeExample}
-    onSkip={closeExample}
+    onDone={() => navigation.navigate('SliderTwo')}
   />
 );
 
@@ -83,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColumnButtonsExample;
+export default FirstSliderScreen;
